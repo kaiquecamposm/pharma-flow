@@ -1,57 +1,42 @@
 # pharma-flow
 
-## Requisitos Funcionais (o sistema deve fazer)
+## 1. Requisitos Funcionais
 
-- **Gestão de Estudos Clínicos**
-    - [ ]  Cadastro de protocolos, pacientes, profissionais e centros de pesquisa.
-    - [ ]  Registro de dados clínicos com versionamento e trilha de auditoria.
-    - [ ]  Monitoramento em tempo real de métricas de eficácia, segurança e eventos adversos.
-    - [ ]  Estratificação de pacientes com algoritmos de machine learning.
-- **Gestão da Produção Farmacêutica**
-    - [ ]  Planejamento e rastreabilidade da cadeia produtiva (matéria-prima → produto final).
-    - [ ]  Controle de lotes, datas de validade e cadeia de frio.
-    - [ ]  Indicadores ambientais: consumo de energia, água, solventes e reciclagem.
-- **Segurança e Conformidade**
-    - [ ]  Autenticação multifator.
-    - [ ]  Assinatura eletrônica compatível com **FDA 21 CFR Part 11**.
-    - [ ]  Controle de acesso baseado em papéis (RBAC).
-    - [ ]  Trilhas de auditoria imutáveis de todas as operações.
-- **Educação Ambiental**
-    - [ ]  Módulo de cursos multimodais (texto, vídeo, quizzes).
-    - [ ]  Registro de participação e emissão automática de certificados.
-    - [ ]  Relatórios de impacto ambiental aplicados a cada processo.
-- **Integração e Processamento**
-    - [ ]  APIs para integração com sistemas legados.
-    - [ ]  Biblioteca Python para análise de dados biomédicos (estatística, ML).
-    - [ ]  Dashboards interativos para indicadores clínicos e ambientais.
+- [ ] O sistema deve permitir registro, armazenamento e versionamento seguro de dados clínicos, laboratoriais e fabris.
+- [ ] Deve haver controle de acesso por perfis de usuário (pesquisador, gestor, auditor, etc.).
+- [ ] O sistema deve manter trilhas de auditoria imutáveis de todas as operações.
+- [ ] O sistema deve oferecer assinaturas eletrônicas em conformidade com FDA 21 CFR Part 11.
+- [ ] Deve incluir módulos de análise de dados clínicos com bibliotecas em Python (machine learning, detecção de outliers, predição de falhas ambientais).
+- [ ] O sistema deve registrar indicadores ambientais críticos (ex.: consumo energético, volume de solventes recuperados).
+- [ ] Deve gerar relatórios automáticos de conformidade com GxP (GLP, GCP, GMP).
+- [ ] Deve oferecer módulos educacionais interativos para capacitação ambiental (ecopedagogia, ética, sustentabilidade).
+- [ ] O sistema deve emitir certificados de conclusão para treinamentos realizados na plataforma.
+- [ ] Deve haver dashboards de acompanhamento com indicadores de sustentabilidade e métricas de desenvolvimento (velocity, burndown chart).
+- [ ] O sistema deve permitir diagnóstico e planos de mitigação ambiental, seguindo o ciclo PDCA.
 
----
 
-## 2. Requisitos Não Funcionais 
+## 2. Requisitos Não Funcionais
 
-- [ ]  **Performance:** processamento de séries temporais biomédicas em tempo real.
-- [ ]  **Disponibilidade:** uptime mínimo de 99,9% em ambiente validado.
-- [ ]  **Escalabilidade:** suporte a múltiplos estudos clínicos e plantas produtivas.
-- [ ]  **Confiabilidade:** testes unitários e de integração com cobertura > 80%.
-- [ ]  **Usabilidade:** interface responsiva, acessível (WCAG 2.1).
-- [ ]  **Sustentabilidade:** otimização de recursos computacionais e relatórios de impacto ambiental.
+- [ ] O sistema deve garantir integridade e rastreabilidade dos dados.
+- [ ] Deve utilizar autenticação criptográfica para acessos e assinaturas.
+- [ ] A plataforma deve ser modular e escalável, suportando evolução incremental.
+- [ ] O desempenho dos algoritmos deve ser analisado em complexidade Big-O.
+- [ ] Testes unitários devem alcançar cobertura mínima de 80%.
+- [ ] O sistema deve ser ambientalmente responsável, com foco em reduzir pegada de carbono e riscos de descarte inadequado.
 
----
 
-## 3. Regras de Negócio
+## 📌 Regras de Negócio
 
-- [ ]  Todos os dados de pacientes devem ser **anonimizados** conforme LGPD/GDPR.
-- [ ]  Alterações em registros clínicos ou produtivos **não podem sobrescrever dados anteriores**, apenas criar versões.
-- [ ]  Cada usuário deve possuir **papel definido** (ex.: pesquisador, auditor, gestor, operador fabril).
-- [ ]  O sistema **não deve permitir exclusão física de registros** (apenas inativação).
-- [ ]  Cada estudo clínico precisa ser **associado a um protocolo aprovado por comitê de ética**.
-- Certificados de conclusão de cursos ambientais só podem ser emitidos após:
-    - [ ]  ≥ 70% de presença nas aulas.
-    - [ ]  ≥ 60% de acertos nas avaliações.
-- [ ]  Indicadores ambientais devem ser **registrados e auditados** a cada ciclo de produção.
-- [ ]  Qualquer integração com sistemas legados deve registrar impacto ambiental positivo (redução de consumo, resíduos ou emissões).
-- [ ]  Todo algoritmo preditivo usado em estratificação clínica deve ser acompanhado de **relatório de acurácia e limitações**.
-- [ ]  Dados e logs devem ser armazenados por, no mínimo, **15 anos**, conforme normas de pesquisa clínica.
+- [ ] Conformidade regulatória obrigatória: o sistema só é válido se atender integralmente às normas GxP e FDA 21 CFR Part 11.
+- [ ] Rastreabilidade total: nenhuma operação pode ser registrada sem trilha de auditoria imutável.
+- [ ] Segurança de dados: apenas usuários autorizados, com autenticação criptográfica, podem acessar dados sensíveis.
+- [ ] Educação ambiental obrigatória: todos os colaboradores devem realizar treinamentos disponíveis na plataforma e obter certificação.
+- [ ] Medição de sustentabilidade contínua: cada sprint e ciclo produtivo deve registrar indicadores ambientais (emissões evitadas, economia de recursos).
+- [ ] Validação de algoritmos: qualquer modelo de machine learning só pode ser liberado após análise de desempenho e aprovação regulatória.
+- [ ] PDCA obrigatório: planos ambientais só serão aceitos se seguirem as etapas do ciclo Plan, Do, Check, Act.
+- [ ] Cobertura de testes: nenhuma funcionalidade pode ser homologada se não tiver pelo menos 80% de cobertura em testes unitários.
+- [ ] Backlog integrado: requisitos regulatórios e ambientais devem estar presentes no backlog e ser revisados a cada sprint.
+- [ ] Relatórios de conformidade e sustentabilidade devem ser entregues a cada iteração, como parte obrigatória do processo ágil.
 
 
 pharma-flow/

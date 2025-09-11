@@ -1,0 +1,32 @@
+[
+    {
+        "id": "9eaac42d-7a85-41e4-98bf-55956c8108bc",
+        "created_at": "2025-09-11T20:21:36.145783+00:00",
+        "updated_at": "2025-09-11T20:21:36.145813+00:00",
+        "username": "teste",
+        "full_name": "dGVzdGU=",
+        "email": "dGVzdGVAdGVzdGUuY29t",
+        "role_name": "Researcher",
+        "active": true
+    },
+    {
+        "id": "d0b76c77-8af1-4b5b-94c8-8d67bb0153fd",
+        "created_at": "2025-09-11T21:20:38.707655+00:00",
+        "updated_at": "2025-09-11T21:20:38.707659+00:00",
+        "username": "teste",
+        "full_name": "dGVzdGU=",
+        "email": "dGVzdGVAdGVzdGUuY28=",
+        "role_name": "Lab Technician",
+        "active": true
+    },
+    {
+        "id": "b0000fc3-7962-4d81-a036-d1bcbf754b66",
+        "created_at": "2025-09-11T21:23:03.771901+00:00",
+        "updated_at": "2025-09-11T21:23:03.771910+00:00",
+        "username": "teste",
+        "full_name": "dGVzdGU=",
+        "email": "dGVzdGVAdGVzdGUuY29t",
+        "role_name": "Trainer",
+        "active": true
+    }
+]

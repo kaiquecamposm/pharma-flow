@@ -1,16 +1,10 @@
-from __future__ import annotations
-
 import uuid
 from dataclasses import dataclass, field
-from datetime import date, datetime
-from typing import Optional
+from datetime import datetime, timezone
 
 
-@dataclass
+@dataclass(kw_only=True)
 class BaseEntity:
-    id: str = str(uuid.uuid4())
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
-    is_active: bool = True
-    version: int = 1
-    retention_until: Optional[date] = None
+    id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    updated_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
