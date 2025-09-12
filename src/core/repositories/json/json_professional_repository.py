@@ -80,6 +80,7 @@ class JSONProfessionalRepository(ProfessionalRepository):
         data = self._load_data()
         for item in data:
             if item["id"] == professional.id:
+                professional.version = item.get("version", 1) + 1
                 item.update(professional.__dict__)
                 break
         self._save_data(data)
