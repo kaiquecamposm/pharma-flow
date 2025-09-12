@@ -3,7 +3,7 @@
 ## 1. Requisitos Funcionais
 
 - [ ] O sistema deve permitir registro, armazenamento e versionamento seguro de dados clínicos, laboratoriais e fabris.
-- [ ] Deve haver controle de acesso por perfis de usuário (pesquisador, gestor, auditor, etc.).
+- [x] Deve haver controle de acesso por perfis de usuário (pesquisador, gestor, auditor, etc.).
 - [ ] O sistema deve manter trilhas de auditoria imutáveis de todas as operações.
 - [ ] O sistema deve oferecer assinaturas eletrônicas em conformidade com FDA 21 CFR Part 11.
 - [ ] Deve incluir módulos de análise de dados clínicos com bibliotecas em Python (machine learning, detecção de outliers, predição de falhas ambientais).

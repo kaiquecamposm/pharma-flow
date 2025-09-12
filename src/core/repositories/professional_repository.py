@@ -18,6 +18,10 @@ class ProfessionalRepository(ABC):
         pass
     
     @abstractmethod
+    def get_by_email(self, email: str) -> Professional:
+        pass
+
+    @abstractmethod
     def list_all(self) -> list[Professional]:
         pass
     

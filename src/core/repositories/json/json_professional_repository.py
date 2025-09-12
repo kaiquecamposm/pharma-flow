@@ -55,6 +55,16 @@ class JSONProfessionalRepository(ProfessionalRepository):
             if item["id"] == professional_id and item.get("active", True):
                 return Professional(**item)
         return None
+    
+    """
+    Return a professional by email.
+    """
+    def get_by_email(self, email: str) -> Optional[Professional]:
+        data = self._load_data()
+        for item in data:
+            if item["email"] == email and item.get("active", True):
+                return Professional(**item)
+        return None
 
     """
     List all active professionals.
@@ -70,7 +80,6 @@ class JSONProfessionalRepository(ProfessionalRepository):
         data = self._load_data()
         for item in data:
             if item["id"] == professional.id:
-                professional.version = item.get("version", 1) + 1
                 item.update(professional.__dict__)
                 break
         self._save_data(data)
