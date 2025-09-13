@@ -2,9 +2,8 @@ import json
 import os
 from typing import List, Optional
 
-from core.repositories.user_repository import UserRepository
-
 from core.entities.user import User
+from core.repositories.user_repository import UserRepository
 
 DB_DIR = "src/core/shared/databases/users.json"
 

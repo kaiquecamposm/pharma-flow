@@ -1,42 +1,66 @@
 # pharma-flow
 
-## 1. Requisitos Funcionais
+## Propósito geral
 
-- [ ] O sistema deve permitir registro, armazenamento e versionamento seguro de dados clínicos, laboratoriais e fabris.
-- [x] Deve haver controle de acesso por perfis de usuário (pesquisador, gestor, auditor, etc.).
-- [ ] O sistema deve manter trilhas de auditoria imutáveis de todas as operações.
-- [ ] O sistema deve oferecer assinaturas eletrônicas em conformidade com FDA 21 CFR Part 11.
-- [ ] Deve incluir módulos de análise de dados clínicos com bibliotecas em Python (machine learning, detecção de outliers, predição de falhas ambientais).
-- [ ] O sistema deve registrar indicadores ambientais críticos (ex.: consumo energético, volume de solventes recuperados).
-- [ ] Deve gerar relatórios automáticos de conformidade com GxP (GLP, GCP, GMP).
-- [ ] Deve oferecer módulos educacionais interativos para capacitação ambiental (ecopedagogia, ética, sustentabilidade).
-- [ ] O sistema deve emitir certificados de conclusão para treinamentos realizados na plataforma.
-- [ ] Deve haver dashboards de acompanhamento com indicadores de sustentabilidade e métricas de desenvolvimento (velocity, burndown chart).
-- [ ] O sistema deve permitir diagnóstico e planos de mitigação ambiental, seguindo o ciclo PDCA.
+- Construção de um ecossistema digital orientado à inovação, concebido para planejar, acompanhar e registrar processos clínicos e fabris em ciclos iterativos.
 
+- Integração entre tecnologia, sustentabilidade e regulação, em consonância com diretrizes internacionais.
 
-## 2. Requisitos Não Funcionais
+📌 Requisitos Funcionais (RF)
 
-- [ ] O sistema deve garantir integridade e rastreabilidade dos dados.
-- [ ] Deve utilizar autenticação criptográfica para acessos e assinaturas.
-- [ ] A plataforma deve ser modular e escalável, suportando evolução incremental.
-- [ ] O desempenho dos algoritmos deve ser analisado em complexidade Big-O.
-- [ ] Testes unitários devem alcançar cobertura mínima de 80%.
-- [ ] O sistema deve ser ambientalmente responsável, com foco em reduzir pegada de carbono e riscos de descarte inadequado.
+- [x] Deve ser possível se cadastrar (pesquisador, gestor ou auditor);
 
+- [x] Deve ser possível se autenticar;
 
-## 📌 Regras de Negócio
+- [ ] Deve ser possível obter o perfil de um usuário logado;
 
-- [ ] Conformidade regulatória obrigatória: o sistema só é válido se atender integralmente às normas GxP e FDA 21 CFR Part 11.
-- [ ] Rastreabilidade total: nenhuma operação pode ser registrada sem trilha de auditoria imutável.
-- [ ] Segurança de dados: apenas usuários autorizados, com autenticação criptográfica, podem acessar dados sensíveis.
-- [ ] Educação ambiental obrigatória: todos os colaboradores devem realizar treinamentos disponíveis na plataforma e obter certificação.
-- [ ] Medição de sustentabilidade contínua: cada sprint e ciclo produtivo deve registrar indicadores ambientais (emissões evitadas, economia de recursos).
-- [ ] Validação de algoritmos: qualquer modelo de machine learning só pode ser liberado após análise de desempenho e aprovação regulatória.
-- [ ] PDCA obrigatório: planos ambientais só serão aceitos se seguirem as etapas do ciclo Plan, Do, Check, Act.
-- [ ] Cobertura de testes: nenhuma funcionalidade pode ser homologada se não tiver pelo menos 80% de cobertura em testes unitários.
-- [ ] Backlog integrado: requisitos regulatórios e ambientais devem estar presentes no backlog e ser revisados a cada sprint.
-- [ ] Relatórios de conformidade e sustentabilidade devem ser entregues a cada iteração, como parte obrigatória do processo ágil.
+- [ ] Deve ser possível registrar, armazenar e versionar dados clínicos e fabris;
+
+- [ ] Deve ser possível consultar trilhas de auditoria das operações realizadas;
+
+- [ ] Deve ser possível aplicar algoritmos de estratificação de pacientes;
+
+- [ ] Deve ser possível detectar outliers em séries temporais de dados clínicos ou fabris;
+
+- [ ] Deve ser possível prever falhas ambientais na linha de produção;
+
+- [ ] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
+
+- [ ] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
+
+- [ ] Deve ser possível acessar módulos educacionais interativos sobre boas práticas ambientais;
+
+- [ ] Deve ser possível emitir certificados de conclusão de treinamentos após participação completa.
+
+📌 Regras de Negócio (RN)
+
+- [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
+
+- [ ] Todo acesso ao sistema deve ser registrado em log de auditoria com data, hora e identidade do usuário;
+
+- [ ] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
+
+- [ ] Indicadores ambientais devem ser registrados por lote produzido;
+
+- [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
+
+- [ ] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
+
+- [ ] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
+
+📌 Requisitos Não Funcionais (RNF)
+
+- [ ] Os dados clínicos e fabris devem ser armazenados de forma confiável e persistente;
+
+- [ ] Cada função deve ser acompanhada de análise assintótica de complexidade (notação Big-O) e de suíte de testes unitários com cobertura superior a 80%;
+
+- [ ] O sistema deve operar de acordo com os princípios de Engenharia de Software Ágil, permitindo ciclos iterativos e inspeção contínua;
+
+- [ ] O sistema deve respeitar a conformidade com normas GxP (GLP, GCP, GMP) e requisitos do FDA 21 CFR Part 11;
+
+- [ ] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
+
+- [ ] Trilhas de auditoria e registros devem ser mantidos de forma imutável.
 
 
 pharma-flow/

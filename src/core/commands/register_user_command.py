@@ -41,9 +41,9 @@ def select_role() -> str:
 def execute():
     console.io.print("[bold cyan]--- Register User ---[/bold cyan]\n")
 
+    full_name = Prompt.ask("[green]Full name[/green]").strip()
     email = Prompt.ask("[green]Email[/green]").strip()
     password = Prompt.ask("[green]Password[/green]", password=True).strip()
-    full_name = Prompt.ask("[green]Full name[/green]").strip()
     role_name = select_role()
     active = Prompt.ask("[green]Active (y/n)[/green]").strip().lower() == "y"
 
