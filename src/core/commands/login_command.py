@@ -14,16 +14,16 @@ def execute():
     password = Prompt.ask("[green]Password[/green]", password=True)
     
     verify_credentials_use_case = make_verify_credentials_use_case.execute()
-    professional = verify_credentials_use_case.execute(email, password)
+    user = verify_credentials_use_case.execute(email, password)
 
-    is_authenticated = professional is not None
+    is_authenticated = user is not None
     
     if is_authenticated:
-        console.io.print(f"\n[bold green]Welcome, {professional.full_name}![/bold green]\n")
+        console.io.print(f"\n[bold green]Welcome, {user.full_name}![/bold green]\n")
         time.sleep(1)
         console.io.clear()
 
-        return professional.role_name
+        return user.role_name
     else:
         console.io.print("\n[bold red]Invalid credentials. Please try again.[/bold red]")
         time.sleep(3)

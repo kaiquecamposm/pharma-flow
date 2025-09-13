@@ -1,0 +1,44 @@
+from dataclasses import dataclass
+
+from core.entities.role import Role
+from core.entities.user import User
+from core.repositories.role_repository import (
+    RoleRepository,
+)
+from core.repositories.user_repository import (
+    UserRepository,
+)
+from utils import console
+
+
+@dataclass
+class RegisterUserUseCase:
+    def __init__(self, user_repository: UserRepository, role_repository: RoleRepository):
+        self.user_repository = user_repository
+        self.role_repository = role_repository
+
+    def execute(self, user_data: User) -> User:
+        # Register a new user.
+        try:
+            new_user = User(
+                email=user_data.email,
+                password=user_data.password,
+                full_name=user_data.full_name,
+                role_name=user_data.role_name,
+                active=user_data.active,
+            )
+
+            new_role = Role(
+                name=user_data.role_name,
+                user_id=new_user.id,
+            )            
+            
+            role_saved = self.role_repository.add(new_role)
+            saved_user = self.user_repository.add(new_user)
+
+            if saved_user and role_saved is None:
+                raise ValueError("[bold red]Failed to register user.[/bold red]")
+
+            return saved_user
+        except Exception as e:
+            console.io.print(f"[bold red]Failed to register user: {str(e)}[/bold red]")

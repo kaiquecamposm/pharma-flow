@@ -4,7 +4,7 @@ from core.entities.base import BaseEntity
 
 
 @dataclass
-class Professional(BaseEntity):
+class User(BaseEntity):
     email: str
     password: str
     full_name: str

@@ -1,17 +1,18 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from core.entities.professional import Professional
-from core.repositories.professional_repository import ProfessionalRepository
+from core.repositories.user_repository import UserRepository
+
+from core.entities.user import User
 from utils import console
 
 
 @dataclass
 class VerifyCredentialsUseCase:
-    def __init__(self, professional_repository: ProfessionalRepository):
-        self.professional_repository = professional_repository
+    def __init__(self, user_repository: UserRepository):
+        self.user_repository = user_repository
 
-    def execute(self, email: str, password: str) -> Optional[Professional]:
+    def execute(self, email: str, password: str) -> Optional[User]:
         """
         Verify user credentials.
         Business rules:
@@ -19,10 +20,10 @@ class VerifyCredentialsUseCase:
         - Validate the provided password against the stored password.
         """
         try:
-            professional = self.professional_repository.get_by_email(email)
+            user = self.user_repository.get_by_email(email)
 
-            if professional and professional.password == password:
-                return professional
+            if user and user.password == password:
+                return user
             return None
 
         except Exception as e:

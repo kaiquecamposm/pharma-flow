@@ -4,8 +4,8 @@ import time
 
 from rich.prompt import Prompt
 
-from core.entities.professional import Professional
-from core.use_cases.factories import make_register_professional_use_case
+from core.entities.user import User
+from core.use_cases.factories import make_register_user_use_case
 from utils import console
 
 
@@ -20,7 +20,7 @@ def format_email(email: str) -> str:
 def select_role() -> str:
     console.io.print("[bold]Select role:[/bold]")
 
-    roles = ["Researcher", "Lab Technician", "Quality Auditor", "Environmental Officer", "Trainer", "Manager"]
+    roles = ["Researcher", "Lab Technician", "Auditor"]
 
     for idx, role in enumerate(roles, 1):
         console.io.print(f"[yellow]{idx}. {role}[/yellow]")
@@ -39,7 +39,7 @@ def select_role() -> str:
     return role_name
 
 def execute():
-    console.io.print("[bold cyan]--- Register Professional ---[/bold cyan]\n")
+    console.io.print("[bold cyan]--- Register User ---[/bold cyan]\n")
 
     email = Prompt.ask("[green]Email[/green]").strip()
     password = Prompt.ask("[green]Password[/green]", password=True).strip()
@@ -51,26 +51,25 @@ def execute():
     email_verified = format_email(email)
 
     # Encode full name and email in base64
-    full_name_b64 = base64.b64encode(full_name.encode("utf-8")).decode("utf-8")
-    password_b64 = base64.b64encode(password.encode("utf-8")).decode("utf-8")
     email_b64 = base64.b64encode(email_verified.encode("utf-8")).decode("utf-8")
+    password_b64 = base64.b64encode(password.encode("utf-8")).decode("utf-8")
 
-    professional = Professional(
+    user = User(
         email=email_b64,
         password=password_b64,
-        full_name=full_name_b64,
+        full_name=full_name,
         role_name=role_name,
         active=active,
     )
 
-    register_professional_use_case = make_register_professional_use_case.execute()
-    professional = register_professional_use_case.execute(professional)
+    register_user_use_case = make_register_user_use_case.execute()
+    user = register_user_use_case.execute(user)
 
-    if professional:
-        console.io.print("[bold green]Professional registered successfully.[/bold green]")
+    if user:
+        console.io.print("[bold green]User registered successfully.[/bold green]")
         time.sleep(1)
         console.io.clear()
     else:
-        console.io.print("[bold red]Failed to register professional.[/bold red]")
+        console.io.print("[bold red]Failed to register user.[/bold red]")
         time.sleep(3)
         console.io.clear()
