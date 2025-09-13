@@ -1,9 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from core.repositories.user_repository import UserRepository
-
 from core.entities.user import User
+from core.repositories.user_repository import UserRepository
 from utils import console
 
 
@@ -17,7 +16,6 @@ class VerifyCredentialsUseCase:
         Verify user credentials.
         Business rules:
         - Check if the email exists in the repository.
-        - Validate the provided password against the stored password.
         """
         try:
             user = self.user_repository.get_by_email(email)

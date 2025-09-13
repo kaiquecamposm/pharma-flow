@@ -3,14 +3,15 @@ import json
 import os
 from typing import List, Optional
 
+from core.entities.patient import Patient
 from core.entities.user import User
 from core.repositories.user_repository import UserRepository
 
-DB_DIR = "src/core/shared/databases/users.json"
+DB_DIR = "src/core/shared/databases/patients.json"
 
-class JSONUserRepository(UserRepository):
+class JSONPatientRepository(UserRepository):
     """
-    User repository that uses a JSON file for storage.
+    Patient repository that uses a JSON file for storage.
     """
     def __init__(self):
         db_dir = os.path.dirname(DB_DIR)
@@ -39,28 +40,28 @@ class JSONUserRepository(UserRepository):
             json.dump(data, f, indent=4, ensure_ascii=False)
 
     """
-    Add a new user.
+    Add a new patient.
     """
-    def add(self, user: User) -> User:
+    def add(self, patient: Patient) -> Patient:
         data = self._load_data()
-        data.append(user.__dict__)
+        data.append(patient.__dict__)
         self._save_data(data)
-        return user
+        return patient
 
     """
-    Return a user by ID.
+    Return a patient by ID.
     """
-    def get_by_id(self, user_id: str) -> Optional[User]:
+    def get_by_id(self, patient_id: str) -> Optional[Patient]:
         data = self._load_data()
         for item in data:
-            if item["id"] == user_id and item.get("active", True):
-                return User(**item)
+            if item["id"] == patient_id and item.get("active", True):
+                return Patient(**item)
         return None
     
     """
-    Return a user by email.
+    Return a patient by email.
     """
-    def get_by_email(self, email: str) -> Optional[User]:
+    def get_by_email(self, email: str) -> Optional[Patient]:
         data = self._load_data()
         for item in data:
             if item["email"] == email and item.get("active", True):
@@ -68,32 +69,32 @@ class JSONUserRepository(UserRepository):
         return None
 
     """
-    List all active users.
+    List all active patients.
     """
-    def list_all(self) -> List[User]:
+    def list_all(self) -> List[Patient]:
         data = self._load_data()
-        return [User(**item) for item in data if item.get("active", True)]
+        return [Patient(**item) for item in data if item.get("active", True)]
 
     """
-    Update a user by creating a new version (does not overwrite previous version).
+    Update a patient by creating a new version (does not overwrite previous version).
     """
-    def update(self, user: User) -> User:
+    def update(self, patient: Patient) -> Patient:
         data = self._load_data()
         for item in data:
-            if item["id"] == user.id:
-                user.version = item.get("version", 1) + 1
-                item.update(user.__dict__)
+            if item["id"] == patient.id:
+                patient.version = item.get("version", 1) + 1
+                item.update(patient.__dict__)
                 break
         self._save_data(data)
-        return user
+        return patient
 
     """
-    Inactivate a user (soft delete).
+    Inactivate a patient (soft delete).
     """
-    def inactivate(self, user_id: str) -> bool:
+    def inactivate(self, patient_id: str) -> bool:
         data = self._load_data()
         for item in data:
-            if item["id"] == user_id:
+            if item["id"] == patient_id:
                 item["active"] = False
                 self._save_data(data)
                 return True

@@ -18,7 +18,13 @@ class RegisterUserUseCase:
         self.role_repository = role_repository
 
     def execute(self, user_data: User) -> User:
-        # Register a new user.
+        """
+        Register a new user.
+        Business rules:
+        - Ensure the email is unique (not already registered).
+        - Hash the password before storing (omitted here for simplicity).
+        - Assign the appropriate role to the user.
+        """
         try:
             is_exist_email = self.user_repository.get_by_email(user_data.email)
 

@@ -1,21 +1,12 @@
 import base64
-import re
 import time
 
 from rich.prompt import Prompt
 
 from core.entities.user import User
 from core.use_cases.factories import make_register_user_use_case
-from utils import console
+from utils import console, valid_email
 
-
-def format_email(email: str) -> str:
-    email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    if not re.match(email_regex, email):
-        console.io.print("[bold red]Invalid email format.[/bold red]")
-        return
-    
-    return email
 
 def select_role() -> str:
     console.io.print("[bold]Select role:[/bold]")
@@ -48,7 +39,7 @@ def execute():
     active = Prompt.ask("[green]Active (y/n)[/green]").strip().lower() == "y"
 
     # Verify email format
-    email_verified = format_email(email)
+    email_verified = valid_email.execute(email)
 
     # Encode full name and email in base64
     email_b64 = base64.b64encode(email_verified.encode("utf-8")).decode("utf-8")
