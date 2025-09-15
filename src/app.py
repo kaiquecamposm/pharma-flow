@@ -5,6 +5,7 @@ from rich.prompt import Prompt
 
 from core.commands.get_profile import get_profile_command
 from core.commands.login import login_command
+from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_patient import register_patient_command
 from core.commands.register_user import register_user_command
 from utils import console
@@ -23,7 +24,9 @@ def main():
             console.io.print("[bold]1.[/bold] My Profile")
             console.io.print("[bold]2.[/bold] Register User")
             console.io.print("[bold]3.[/bold] Register Patient")
-            console.io.print("[bold]4.[/bold] Exit")
+            console.io.print("[bold]4.[/bold] Register Clinical Data")
+            console.io.print("[bold]5.[/bold] View Clinical Data")
+            console.io.print("[bold]6.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
@@ -36,6 +39,13 @@ def main():
                 case "3":
                     register_patient_command()
                 case "4":
+                    register_clinical_data_command()
+                case "5":
+                    console.io.print("[bold green]View Clinical Data[/bold green]")
+                    sleep(1)
+                    clear()
+                    break
+                case "6":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
@@ -48,7 +58,9 @@ def main():
 
             console.io.print("[bold]1.[/bold] My Profile")
             console.io.print("[bold]2.[/bold] Register Patient")
-            console.io.print("[bold]3.[/bold] Exit")
+            console.io.print("[bold]3.[/bold] Register Clinical Data")
+            console.io.print("[bold]4.[/bold] View Clinical Data")
+            console.io.print("[bold]5.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
@@ -59,6 +71,13 @@ def main():
                 case "2":
                     register_patient_command()
                 case "3":
+                    register_clinical_data_command()
+                case "4":
+                    console.io.print("[bold green]View Clinical Data[/bold green]")
+                    sleep(1)
+                    clear()
+                    break
+                case "5":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
