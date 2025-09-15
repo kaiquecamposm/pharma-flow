@@ -37,10 +37,10 @@ def register_patient_command():
     patient = register_patient_use_case.execute(patient)
 
     if patient:
-        console.io.print("[bold green]Patient registered successfully.[/bold green]")
+        console.io.print("\n[bold green]Patient registered successfully.[/bold green]")
         sleep(1)
         clear()
     else:
-        console.io.print("[bold red]Failed to register patient.[/bold red]")
+        console.io.print("\n[bold red]Failed to register patient.[/bold red]")
         sleep(3)
         clear()

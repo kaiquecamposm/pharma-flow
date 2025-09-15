@@ -20,11 +20,11 @@ def select_role() -> str:
     try:
         role_idx = int(role_choice) - 1
         if role_idx < 0 or role_idx >= len(roles):
-            console.io.print("[bold red]Invalid role selection.[/bold red]")
+            console.io.print("\n[bold red]Invalid role selection.[/bold red]")
             return
         role_name = roles[role_idx]
     except ValueError:
-        console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
+        console.io.print("\n[bold red]Invalid input. Please enter a number.[/bold red]")
         clear()
         return
     
@@ -58,10 +58,10 @@ def register_user_command():
     user = register_user_use_case.execute(user)
 
     if user:
-        console.io.print("[bold green]User registered successfully.[/bold green]")
+        console.io.print("\n[bold green]User registered successfully.[/bold green]")
         sleep(1)
         clear()
     else:
-        console.io.print("[bold red]Failed to register user.[/bold red]")
+        console.io.print("\n[bold red]Failed to register user.[/bold red]")
         sleep(3)
         clear()

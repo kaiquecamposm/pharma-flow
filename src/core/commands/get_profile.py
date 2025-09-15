@@ -19,10 +19,9 @@ def get_profile_command(user_id: str):
         console.io.print(f"[bold green]Role:[/bold green] {profile.role_name}")
         console.io.print(f"[bold green]Active:[/bold green] {'Yes' if profile.active else 'No'}")
     else:
-        console.io.print("[bold red]Profile not found.[/bold red]")
-    
-    console.io.print("\n")
-    enter = console.io.input("Press [bold green]Enter[/bold green] to return to the menu...")
+        console.io.print("\n[bold red]Profile not found.[/bold red]")
+
+    enter = console.io.input("\nPress [bold green]Enter[/bold green] to return to the menu...")
     sleep(1)
     clear()
 
