@@ -1,4 +1,3 @@
-import base64
 import json
 import os
 from typing import List, Optional
@@ -17,7 +16,7 @@ class JSONPatientRepository(UserRepository):
         db_dir = os.path.dirname(DB_DIR)
         os.makedirs(db_dir, exist_ok=True)
 
-        file_path = os.path.join(db_dir, "users.json")
+        file_path = os.path.join(db_dir, "patients.json")
 
         self.file_path = file_path
         # Ensure the file exists

@@ -1,7 +1,7 @@
 from core.repositories.json.json_user_repository import (
     JSONUserRepository,
 )
-from core.use_cases.register_user_use_case import RegisterUserUseCase
+from core.use_cases.register_user import RegisterUserUseCase
 
 
 # Factory to create an instance of RegisterUserUseCase

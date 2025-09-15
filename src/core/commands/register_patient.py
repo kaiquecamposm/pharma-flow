@@ -1,16 +1,15 @@
 import base64
-import re
-import time
+from time import sleep
 
 from rich.prompt import Prompt
 
 from core.entities.patient import Patient
-from core.entities.user import User
-from core.use_cases.factories import make_register_user_use_case
+from core.use_cases.factories import make_register_patient_use_case
 from utils import console, valid_email
+from utils.clear_terminal import clear
 
 
-def execute():
+def register_patient_command():
     console.io.print("[bold cyan]--- Register Patient ---[/bold cyan]\n")
 
     full_name = Prompt.ask("[green]Full name[/green]").strip()
@@ -21,24 +20,27 @@ def execute():
 
     # Verify email format
     email_verified = valid_email.execute(email)
+    
+    # Encode email in base64
+    email_b64 = base64.b64encode(email_verified.encode("utf-8")).decode("utf-8")
 
     patient = Patient(
         full_name=full_name,
-        email=email_verified,
+        email=email_b64,
         dob=dob,
         gender=gender,
         clinical_history=None,
         active=active,
     )
 
-    register_patient_use_case = make_register_user_use_case.execute()
+    register_patient_use_case = make_register_patient_use_case.execute()
     patient = register_patient_use_case.execute(patient)
 
     if patient:
         console.io.print("[bold green]Patient registered successfully.[/bold green]")
-        time.sleep(1)
-        console.io.clear()
+        sleep(1)
+        clear()
     else:
         console.io.print("[bold red]Failed to register patient.[/bold red]")
-        time.sleep(3)
-        console.io.clear()
+        sleep(3)
+        clear()

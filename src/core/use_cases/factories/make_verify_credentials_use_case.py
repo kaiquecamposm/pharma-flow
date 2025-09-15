@@ -1,8 +1,7 @@
 from core.repositories.json.json_user_repository import (
     JSONUserRepository,
 )
-
-from core.use_cases.verify_credentials_use_case import VerifyCredentialsUseCase
+from core.use_cases.verify_credentials import VerifyCredentialsUseCase
 
 
 # Factory to create an instance of VerifyCredentialsUseCase

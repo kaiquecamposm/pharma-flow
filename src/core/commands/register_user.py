@@ -1,11 +1,12 @@
 import base64
-import time
+from time import sleep
 
 from rich.prompt import Prompt
 
 from core.entities.user import User
 from core.use_cases.factories import make_register_user_use_case
 from utils import console, valid_email
+from utils.clear_terminal import clear
 
 
 def select_role() -> str:
@@ -24,12 +25,12 @@ def select_role() -> str:
         role_name = roles[role_idx]
     except ValueError:
         console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
-        console.io.clear()
+        clear()
         return
     
     return role_name
 
-def execute():
+def register_user_command():
     console.io.print("[bold cyan]--- Register User ---[/bold cyan]\n")
 
     full_name = Prompt.ask("[green]Full name[/green]").strip()
@@ -41,7 +42,7 @@ def execute():
     # Verify email format
     email_verified = valid_email.execute(email)
 
-    # Encode full name and email in base64
+    # Encode email and password in base64
     email_b64 = base64.b64encode(email_verified.encode("utf-8")).decode("utf-8")
     password_b64 = base64.b64encode(password.encode("utf-8")).decode("utf-8")
 
@@ -58,9 +59,9 @@ def execute():
 
     if user:
         console.io.print("[bold green]User registered successfully.[/bold green]")
-        time.sleep(1)
-        console.io.clear()
+        sleep(1)
+        clear()
     else:
         console.io.print("[bold red]Failed to register user.[/bold red]")
-        time.sleep(3)
-        console.io.clear()
+        sleep(3)
+        clear()
