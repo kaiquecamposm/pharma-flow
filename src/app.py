@@ -1,20 +1,70 @@
-from core.commands import login_command, register_user_command
-from utils import show_menu
+from time import sleep
+
+from rich.panel import Panel
+from rich.prompt import Prompt
+
+from core.commands.get_profile import get_profile_command
+from core.commands.login import login_command
+from core.commands.register_patient import register_patient_command
+from core.commands.register_user import register_user_command
+from utils import console
+from utils.clear_terminal import clear
 
 
 def main():
-    is_authenticated = login_command.execute()
+    user = login_command()
 
-    if is_authenticated == "Admin":
-        show_menu.execute("ADMIN MENU", {
-            "1": ("Register User", register_user_command.execute),
-            "2": ("Exit", None)
-        })
-    else:
-        show_menu.execute("USER MENU", {
-            "1": ("Exit", None)
-        })
+    roles = ["Researcher", "Lab Technician", "Auditor"]
 
+    while True:
+        if user.role_name == "Admin":
+            console.io.print(Panel.fit("[bold cyan]🛠️  ADMIN MENU[/bold cyan]", border_style="bright_magenta"))
+
+            console.io.print("[bold]1.[/bold] My Profile")
+            console.io.print("[bold]2.[/bold] Register User")
+            console.io.print("[bold]3.[/bold] Register Patient")
+            console.io.print("[bold]4.[/bold] Exit")
+
+            choice = Prompt.ask("\n[bold]Choose an option[/bold]")
+            clear()
+
+            match choice:
+                case "1":
+                    get_profile_command(user.id)
+                case "2":
+                    register_user_command()
+                case "3":
+                    register_patient_command()
+                case "4":
+                    console.io.print("[bold green]Exiting...[/bold green]")
+                    sleep(1)
+                    clear()
+                    break
+                case _:
+                    console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
+
+        elif user.role_name in roles:
+            console.io.print(Panel.fit("[bold cyan]🛠️  USER MENU[/bold cyan]", border_style="bright_magenta"))
+
+            console.io.print("[bold]1.[/bold] My Profile")
+            console.io.print("[bold]2.[/bold] Register Patient")
+            console.io.print("[bold]3.[/bold] Exit")
+
+            choice = Prompt.ask("\n[bold]Choose an option[/bold]")
+            clear()
+
+            match choice:
+                case "1":
+                    get_profile_command(user_id=user.id)
+                case "2":
+                    register_patient_command()
+                case "3":
+                    console.io.print("[bold green]Exiting...[/bold green]")
+                    sleep(1)
+                    clear()
+                    break
+                case _:
+                    console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
 
 if __name__ == "__main__":
     main()
