@@ -1,10 +1,6 @@
 from dataclasses import dataclass
 
-from core.entities.role import Role
 from core.entities.user import User
-from core.repositories.role_repository import (
-    RoleRepository,
-)
 from core.repositories.user_repository import (
     UserRepository,
 )
@@ -13,9 +9,8 @@ from utils import console
 
 @dataclass
 class RegisterUserUseCase:
-    def __init__(self, user_repository: UserRepository, role_repository: RoleRepository):
+    def __init__(self, user_repository: UserRepository):
         self.user_repository = user_repository
-        self.role_repository = role_repository
 
     def execute(self, user_data: User) -> User:
         """
@@ -39,15 +34,9 @@ class RegisterUserUseCase:
                 active=user_data.active,
             )
 
-            new_role = Role(
-                name=user_data.role_name,
-                user_id=new_user.id,
-            )            
-            
-            role_saved = self.role_repository.add(new_role)
             saved_user = self.user_repository.add(new_user)
 
-            if saved_user and role_saved is None:
+            if saved_user is None:
                 raise ValueError("\n[bold red]Failed to register user.[/bold red]")
 
             return saved_user
