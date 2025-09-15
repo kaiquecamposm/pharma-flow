@@ -1,13 +1,14 @@
-import time
+from time import sleep
 
 from rich.panel import Panel
 from rich.prompt import Prompt
 
 from core.use_cases.factories import make_verify_credentials_use_case
 from utils import console
+from utils.clear_terminal import clear
 
 
-def execute():
+def login_command():
     console.io.print(Panel.fit("[bold cyan]🔐 LOGIN SYSTEM[/bold cyan]", border_style="bright_magenta"))
 
     email = Prompt.ask("[green]Email[/green]")
@@ -20,13 +21,13 @@ def execute():
     
     if is_authenticated:
         console.io.print(f"\n[bold green]Welcome, {user.full_name}![/bold green]\n")
-        time.sleep(1)
-        console.io.clear()
+        sleep(1)
+        clear()
 
-        return user.role_name
+        return user
     else:
         console.io.print("\n[bold red]Invalid credentials. Please try again.[/bold red]")
-        time.sleep(3)
-        console.io.clear()
+        sleep(3)
+        clear()
 
-        return False
+        return None
