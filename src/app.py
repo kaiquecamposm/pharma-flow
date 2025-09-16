@@ -26,8 +26,9 @@ def main():
             console.io.print("[bold]2.[/bold] Register User")
             console.io.print("[bold]3.[/bold] Register Patient")
             console.io.print("[bold]4.[/bold] Register Clinical Data")
-            console.io.print("[bold]5.[/bold] View Clinical Data")
-            console.io.print("[bold]6.[/bold] Exit")
+            console.io.print("[bold]5.[/bold] Register Production Data")
+            console.io.print("[bold]6.[/bold] View Clinical Data")
+            console.io.print("[bold]7.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
@@ -42,8 +43,16 @@ def main():
                 case "4":
                     register_clinical_data_command(user.id)
                 case "5":
-                    view_clinical_data_command()
+                    console.io.print("[bold green]-- Register Production Data --[/bold green]")
+                    sleep(1)
+                    clear()
                 case "6":
+                    console.io.print("[bold green]-- Register Lote --[/bold green]")
+                    sleep(1)
+                    clear()
+                case "7":
+                    view_clinical_data_command()
+                case "8":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
