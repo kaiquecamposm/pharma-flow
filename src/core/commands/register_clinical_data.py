@@ -161,7 +161,7 @@ def register_clinical_data_command():
 
     clinical_data = ClinicalData(
         patient_id=patient_id,
-        data_type=data_type,
+        data_type=data_type["type"],
         value={
             "description": description,
             "unit": data_type["unit"],

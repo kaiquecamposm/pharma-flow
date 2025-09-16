@@ -8,6 +8,7 @@ from core.commands.login import login_command
 from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_patient import register_patient_command
 from core.commands.register_user import register_user_command
+from core.commands.view_clinical_data import view_clinical_data_command
 from utils import console
 from utils.clear_terminal import clear
 
@@ -41,10 +42,7 @@ def main():
                 case "4":
                     register_clinical_data_command()
                 case "5":
-                    console.io.print("[bold green]View Clinical Data[/bold green]")
-                    sleep(1)
-                    clear()
-                    break
+                    view_clinical_data_command()
                 case "6":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
@@ -73,10 +71,7 @@ def main():
                 case "3":
                     register_clinical_data_command()
                 case "4":
-                    console.io.print("[bold green]View Clinical Data[/bold green]")
-                    sleep(1)
-                    clear()
-                    break
+                    view_clinical_data_command()
                 case "5":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
