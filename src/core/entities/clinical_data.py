@@ -1,9 +1,11 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from uuid import uuid4
 
 
 @dataclass
 class ClinicalData:
+    id: str = field(default_factory=lambda: str(uuid4()))
     patient_id: str
     data_type: str
     value: list
