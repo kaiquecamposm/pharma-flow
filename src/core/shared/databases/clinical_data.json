@@ -1,0 +1,16 @@
+[
+    {
+        "patient_id": "3e80cd1d-b77a-437f-855a-eba2e9971e3f",
+        "data_type": {
+            "type": "Heart Rate",
+            "unit": "bpm"
+        },
+        "value": {
+            "description": "200BPM",
+            "unit": "bpm"
+        },
+        "timestamp": "2025-09-16T18:41:42.176302+00:00",
+        "version": 1,
+        "active": true
+    }
+]

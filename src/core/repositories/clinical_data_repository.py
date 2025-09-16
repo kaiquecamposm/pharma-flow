@@ -15,10 +15,6 @@ class ClinicalDataRepository(ABC):
     @abstractmethod
     def get_by_id(self, clinical_data_id: str) -> ClinicalData:
         pass
-    
-    @abstractmethod
-    def get_by_email(self, email: str) -> ClinicalData:
-        pass
 
     @abstractmethod
     def list_all(self) -> list[ClinicalData]:

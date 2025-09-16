@@ -1,10 +1,12 @@
-from dataclasses import field
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 
+@dataclass
 class ClinicalData:
     patient_id: str
     data_type: str
     value: list
     timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     version: int = 1
+    active: bool = True
