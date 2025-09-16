@@ -6,7 +6,8 @@
             "description": "200BPM",
             "unit": "bpm"
         },
-        "timestamp": "2025-09-16T18:41:42.176302+00:00",
+        "user_id": "admin",
+        "timestamp": "2025-09-16T20:25:19.068151+00:00",
         "version": 1,
         "active": true
     }

@@ -14,13 +14,15 @@
 
 - [x] Deve ser possível obter o perfil de um usuário logado;
 
-- [ ] Deve ser possível registrar, armazenar e versionar dados clínicos e fabris;
+- [x] Deve ser possível registrar, armazenar e versionar dados clínicos;
+
+- [ ] Deve ser possível registrar, armazenar e versionar dados fabris;
 
 - [ ] Deve ser possível consultar trilhas de auditoria das operações realizadas;
 
 - [ ] Deve ser possível aplicar algoritmos de estratificação de pacientes;
 
-- [ ] Deve ser possível detectar outliers em séries temporais de dados clínicos ou fabris;
+- [ ] Deve ser possível detectar outliers (não se encaixa no padrão) em séries temporais de dados clínicos ou fabris;
 
 - [ ] Deve ser possível prever falhas ambientais na linha de produção;
 

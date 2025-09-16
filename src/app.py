@@ -40,7 +40,7 @@ def main():
                 case "3":
                     register_patient_command()
                 case "4":
-                    register_clinical_data_command()
+                    register_clinical_data_command(user.id)
                 case "5":
                     view_clinical_data_command()
                 case "6":
@@ -65,11 +65,11 @@ def main():
 
             match choice:
                 case "1":
-                    get_profile_command(user_id=user.id)
+                    get_profile_command(user.id)
                 case "2":
                     register_patient_command()
                 case "3":
-                    register_clinical_data_command()
+                    register_clinical_data_command(user.id)
                 case "4":
                     view_clinical_data_command()
                 case "5":

@@ -142,7 +142,7 @@ def select_data_type():
         console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
         return None
 
-def register_clinical_data_command():
+def register_clinical_data_command(user_id: str = None):
     list_patients_use_case = make_list_patients_use_case.execute()
     patients = list_patients_use_case.execute()
 
@@ -166,6 +166,7 @@ def register_clinical_data_command():
             "description": description,
             "unit": data_type["unit"],
         },
+        user_id=user_id
     )
 
     register_clinical_data_use_case = make_register_clinical_data_use_case.execute()
