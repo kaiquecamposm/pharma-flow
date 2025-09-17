@@ -160,10 +160,9 @@ def register_clinical_data_command(user_id: str = None):
     clinical_data = ClinicalData(
         patient_id=patient_id,
         data_type=data_type["type"],
-        value={
-            "description": Prompt.ask("[green]Description[/green]").strip(),
-            "unit": data_type["unit"],
-        },
+        value=Prompt.ask(f"[green]Enter the value for {data_type['type']} ({data_type['unit']})[green]").strip(),
+        unit=data_type["unit"],
+        description=Prompt.ask("[green]Description[/green]").strip(),
         user_id=user_id
     )
 

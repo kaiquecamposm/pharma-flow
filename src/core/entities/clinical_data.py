@@ -7,7 +7,9 @@ from uuid import uuid4
 class ClinicalData:
     id: str = field(default_factory=lambda: str(uuid4()))
     data_type: str
-    value: list
+    value: str
+    unit: str
+    description: str
     user_id: str
     patient_id: str
     version: int = 1

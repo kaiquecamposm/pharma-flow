@@ -21,6 +21,8 @@ class RegisterClinicalDataUseCase:
                 patient_id = clinical_data.patient_id,
                 data_type = clinical_data.data_type,
                 value = clinical_data.value,
+                unit = clinical_data.unit,
+                description = clinical_data.description,
                 user_id = clinical_data.user_id
             )
             saved_clinical_data = self.clinical_data_repository.add(new_clinical_data)

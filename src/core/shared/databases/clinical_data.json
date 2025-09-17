@@ -1,28 +1,38 @@
 [
     {
-        "id": "54ad7483-e0b6-4d67-94f5-f2a5f1a821ds",
+        "id": "53d636c0-f0f6-443c-b23e-6fbe868e1290",
         "data_type": "Heart Rate",
-        "value": {
-            "description": "200BPM",
-            "unit": "bpm"
-        },
+        "value": "150BPM",
+        "unit": "bpm",
+        "description": "Está acima do alto risco",
         "user_id": "admin",
-        "patient_id": "3e80cd1d-b77a-437f-855a-eba2e9971e3f",
+        "patient_id": "50ecae93-f735-4e77-a942-7fb912926e41",
         "version": 1,
         "active": true,
-        "timestamp": "2025-09-17T16:14:04.324524+00:00"
+        "timestamp": "2025-09-17T19:02:21.801651+00:00"
     },
     {
-        "id": "54ad7483-e0b6-4d67-94f5-f2a5f1a821fc",
+        "id": "53d636c0-f0f6-443c-b23e-6fbe368e1890",
         "data_type": "Heart Rate",
-        "value": {
-            "description": "200BPM",
-            "unit": "bpm"
-        },
+        "value": "120BPM",
+        "unit": "bpm",
+        "description": "Está acima do alto risco",
         "user_id": "admin",
-        "patient_id": "3e80cd1d-b77a-437f-855a-eba2e9971e3f",
+        "patient_id": "50ecae93-f735-4e77-a942-7fb912926e41",
         "version": 1,
         "active": true,
-        "timestamp": "2025-09-17T16:14:04.324524+00:00"
+        "timestamp": "2025-09-17T19:02:21.801651+00:00"
+    },
+    {
+        "id": "53d636c0-f0f6-443c-b23e-6fbe868e1890",
+        "data_type": "Heart Rate",
+        "value": "200BPM",
+        "unit": "bpm",
+        "description": "Está acima do alto risco",
+        "user_id": "admin",
+        "patient_id": "50ecae93-f735-4e77-a942-7fb912926e41",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T19:02:21.801651+00:00"
     }
 ]
