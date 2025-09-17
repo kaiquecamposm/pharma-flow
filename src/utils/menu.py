@@ -6,6 +6,9 @@ from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_lote import register_lote_command
 from core.commands.register_patient import register_patient_command
 from core.commands.register_user import register_user_command
+from core.commands.view_all_lotes_and_indicators_command import (
+    view_all_lotes_and_indicators_command,
+)
 from core.commands.view_clinical_data import view_clinical_data_command
 from core.entities.user import User
 from utils import console
@@ -73,7 +76,8 @@ def lotes_menu(user: User):
     console.io.print(Panel.fit("[bold cyan]🛠️  LOTES MENU[/bold cyan]", border_style="bright_magenta"))
 
     console.io.print("[bold]1.[/bold] Register Lote")
-    console.io.print("[bold]2.[/bold] Back to Main Menu")
+    console.io.print("[bold]2.[/bold] View Lotes and Indicators")
+    console.io.print("[bold]3.[/bold] Back to Main Menu")
 
     choice = Prompt.ask("\n[bold]Choose an option[/bold]")
     clear()
@@ -82,6 +86,8 @@ def lotes_menu(user: User):
         case "1":
             register_lote_command(user.id)
         case "2":
+            view_all_lotes_and_indicators_command()
+        case "3":
             return
         case _:
             console.io.print("[bold red]Invalid option. Please try again.[/bold red]")

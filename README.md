@@ -26,7 +26,7 @@
 
 - [ ] Deve ser possível prever falhas ambientais na linha de produção;
 
-- [ ] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
+- [x] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
 
 - [ ] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
 
@@ -52,7 +52,7 @@
 
 📌 Requisitos Não Funcionais (RNF)
 
-- [ ] Os dados clínicos e fabris devem ser armazenados de forma confiável e persistente;
+- [x] Os dados clínicos e fabris devem ser armazenados de forma confiável e persistente;
 
 - [ ] Cada função deve ser acompanhada de análise assintótica de complexidade (notação Big-O) e de suíte de testes unitários com cobertura superior a 80%;
 

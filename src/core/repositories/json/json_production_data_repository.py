@@ -55,6 +55,16 @@ class JSONProductionDataRepository(ProductionDataRepository):
             if item["id"] == production_data_id:
                 return ProductionData(**item)
         return None
+    
+    """
+    Return a production data entry by lote_id
+    """
+    def get_by_lote_id(self, lote_id):
+        data = self._load_data()
+        for item in data:
+            if item["lote_id"] == lote_id:
+                return ProductionData(**item)
+        return None
 
     """
     List all active production data entries.

@@ -16,6 +16,10 @@ class ProductionDataRepository(ABC):
     @abstractmethod
     def get_by_id(self, production_data_id: str) -> ProductionData:
         pass
+
+    @abstractmethod
+    def get_by_lote_id(self, lote_id: str) -> ProductionData:
+        pass
     
     @abstractmethod
     def list_all(self) -> list[ProductionData]:
