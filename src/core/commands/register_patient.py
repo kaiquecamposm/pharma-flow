@@ -40,7 +40,9 @@ def register_patient_command():
         console.io.print("\n[bold green]Patient registered successfully.[/bold green]")
         sleep(1)
         clear()
+        return
     else:
         console.io.print("\n[bold red]Failed to register patient.[/bold red]")
         sleep(3)
         clear()
+        return

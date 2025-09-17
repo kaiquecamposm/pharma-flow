@@ -148,7 +148,7 @@ def register_clinical_data_command(user_id: str = None):
 
     if not patients:
         console.io.print("[bold yellow]No patients found. Please register a patient first.[/bold yellow]")
-        sleep(3)
+        sleep(2)
         clear()
         return
     
@@ -157,13 +157,11 @@ def register_clinical_data_command(user_id: str = None):
 
     console.io.print("[bold cyan]--- Register Clinical Data ---[/bold cyan]\n")
 
-    description = Prompt.ask("[green]Description[/green]").strip()
-
     clinical_data = ClinicalData(
         patient_id=patient_id,
         data_type=data_type["type"],
         value={
-            "description": description,
+            "description": Prompt.ask("[green]Description[/green]").strip(),
             "unit": data_type["unit"],
         },
         user_id=user_id
@@ -176,7 +174,9 @@ def register_clinical_data_command(user_id: str = None):
         console.io.print("\n[bold green]Clinical data registered successfully.[/bold green]")
         sleep(1)
         clear()
+        return
     else:
         console.io.print("\n[bold red]Failed to register clinical data.[/bold red]")
-        sleep(3)
+        sleep(2)
         clear()
+        return

@@ -10,5 +10,17 @@
         "gender": "M",
         "clinical_history": null,
         "active": true
+    },
+    {
+        "id": "50ecae93-f735-4e77-a942-7fb912926e41",
+        "created_at": "2025-09-17T16:15:26.470007+00:00",
+        "updated_at": "2025-09-17T16:15:26.470019+00:00",
+        "version": 1,
+        "full_name": "teste paciente",
+        "email": "dGVzdGVwYWNpdGVuQHRlc3QuY29t",
+        "dob": "1992-12-12",
+        "gender": "M",
+        "clinical_history": null,
+        "active": true
     }
 ]

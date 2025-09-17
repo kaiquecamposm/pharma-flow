@@ -20,5 +20,16 @@
         "full_name": "test",
         "role_name": "Lab Technician",
         "active": true
+    },
+    {
+        "id": "ca64e826-d688-4e3f-80be-c0a734b80a1f",
+        "created_at": "2025-09-17T16:15:01.956399+00:00",
+        "updated_at": "2025-09-17T16:15:01.956415+00:00",
+        "version": 1,
+        "email": "dGVzdGVAdGVzdGUuY29t",
+        "password": "dGVzdGU=",
+        "full_name": "teste name",
+        "role_name": "Lab Technician",
+        "active": true
     }
 ]

@@ -61,7 +61,9 @@ def register_user_command():
         console.io.print("\n[bold green]User registered successfully.[/bold green]")
         sleep(1)
         clear()
+        return
     else:
         console.io.print("\n[bold red]Failed to register user.[/bold red]")
         sleep(3)
         clear()
+        return

@@ -21,7 +21,7 @@ def get_profile_command(user_id: str):
     else:
         console.io.print("\n[bold red]Profile not found.[/bold red]")
 
-    continue_prompt = console.io.input("\nPress [bold green]Enter[/bold green] to return to the menu...")
+    continue_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
     sleep(1)
     clear()
 

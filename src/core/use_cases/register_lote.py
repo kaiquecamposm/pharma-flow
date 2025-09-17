@@ -19,7 +19,6 @@ class RegisterLoteUseCase:
         """
         try:
             new_lote = Lote(
-                id=lote_data.id,
                 code=lote_data.code,
                 product_name=lote_data.product_name,
                 start_date=lote_data.start_date,
@@ -27,13 +26,23 @@ class RegisterLoteUseCase:
                 user_id=lote_data.user_id,
             )
 
-            saved_lote = self.lote_repository.add(new_lote)
+            new_production_data = ProductionData(
+                quantity=production_data.quantity,
+                energy_consumption=production_data.energy_consumption,
+                recovered_solvent_volume=production_data.recovered_solvent_volume,
+                emissions=production_data.emissions,
+                user_id=production_data.user_id,
+                lote_id=new_lote.id,
+            )
 
-            if saved_lote is None:
+            saved_lote = self.lote_repository.add(new_lote)
+            saved_production_data = self.production_data_repository.add(new_production_data)
+
+            if saved_lote and saved_production_data is None:
                 raise ValueError("\n[bold red]Failed to register lote.[/bold red]")
             
             console.io.print("\n[bold green]Lote registered successfully![/bold green]")
-
+            
             return saved_lote
         except Exception as e:
             raise console.io.print(f"\n[bold red]Failed to register lote: {str(e)}[/bold red]")

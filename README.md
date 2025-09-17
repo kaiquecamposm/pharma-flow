@@ -16,7 +16,7 @@
 
 - [x] Deve ser possível registrar, armazenar e versionar dados clínicos;
 
-- [ ] Deve ser possível registrar, armazenar e versionar dados fabris;
+- [x] Deve ser possível registrar, armazenar e versionar dados fabris;
 
 - [ ] Deve ser possível consultar trilhas de auditoria das operações realizadas;
 

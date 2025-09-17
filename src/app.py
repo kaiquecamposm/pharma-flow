@@ -3,14 +3,10 @@ from time import sleep
 from rich.panel import Panel
 from rich.prompt import Prompt
 
-from core.commands.get_profile import get_profile_command
 from core.commands.login import login_command
-from core.commands.register_clinical_data import register_clinical_data_command
-from core.commands.register_patient import register_patient_command
-from core.commands.register_user import register_user_command
-from core.commands.view_clinical_data import view_clinical_data_command
 from utils import console
 from utils.clear_terminal import clear
+from utils.menu import clinical_data_menu, lotes_menu, patients_menu, users_menu
 
 
 def main():
@@ -22,37 +18,25 @@ def main():
         if user.role_name == "Admin":
             console.io.print(Panel.fit("[bold cyan]🛠️  ADMIN MENU[/bold cyan]", border_style="bright_magenta"))
 
-            console.io.print("[bold]1.[/bold] My Profile")
-            console.io.print("[bold]2.[/bold] Register User")
-            console.io.print("[bold]3.[/bold] Register Patient")
-            console.io.print("[bold]4.[/bold] Register Clinical Data")
-            console.io.print("[bold]5.[/bold] Register Production Data")
-            console.io.print("[bold]6.[/bold] View Clinical Data")
-            console.io.print("[bold]7.[/bold] Exit")
+            console.io.print("[bold]1.[/bold] Users")
+            console.io.print("[bold]2.[/bold] Patients")
+            console.io.print("[bold]3.[/bold] Clinical Data")
+            console.io.print("[bold]4.[/bold] Lotes")
+            console.io.print("[bold]5.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
 
             match choice:
                 case "1":
-                    get_profile_command(user.id)
+                    users_menu(user)
                 case "2":
-                    register_user_command()
+                    patients_menu()
                 case "3":
-                    register_patient_command()
+                    clinical_data_menu(user)
                 case "4":
-                    register_clinical_data_command(user.id)
+                    lotes_menu(user)
                 case "5":
-                    console.io.print("[bold green]-- Register Production Data --[/bold green]")
-                    sleep(1)
-                    clear()
-                case "6":
-                    console.io.print("[bold green]-- Register Lote --[/bold green]")
-                    sleep(1)
-                    clear()
-                case "7":
-                    view_clinical_data_command()
-                case "8":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
@@ -63,25 +47,19 @@ def main():
         elif user.role_name in roles:
             console.io.print(Panel.fit("[bold cyan]🛠️  USER MENU[/bold cyan]", border_style="bright_magenta"))
 
-            console.io.print("[bold]1.[/bold] My Profile")
-            console.io.print("[bold]2.[/bold] Register Patient")
-            console.io.print("[bold]3.[/bold] Register Clinical Data")
-            console.io.print("[bold]4.[/bold] View Clinical Data")
-            console.io.print("[bold]5.[/bold] Exit")
+            console.io.print("[bold]1.[/bold] Patients")
+            console.io.print("[bold]2.[/bold] Clinical Data")
+            console.io.print("[bold]3.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
 
             match choice:
                 case "1":
-                    get_profile_command(user.id)
+                    patients_menu()
                 case "2":
-                    register_patient_command()
+                    clinical_data_menu(user)
                 case "3":
-                    register_clinical_data_command(user.id)
-                case "4":
-                    view_clinical_data_command()
-                case "5":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()

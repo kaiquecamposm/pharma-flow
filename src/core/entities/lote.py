@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 
-@dataclass
+@dataclass(kw_only=True)
 class Lote:
     id: str = field(default_factory=lambda: str(uuid4()))
     code: str
