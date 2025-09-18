@@ -20,7 +20,7 @@
 
 - [ ] Deve ser possível consultar trilhas de auditoria das operações realizadas;
 
-- [ ] Deve ser possível aplicar algoritmos de estratificação de pacientes;
+- [x] Deve ser possível aplicar algoritmos de estratificação de pacientes;
 
 - [ ] Deve ser possível detectar outliers (não se encaixa no padrão) em séries temporais de dados clínicos ou fabris;
 
@@ -42,7 +42,7 @@
 
 - [ ] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
 
-- [ ] Indicadores ambientais devem ser registrados por lote produzido;
+- [x] Indicadores ambientais devem ser registrados por lote produzido;
 
 - [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
 

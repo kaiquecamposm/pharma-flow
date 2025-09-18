@@ -1,6 +1,9 @@
 from rich.panel import Panel
 from rich.prompt import Prompt
 
+from core.commands.apply_stratification_in_patients import (
+    apply_stratification_in_patients_command,
+)
 from core.commands.get_profile import get_profile_command
 from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_lote import register_lote_command
@@ -88,6 +91,23 @@ def lotes_menu(user: User):
         case "2":
             view_all_lotes_and_indicators_command()
         case "3":
+            return
+        case _:
+            console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
+
+def analysis_menu():
+    console.io.print(Panel.fit("[bold cyan]🛠️  ANALYSIS MENU[/bold cyan]", border_style="bright_magenta"))
+
+    console.io.print("[bold]1.[/bold] Stratification in Patients")
+    console.io.print("[bold]2.[/bold] Back to Main Menu")
+
+    choice = Prompt.ask("\n[bold]Choose an option[/bold]")
+    clear()
+
+    match choice:
+        case "1":
+            apply_stratification_in_patients_command()
+        case "2":
             return
         case _:
             console.io.print("[bold red]Invalid option. Please try again.[/bold red]")

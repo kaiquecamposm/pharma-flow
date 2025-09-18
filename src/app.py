@@ -6,7 +6,13 @@ from rich.prompt import Prompt
 from core.commands.login import login_command
 from utils import console
 from utils.clear_terminal import clear
-from utils.menu import clinical_data_menu, lotes_menu, patients_menu, users_menu
+from utils.menu import (
+    analysis_menu,
+    clinical_data_menu,
+    lotes_menu,
+    patients_menu,
+    users_menu,
+)
 
 
 def main():
@@ -22,7 +28,8 @@ def main():
             console.io.print("[bold]2.[/bold] Patients")
             console.io.print("[bold]3.[/bold] Clinical Data")
             console.io.print("[bold]4.[/bold] Lotes")
-            console.io.print("[bold]5.[/bold] Exit")
+            console.io.print("[bold]5.[/bold] Analysis")
+            console.io.print("[bold]6.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
@@ -37,6 +44,8 @@ def main():
                 case "4":
                     lotes_menu(user)
                 case "5":
+                    analysis_menu()
+                case "6":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
@@ -68,4 +77,9 @@ def main():
                     console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
 
 if __name__ == "__main__":
+    import time
+
+    start = time.perf_counter()
     main()
+    elapsed = time.perf_counter() - start
+    print(f"{__file__} executed in {elapsed:0.2f} seconds.")

@@ -17,6 +17,10 @@ class ClinicalDataRepository(ABC):
         pass
 
     @abstractmethod
+    def get_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+        pass
+
+    @abstractmethod
     def list_all(self) -> list[ClinicalData]:
         pass
     

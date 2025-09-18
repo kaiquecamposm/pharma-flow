@@ -55,6 +55,13 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
             if item["id"] == clinical_data_id:
                 return ClinicalData(**item)
         return None
+    
+    """
+    Return a list of clinical data entries by patient ID.
+    """
+    def get_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+        data = self._load_data()
+        return [ClinicalData(**item) for item in data if item.get("patient_id") == patient_id]
 
     """
     List all active clinical data entries.
