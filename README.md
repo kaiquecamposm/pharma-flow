@@ -46,7 +46,7 @@
 
 - [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
 
-- [ ] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
+- [x] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
 
 - [ ] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
 
@@ -63,53 +63,3 @@
 - [ ] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
 
 - [ ] Trilhas de auditoria e registros devem ser mantidos de forma imutável.
-
-
-pharma-flow/
-│
-├── docs/                     # Documentação do projeto (ABNT, manuais, diagramas)
-├── config/                   # Configurações globais (YAML, JSON, .env)
-│   ├── settings.py
-│   └── logging.conf
-│
-├── src/                      # Código-fonte principal
-│   ├── core/                 # Núcleo (domínio e regras de negócio)
-│   │   ├── entities/         # Entidades de negócio (Paciente, Estudo, Lote)
-│   │   ├── services/         # Casos de uso / lógica de aplicação
-│   │   └── validators/       # Regras de validação
-│   │
-│   ├── clinical/             # Módulo de gestão de pesquisa clínica
-│   │   ├── models/           # Modelos de dados (ORM, schemas)
-│   │   ├── ml/               # Algoritmos de machine learning
-│   │   ├── pipelines/        # ETL, pré-processamento de dados
-│   │   └── api/              # Endpoints da API para clínica
-│   │
-│   ├── manufacturing/        # Módulo de gestão fabril
-│   │   ├── models/
-│   │   ├── monitoring/       # Indicadores ambientais e fabris
-│   │   └── api/
-│   │
-│   ├── education/            # Módulo de educação ambiental
-│   │   ├── content/          # Materiais multimodais
-│   │   └── certificates/     # Emissão de certificados
-│   │
-│   ├── shared/               # Recursos compartilhados
-│   │   ├── utils/            # Funções auxiliares
-│   │   ├── security/         # Autenticação, criptografia
-│   │   └── database/         # Conexão com bancos de dados
-│   │
-│   └── app.py                # Ponto de entrada da aplicação
-│
-├── tests/                    # Testes unitários e de integração
-│   ├── clinical/
-│   ├── manufacturing/
-│   └── education/
-│
-├── scripts/                  # Scripts auxiliares (migrações, ETL, devops)
-│
-├── requirements.txt          # Dependências do projeto
-├── pyproject.toml            # Configuração (poetry/pipenv)
-├── setup.py                  # Caso o projeto seja empacotado
-├── README.md                 # Descrição do projeto
-└── .gitignore
-

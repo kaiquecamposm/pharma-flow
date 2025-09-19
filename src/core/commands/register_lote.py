@@ -4,7 +4,7 @@ from rich.prompt import Prompt
 
 from core.entities.lote import Lote
 from core.entities.production_data import ProductionData
-from core.use_cases.factories import make_register_lote_use_case
+from core.use_cases.factories.make_register_lote import make_register_lote_use_case
 from utils import console
 from utils.clear_terminal import clear
 
@@ -39,7 +39,7 @@ def register_lote_command(user_id: str):
     sleep(1)
     clear()
 
-    register_lote_use_case = make_register_lote_use_case.execute()
+    register_lote_use_case = make_register_lote_use_case()
     lote = register_lote_use_case.execute(lote_data, production_data)
 
     if lote:

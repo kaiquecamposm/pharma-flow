@@ -8,7 +8,7 @@ from core.use_cases.apply_stratification_in_patients_use_case import (
 
 
 # Factory to create an instance of ApplyStratificationInPatientsUseCase
-def execute() -> ApplyStratificationInPatientsUseCase:
+def make_apply_stratification_in_patients_use_case() -> ApplyStratificationInPatientsUseCase:
     patient_repository = JSONPatientRepository()
     clinical_data_repository = JSONClinicalDataRepository()
 

@@ -1,6 +1,6 @@
 from time import sleep
 
-from core.use_cases.factories import (
+from core.use_cases.factories.make_apply_stratification_in_patients import (
     make_apply_stratification_in_patients_use_case,
 )
 from utils import console
@@ -10,7 +10,7 @@ from utils.clear_terminal import clear
 def apply_stratification_in_patients_command():
     console.io.print("[bold cyan]--- Stratification in Patients ---[/bold cyan]\n")
 
-    apply_stratification_in_patients_use_case = make_apply_stratification_in_patients_use_case.execute()
+    apply_stratification_in_patients_use_case = make_apply_stratification_in_patients_use_case()
     stratification_patients = apply_stratification_in_patients_use_case.execute()
 
     if stratification_patients:

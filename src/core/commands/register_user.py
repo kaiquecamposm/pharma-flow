@@ -4,7 +4,7 @@ from time import sleep
 from rich.prompt import Prompt
 
 from core.entities.user import User
-from core.use_cases.factories import make_register_user_use_case
+from core.use_cases.factories.make_register_user import make_register_user_use_case
 from utils import console, valid_email
 from utils.clear_terminal import clear
 
@@ -54,7 +54,7 @@ def register_user_command():
         active=active,
     )
 
-    register_user_use_case = make_register_user_use_case.execute()
+    register_user_use_case = make_register_user_use_case()
     user = register_user_use_case.execute(user)
 
     if user:

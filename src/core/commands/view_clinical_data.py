@@ -1,6 +1,8 @@
 from time import sleep
 
-from core.use_cases.factories import make_view_clinical_data_use_case
+from core.use_cases.factories.make_view_clinical_data import (
+    make_view_clinical_data_use_case,
+)
 from utils import console
 from utils.clear_terminal import clear
 
@@ -8,7 +10,7 @@ from utils.clear_terminal import clear
 def view_clinical_data_command():
     console.io.print("[bold cyan]--- View Clinical Data ---[/bold cyan]")
 
-    view_clinical_data_use_case = make_view_clinical_data_use_case.execute()
+    view_clinical_data_use_case = make_view_clinical_data_use_case()
     clinical_data = view_clinical_data_use_case.execute()
 
     if clinical_data:
@@ -24,9 +26,9 @@ def view_clinical_data_command():
     else:
         raise ValueError(console.io.print("\n[bold red]Failed to retrieve clinical data.[/bold red]"))
 
-    continue_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
+    complete_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
     sleep(1)
     clear()
 
-    if continue_prompt:
+    if complete_prompt:
         return

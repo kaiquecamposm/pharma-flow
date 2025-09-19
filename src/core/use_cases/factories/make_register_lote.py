@@ -6,7 +6,7 @@ from core.use_cases.register_lote import RegisterLoteUseCase
 
 
 # Factory to create an instance of RegisterLoteUseCase
-def execute() -> RegisterLoteUseCase:
+def make_register_lote_use_case() -> RegisterLoteUseCase:
     lote_repository = JSONLoteRepository()
     production_data_repository = JSONProductionDataRepository()
 

@@ -4,7 +4,9 @@ from time import sleep
 from rich.prompt import Prompt
 
 from core.entities.patient import Patient
-from core.use_cases.factories import make_register_patient_use_case
+from core.use_cases.factories.make_register_patient import (
+    make_register_patient_use_case,
+)
 from utils import console, valid_email
 from utils.clear_terminal import clear
 
@@ -33,7 +35,7 @@ def register_patient_command():
         active=active,
     )
 
-    register_patient_use_case = make_register_patient_use_case.execute()
+    register_patient_use_case = make_register_patient_use_case()
     patient = register_patient_use_case.execute(patient)
 
     if patient:

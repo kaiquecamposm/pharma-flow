@@ -1,6 +1,6 @@
 from time import sleep
 
-from core.use_cases.factories import (
+from core.use_cases.factories.make_view_all_lotes_and_indicators import (
     make_view_all_lotes_and_indicators_use_case,
 )
 from utils import console
@@ -10,7 +10,7 @@ from utils.clear_terminal import clear
 def view_all_lotes_and_indicators_command():
     console.io.print("[bold cyan]--- View Lotes ---[/bold cyan]")
 
-    view_all_lotes_and_indicators_use_case = make_view_all_lotes_and_indicators_use_case.execute()
+    view_all_lotes_and_indicators_use_case = make_view_all_lotes_and_indicators_use_case()
     data = view_all_lotes_and_indicators_use_case.execute()
 
     if data:

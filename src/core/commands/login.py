@@ -3,7 +3,9 @@ from time import sleep
 from rich.panel import Panel
 from rich.prompt import Prompt
 
-from core.use_cases.factories import make_verify_credentials_use_case
+from core.use_cases.factories.make_verify_credentials import (
+    make_verify_credentials_use_case,
+)
 from utils import console
 from utils.clear_terminal import clear
 
@@ -14,7 +16,7 @@ def login_command():
     email = Prompt.ask("[green]Email[/green]")
     password = Prompt.ask("[green]Password[/green]", password=True)
     
-    verify_credentials_use_case = make_verify_credentials_use_case.execute()
+    verify_credentials_use_case = make_verify_credentials_use_case()
     user = verify_credentials_use_case.execute(email, password)
 
     is_authenticated = user is not None

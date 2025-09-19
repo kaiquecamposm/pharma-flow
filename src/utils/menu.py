@@ -4,6 +4,9 @@ from rich.prompt import Prompt
 from core.commands.apply_stratification_in_patients import (
     apply_stratification_in_patients_command,
 )
+from core.commands.detected_outliers_in_clinical_data import (
+    detected_outliers_in_clinical_data_command,
+)
 from core.commands.get_profile import get_profile_command
 from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_lote import register_lote_command
@@ -99,7 +102,8 @@ def analysis_menu():
     console.io.print(Panel.fit("[bold cyan]🛠️  ANALYSIS MENU[/bold cyan]", border_style="bright_magenta"))
 
     console.io.print("[bold]1.[/bold] Stratification in Patients")
-    console.io.print("[bold]2.[/bold] Back to Main Menu")
+    console.io.print("[bold]2.[/bold] Detected Outliers in Clinical Data")
+    console.io.print("[bold]3.[/bold] Back to Main Menu")
 
     choice = Prompt.ask("\n[bold]Choose an option[/bold]")
     clear()
@@ -108,6 +112,8 @@ def analysis_menu():
         case "1":
             apply_stratification_in_patients_command()
         case "2":
+            detected_outliers_in_clinical_data_command()
+        case "3":
             return
         case _:
             console.io.print("[bold red]Invalid option. Please try again.[/bold red]")

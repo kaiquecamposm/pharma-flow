@@ -1,6 +1,6 @@
 from time import sleep
 
-from core.use_cases.factories import make_get_profile_use_case
+from core.use_cases.factories.make_get_profile import make_get_profile_use_case
 from utils import console
 from utils.clear_terminal import clear
 
@@ -8,7 +8,7 @@ from utils.clear_terminal import clear
 def get_profile_command(user_id: str):
     console.io.print("[bold cyan]--- My Profile ---[/bold cyan]\n")
 
-    get_profile_use_case = make_get_profile_use_case.execute()
+    get_profile_use_case = make_get_profile_use_case()
     profile = get_profile_use_case.execute(user_id)
 
     if profile:
