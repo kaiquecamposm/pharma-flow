@@ -1,5 +1,42 @@
 [
     {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 500000.0,
+        "energy_consumption": 15000.32,
+        "recovered_solvent_volume": 40000.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 500000.0,
+        "energy_consumption": 15000.32,
+        "recovered_solvent_volume": 40000.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 500000.0,
+        "energy_consumption": 15000.32,
+        "recovered_solvent_volume": 40000.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
         "quantity": 5000.0,
         "energy_consumption": 1500.32,
         "recovered_solvent_volume": 400.32,
@@ -8,19 +45,54 @@
         "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
         "version": 1,
         "active": true,
-        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
         "timestamp": "2025-09-17T14:44:42.931992+00:00"
     },
     {
-        "id": "e30b8ec0-ee5f-4493-9d57-939b19c6ba86",
-        "quantity": 1000.0,
-        "energy_consumption": 1500.23,
-        "recovered_solvent_volume": 350.43,
-        "emissions": 400.32,
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 5000.0,
+        "energy_consumption": 1500.32,
+        "recovered_solvent_volume": 400.32,
+        "emissions": 150.43,
         "user_id": "admin",
-        "lote_id": "e54a6c88-3750-4a5f-aec3-e3dc40710b06",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
         "version": 1,
         "active": true,
-        "timestamp": "2025-09-17T16:16:58.411610+00:00"
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 5000.0,
+        "energy_consumption": 1500.32,
+        "recovered_solvent_volume": 400.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 5000.0,
+        "energy_consumption": 1500.32,
+        "recovered_solvent_volume": 400.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "61977c21-ffd0-4b5c-92e9-260613581ff7",
+        "quantity": 5000.0,
+        "energy_consumption": 1500.32,
+        "recovered_solvent_volume": 400.32,
+        "emissions": 150.43,
+        "user_id": "admin",
+        "lote_id": "d7ef8dfd-2503-4069-9b4f-bdac1b5efc4a",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-17T14:44:42.931992+00:00"
     }
 ]

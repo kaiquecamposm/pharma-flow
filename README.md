@@ -22,9 +22,9 @@
 
 - [x] Deve ser possível aplicar algoritmos de estratificação de pacientes;
 
-- [ ] Deve ser possível detectar outliers (não se encaixa no padrão) em séries temporais de dados clínicos ou fabris;
+- [x] Deve ser possível detectar outliers (não se encaixa no padrão) em séries temporais de dados clínicos ou fabris;
 
-- [ ] Deve ser possível prever falhas ambientais na linha de produção;
+- [x] Deve ser possível prever falhas ambientais na linha de produção;
 
 - [x] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
 
