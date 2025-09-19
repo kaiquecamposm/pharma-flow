@@ -490,5 +490,29 @@
         "version": 1,
         "active": true,
         "timestamp": "2025-09-17T19:08:00+00:00"
+    },
+    {
+        "id": "0cb62042-e88d-4770-b69d-4ec482fd69c0",
+        "data_type": "Temperature",
+        "value": "100",
+        "unit": "°C",
+        "description": "Grave está acima demais da média",
+        "user_id": "admin",
+        "patient_id": "cf15169a-2034-4f8a-9041-9b5465fe0b3b",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-19T19:18:44.672867+00:00"
+    },
+    {
+        "id": "b69417ce-1f00-47cb-9a0e-d2929f4ba2f6",
+        "data_type": "Temperature",
+        "value": "100",
+        "unit": "°C",
+        "description": "acima demais da media vai morrer",
+        "user_id": "admin",
+        "patient_id": "cf15169a-2034-4f8a-9041-9b5465fe0b3b",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-19T19:19:55.569400+00:00"
     }
 ]

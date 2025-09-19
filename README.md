@@ -18,7 +18,7 @@
 
 - [x] Deve ser possível registrar, armazenar e versionar dados fabris;
 
-- [ ] Deve ser possível consultar trilhas de auditoria das operações realizadas;
+- [x] Deve ser possível consultar trilhas de auditoria das operações realizadas;
 
 - [x] Deve ser possível aplicar algoritmos de estratificação de pacientes;
 
@@ -38,7 +38,7 @@
 
 - [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
 
-- [ ] Todo acesso ao sistema deve ser registrado em log de auditoria com data, hora e identidade do usuário;
+- [x] Todo acesso ao sistema deve ser registrado em log de auditoria com data, hora e identidade do usuário;
 
 - [ ] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
 
@@ -62,4 +62,4 @@
 
 - [ ] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
 
-- [ ] Trilhas de auditoria e registros devem ser mantidos de forma imutável.
+- [x] Trilhas de auditoria e registros devem ser mantidos de forma imutável.

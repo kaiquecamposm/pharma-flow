@@ -1,0 +1,110 @@
+[
+    {
+        "id": "eb9225a9-f2a6-4f8f-8fbc-111881b0586f",
+        "user_id": "admin",
+        "action": "VIEW_PROFILE",
+        "target_id": "admin",
+        "target_type": "User",
+        "timestamp": "2025-09-19T19:16:33.382367",
+        "details": "User admin viewed their profile."
+    },
+    {
+        "id": "3257109e-1467-436d-bbe8-3aa1a5e78c0b",
+        "user_id": "admin",
+        "action": "REGISTER_USER",
+        "target_id": "0b223435-f3ae-4c31-9214-df6dbeb26881",
+        "target_type": "User",
+        "timestamp": "2025-09-19T19:17:09.825484",
+        "details": "User teste2 registered with role Auditor."
+    },
+    {
+        "id": "3257109e-1467-436d-bbe8-3aa1a5e78c0b",
+        "user_id": "admin",
+        "action": "REGISTER_PATIENT",
+        "target_id": "cf15169a-2034-4f8a-9041-9b5465fe0b3b",
+        "target_type": "Patient",
+        "timestamp": "2025-09-19T19:17:09.825484",
+        "details": "Registered patient with email: kdsakdsaldk@dkasjdksa.com"
+    },
+    {
+        "id": "358d6b59-abc8-4a98-8046-22bd60ec7847",
+        "user_id": "admin",
+        "action": "LIST_PATIENTS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient",
+        "timestamp": "2025-09-19T19:18:18.622183",
+        "details": "Listed patients to select for clinical data registration"
+    },
+    {
+        "id": "456ab1d4-89c4-433c-9b96-0514b3d4a042",
+        "user_id": "admin",
+        "action": "LIST_PATIENTS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient",
+        "timestamp": "2025-09-19T19:18:59.065124",
+        "details": "Listed patients to select for clinical data registration"
+    },
+    {
+        "id": "456ab1d4-89c4-433c-9b96-0514b3d4a042",
+        "user_id": "admin",
+        "action": "REGISTER_CLINICAL_DATA",
+        "target_id": "b69417ce-1f00-47cb-9a0e-d2929f4ba2f6",
+        "target_type": "ClinicalData",
+        "timestamp": "2025-09-19T19:18:59.065124",
+        "details": "Registered new clinical data entry"
+    },
+    {
+        "id": "a72625ac-3ca2-435d-ae05-2527763ad3a8",
+        "user_id": "admin",
+        "action": "VIEW_ALL_CLINICAL_DATA",
+        "target_id": "*MULTIPLE*",
+        "target_type": "CLINICAL_DATA",
+        "timestamp": "2025-09-19T19:20:31.948874",
+        "details": "User viewed all clinical data records."
+    },
+    {
+        "id": "a72625ac-3ca2-435d-ae05-2527763ad3a8",
+        "user_id": "admin",
+        "action": "REGISTER_LOTE",
+        "target_id": "524d9d1f-4cbc-4c32-9ab6-f90be76182ed",
+        "target_type": "Lote, ProductionData",
+        "timestamp": "2025-09-19T19:20:31.948874",
+        "details": "Lote ID: daeff93e-61bd-4993-ba34-123f427e9170, Production Data ID: 0c717933-aef9-4ff3-937f-b733f3f8f874"
+    },
+    {
+        "id": "a72625ac-3ca2-435d-ae05-2527763ad3a8",
+        "user_id": "admin",
+        "action": "VIEW_ALL_LOTES_AND_INDICATORS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Lote, ProductionData",
+        "timestamp": "2025-09-19T19:20:31.948874",
+        "details": "User viewed all lotes and their environmental indicators."
+    },
+    {
+        "id": "41ab2664-5b82-4c4d-a003-73ab7be9b4d5",
+        "user_id": "admin",
+        "action": "VIEW_ALL_CLINICAL_DATA",
+        "target_id": "*MULTIPLE*",
+        "target_type": "CLINICAL_DATA",
+        "timestamp": "2025-09-19T19:23:08.754601",
+        "details": "User viewed all clinical data records."
+    },
+    {
+        "id": "41ab2664-5b82-4c4d-a003-73ab7be9b4d5",
+        "user_id": "admin",
+        "action": "APPLY_STRATIFICATION_IN_PATIENTS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-19T19:23:08.754601",
+        "details": "Apply stratification in 43 patients"
+    },
+    {
+        "id": "c592ef40-21a7-47fa-b5e1-8718de079330",
+        "user_id": "admin",
+        "action": "VIEW_PROFILE",
+        "target_id": "admin",
+        "target_type": "User",
+        "timestamp": "2025-09-19T21:47:33.029331",
+        "details": "User admin viewed their profile."
+    }
+]

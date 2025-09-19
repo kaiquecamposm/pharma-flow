@@ -2,8 +2,12 @@ from time import sleep
 
 from rich.prompt import Prompt
 
+from core.entities.audit_log import AuditLog
 from core.entities.lote import Lote
 from core.entities.production_data import ProductionData
+from core.use_cases.factories.make_create_audit_log import (
+    make_create_audit_log_use_case,
+)
 from core.use_cases.factories.make_register_lote import make_register_lote_use_case
 from utils import console
 from utils.clear_terminal import clear
@@ -41,6 +45,16 @@ def register_lote_command(user_id: str):
 
     register_lote_use_case = make_register_lote_use_case()
     lote = register_lote_use_case.execute(lote_data, production_data)
+
+    create_audit_log_use_case = make_create_audit_log_use_case()
+
+    create_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="REGISTER_LOTE",
+        target_id=lote.id,
+        target_type="Lote, ProductionData",
+        details=f"Lote ID: {lote_data.id}, Production Data ID: {production_data.id}",
+    ))
 
     if lote:
         console.io.print("\n[bold green]Lote and production data registered successfully.[/bold green]")

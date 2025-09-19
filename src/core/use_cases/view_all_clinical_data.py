@@ -6,7 +6,7 @@ from utils import console
 
 
 @dataclass
-class ViewClinicalDataUseCase:
+class ViewAllClinicalDataUseCase:
     def __init__(self, clinical_data_repository: ClinicalDataRepository):
         self.clinical_data_repository = clinical_data_repository
 

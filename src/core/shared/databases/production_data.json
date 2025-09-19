@@ -94,5 +94,17 @@
         "version": 1,
         "active": true,
         "timestamp": "2025-09-17T14:44:42.931992+00:00"
+    },
+    {
+        "id": "ef7660a5-51e6-4a7c-95ce-50083206512b",
+        "quantity": 4000.0,
+        "energy_consumption": 1800.0,
+        "recovered_solvent_volume": 400.0,
+        "emissions": 400.0,
+        "user_id": "admin",
+        "lote_id": "524d9d1f-4cbc-4c32-9ab6-f90be76182ed",
+        "version": 1,
+        "active": true,
+        "timestamp": "2025-09-19T19:21:53.385918+00:00"
     }
 ]

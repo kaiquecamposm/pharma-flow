@@ -22,5 +22,17 @@
         "gender": "M",
         "clinical_history": null,
         "active": true
+    },
+    {
+        "id": "cf15169a-2034-4f8a-9041-9b5465fe0b3b",
+        "created_at": "2025-09-19T19:17:50.240104+00:00",
+        "updated_at": "2025-09-19T19:17:50.240111+00:00",
+        "version": 1,
+        "full_name": "akdjaksjda",
+        "email": "a2RzYWtkc2FsZGtAZGthc2pka3NhLmNvbQ==",
+        "dob": "1992-12-10",
+        "gender": "M",
+        "clinical_history": null,
+        "active": true
     }
 ]

@@ -4,8 +4,12 @@ from time import sleep
 from rich.prompt import Prompt
 
 from core.constants.clinical_data_types import CLINICAL_DATA_TYPES
+from core.entities.audit_log import AuditLog
 from core.entities.clinical_data import ClinicalData
 from core.entities.patient import Patient
+from core.use_cases.factories.make_create_audit_log import (
+    make_create_audit_log_use_case,
+)
 from core.use_cases.factories.make_list_patients import make_list_patients_use_case
 from core.use_cases.factories.make_register_clinical_data import (
     make_register_clinical_data_use_case,
@@ -57,6 +61,16 @@ def register_clinical_data_command(user_id: str = None):
     list_patients_use_case = make_list_patients_use_case()
     patients = list_patients_use_case.execute()
 
+    create_audit_log_use_case = make_create_audit_log_use_case()
+
+    create_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="LIST_PATIENTS",
+        target_id="*MULTIPLE*",
+        target_type="Patient",
+        details="Listed patients to select for clinical data registration",
+    ))
+
     if not patients:
         console.io.print("[bold yellow]No patients found. Please register a patient first.[/bold yellow]")
         sleep(2)
@@ -79,6 +93,14 @@ def register_clinical_data_command(user_id: str = None):
 
     register_clinical_data_use_case = make_register_clinical_data_use_case()
     clinical_data = register_clinical_data_use_case.execute(clinical_data)
+
+    create_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="REGISTER_CLINICAL_DATA",
+        target_id=clinical_data.id if clinical_data else "N/A",
+        target_type="ClinicalData",
+        details="Registered new clinical data entry",
+    ))
 
     if clinical_data:
         console.io.print("\n[bold green]Clinical data registered successfully.[/bold green]")

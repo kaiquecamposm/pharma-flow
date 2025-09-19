@@ -16,5 +16,14 @@
         "end_date": "2010-12-12",
         "user_id": "admin",
         "created_at": "2025-09-17T16:16:58.411560+00:00"
+    },
+    {
+        "id": "524d9d1f-4cbc-4c32-9ab6-f90be76182ed",
+        "code": "312312ldksajad123",
+        "product_name": "Caixa",
+        "start_date": "1992-12-10",
+        "end_date": "2000-12-10",
+        "user_id": "admin",
+        "created_at": "2025-09-19T19:21:53.385885+00:00"
     }
 ]

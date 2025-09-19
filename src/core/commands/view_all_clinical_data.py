@@ -1,17 +1,31 @@
 from time import sleep
 
-from core.use_cases.factories.make_view_clinical_data import (
-    make_view_clinical_data_use_case,
+from core.entities.audit_log import AuditLog
+from core.use_cases.factories.make_create_audit_log import (
+    make_create_audit_log_use_case,
+)
+from core.use_cases.factories.make_view_all_clinical_data import (
+    make_view_all_clinical_data_use_case,
 )
 from utils import console
 from utils.clear_terminal import clear
 
 
-def view_clinical_data_command():
-    console.io.print("[bold cyan]--- View Clinical Data ---[/bold cyan]")
+def view_all_clinical_data_command(user_id: str):
+    console.io.print("[bold cyan]--- View All Clinical Data ---[/bold cyan]\n")
 
-    view_clinical_data_use_case = make_view_clinical_data_use_case()
-    clinical_data = view_clinical_data_use_case.execute()
+    view_all_clinical_data_use_case = make_view_all_clinical_data_use_case()
+    clinical_data = view_all_clinical_data_use_case.execute()
+
+    create_audit_log_use_case = make_create_audit_log_use_case()
+
+    create_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="VIEW_ALL_CLINICAL_DATA",
+        target_id="*MULTIPLE*",
+        target_type="CLINICAL_DATA",
+        details="User viewed all clinical data records.",
+    ))
 
     if clinical_data:
         for idx, data in enumerate(clinical_data, start=1):

@@ -3,7 +3,11 @@ from time import sleep
 
 from rich.prompt import Prompt
 
+from core.entities.audit_log import AuditLog
 from core.entities.patient import Patient
+from core.use_cases.factories.make_create_audit_log import (
+    make_create_audit_log_use_case,
+)
 from core.use_cases.factories.make_register_patient import (
     make_register_patient_use_case,
 )
@@ -11,7 +15,7 @@ from utils import console, valid_email
 from utils.clear_terminal import clear
 
 
-def register_patient_command():
+def register_patient_command(user_id: str):
     console.io.print("[bold cyan]--- Register Patient ---[/bold cyan]\n")
 
     full_name = Prompt.ask("[green]Full name[/green]").strip()
@@ -37,6 +41,16 @@ def register_patient_command():
 
     register_patient_use_case = make_register_patient_use_case()
     patient = register_patient_use_case.execute(patient)
+
+    create_audit_log_use_case = make_create_audit_log_use_case()
+
+    create_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="REGISTER_PATIENT",
+        target_id=patient.id if patient else "N/A",
+        target_type="Patient",
+        details=f"Registered patient with email: {email_verified}",
+    ))
 
     if patient:
         console.io.print("\n[bold green]Patient registered successfully.[/bold green]")

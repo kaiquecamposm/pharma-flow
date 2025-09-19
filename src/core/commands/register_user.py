@@ -3,7 +3,11 @@ from time import sleep
 
 from rich.prompt import Prompt
 
+from core.entities.audit_log import AuditLog
 from core.entities.user import User
+from core.use_cases.factories.make_create_audit_log import (
+    make_create_audit_log_use_case,
+)
 from core.use_cases.factories.make_register_user import make_register_user_use_case
 from utils import console, valid_email
 from utils.clear_terminal import clear
@@ -30,7 +34,7 @@ def select_role() -> str:
     
     return role_name
 
-def register_user_command():
+def register_user_command(user_id: int):
     console.io.print("[bold cyan]--- Register User ---[/bold cyan]\n")
 
     full_name = Prompt.ask("[green]Full name[/green]").strip()
@@ -56,6 +60,16 @@ def register_user_command():
 
     register_user_use_case = make_register_user_use_case()
     user = register_user_use_case.execute(user)
+
+    register_audit_log_use_case = make_create_audit_log_use_case()
+
+    register_audit_log_use_case.execute(AuditLog(
+        user_id=user_id,
+        action="REGISTER_USER",
+        target_id=user.id,
+        target_type="User",
+        details=f"User {user.full_name} registered with role {user.role_name}."
+    ))
 
     if user:
         console.io.print("\n[bold green]User registered successfully.[/bold green]")
