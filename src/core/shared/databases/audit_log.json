@@ -106,5 +106,41 @@
         "target_type": "User",
         "timestamp": "2025-09-19T21:47:33.029331",
         "details": "User admin viewed their profile."
+    },
+    {
+        "id": "806d476c-efe3-4131-8417-5ba3424dc909",
+        "user_id": "admin",
+        "action": "APPLY_STRATIFICATION_IN_PATIENTS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-20T13:03:40.831682",
+        "details": "Apply stratification in 43 patients"
+    },
+    {
+        "id": "806d476c-efe3-4131-8417-5ba3424dc909",
+        "user_id": "admin",
+        "action": "DETECTED_OUTLIERS_IN_PRODUCTION_DATA",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient, ProductionData",
+        "timestamp": "2025-09-20T13:03:40.831682",
+        "details": "Detected outliers for 1 patients."
+    },
+    {
+        "id": "806d476c-efe3-4131-8417-5ba3424dc909",
+        "user_id": "admin",
+        "action": "APPLY_STRATIFICATION_IN_PATIENTS",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-20T13:03:40.831682",
+        "details": "Apply stratification in 43 patients"
+    },
+    {
+        "id": "806d476c-efe3-4131-8417-5ba3424dc909",
+        "user_id": "admin",
+        "action": "DETECTED_OUTLIERS_IN_CLINICAL_DATA",
+        "target_id": "*MULTIPLE*",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-20T13:03:40.831682",
+        "details": "Detected outliers for 3 patients."
     }
 ]

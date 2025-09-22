@@ -62,6 +62,6 @@ def analysis_menu(user):
 
 def audit_menu():
     show_menu("Audit Menu", {
-        "Audit Trails": view_all_audit_logs_command,
+        "Audit Logs": view_all_audit_logs_command,
         "Back to Main Menu": None
     })

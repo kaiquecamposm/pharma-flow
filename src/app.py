@@ -8,6 +8,7 @@ from utils import console
 from utils.clear_terminal import clear
 from utils.menu import (
     analysis_menu,
+    audit_menu,
     clinical_data_menu,
     lotes_menu,
     patients_menu,
@@ -29,7 +30,8 @@ def main():
             console.io.print("[bold]3.[/bold] Clinical Data")
             console.io.print("[bold]4.[/bold] Lotes")
             console.io.print("[bold]5.[/bold] Analysis")
-            console.io.print("[bold]6.[/bold] Exit")
+            console.io.print("[bold]6.[/bold] Audit")
+            console.io.print("[bold]7.[/bold] Exit")
 
             choice = Prompt.ask("\n[bold]Choose an option[/bold]")
             clear()
@@ -38,14 +40,16 @@ def main():
                 case "1":
                     users_menu(user)
                 case "2":
-                    patients_menu()
+                    patients_menu(user)
                 case "3":
                     clinical_data_menu(user)
                 case "4":
                     lotes_menu(user)
                 case "5":
-                    analysis_menu()
+                    analysis_menu(user)
                 case "6":
+                    audit_menu()
+                case "7":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)
                     clear()
@@ -65,7 +69,7 @@ def main():
 
             match choice:
                 case "1":
-                    patients_menu()
+                    patients_menu(user)
                 case "2":
                     clinical_data_menu(user)
                 case "3":
