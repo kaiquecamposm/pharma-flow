@@ -1,15 +1,17 @@
 from time import sleep
 
-from core.use_cases.factories.make_view_all_audit_logs import make_view_all_audit_logs
+from core.use_cases.factories.make_list_all_audit_logs import (
+    make_list_all_audit_logs,
+)
 from utils import console
 from utils.clear_terminal import clear
 
 
-def view_all_audit_logs_command():
-    console.io.print("[bold cyan]--- View All Audit Logs ---[/bold cyan]\n")
+def list_all_audit_logs_command():
+    console.io.print("[bold cyan]--- List All Audit Logs ---[/bold cyan]\n")
 
-    view_all_audit_logs_use_case = make_view_all_audit_logs()
-    audit_logs = view_all_audit_logs_use_case.execute()
+    list_all_audit_logs_use_case = make_list_all_audit_logs()
+    audit_logs = list_all_audit_logs_use_case.execute()
 
     if audit_logs:
         for idx, data in enumerate(audit_logs, start=1):

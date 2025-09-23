@@ -55,9 +55,6 @@ def archive_patient_command(user_id: str):
         details=f"Archived patient with ID: {patient_id}",
     ))
 
-    continue_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
-    sleep(1)
+    console.io.print(f"\n[bold green]Patient with ID: {patient_id} archived successfully![/bold green]")
+    sleep(2)
     clear()
-
-    if continue_prompt:
-        return

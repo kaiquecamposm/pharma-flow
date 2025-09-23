@@ -4,18 +4,18 @@ from core.entities.audit_log import AuditLog
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
-from core.use_cases.factories.make_view_all_clinical_data import (
-    make_view_all_clinical_data_use_case,
+from core.use_cases.factories.make_list_all_clinical_data import (
+    make_list_all_clinical_data_use_case,
 )
 from utils import console
 from utils.clear_terminal import clear
 
 
-def view_all_clinical_data_command(user_id: str):
+def list_all_clinical_data_command(user_id: str):
     console.io.print("[bold cyan]--- View All Clinical Data ---[/bold cyan]\n")
 
-    view_all_clinical_data_use_case = make_view_all_clinical_data_use_case()
-    clinical_data = view_all_clinical_data_use_case.execute()
+    list_all_clinical_data_use_case = make_list_all_clinical_data_use_case()
+    clinical_data = list_all_clinical_data_use_case.execute()
 
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(

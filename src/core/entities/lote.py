@@ -12,3 +12,4 @@ class Lote:
     end_date: str
     user_id: str
     created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    active: bool = True

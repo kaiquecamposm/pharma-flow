@@ -7,16 +7,16 @@ from core.use_cases.factories.make_archive_clinical_data import (
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
-from core.use_cases.factories.make_view_all_clinical_data import (
-    make_view_all_clinical_data_use_case,
+from core.use_cases.factories.make_list_all_clinical_data import (
+    make_list_all_clinical_data_use_case,
 )
 from utils import console
 from utils.clear_terminal import clear
 
 
 def select_clinical_data():
-    view_all_clinical_data_use_case = make_view_all_clinical_data_use_case()
-    clinical_data = view_all_clinical_data_use_case.execute()
+    list_all_clinical_data_use_case = make_list_all_clinical_data_use_case()
+    clinical_data = list_all_clinical_data_use_case.execute()
 
     if not clinical_data:
         console.io.print("[bold red]No clinical data found.[/bold red]")

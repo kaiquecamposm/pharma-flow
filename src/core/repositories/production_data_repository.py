@@ -37,3 +37,7 @@ class ProductionDataRepository(ABC):
     @abstractmethod
     def inactivate(self, production_data_id: str) -> None:
         pass
+
+    @abstractmethod
+    def inactivate_by_lote_id(self, lote_id: str) -> None:
+        pass

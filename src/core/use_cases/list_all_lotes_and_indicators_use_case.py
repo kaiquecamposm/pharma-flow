@@ -6,7 +6,7 @@ from utils import console
 
 
 @dataclass
-class ViewAllLotesAndIndicatorsUseCase:
+class ListAllLotesAndIndicatorsUseCase:
     def __init__(self, lotes_repository: LoteRepository, production_data_repository: ProductionDataRepository):
         self.lotes_repository = lotes_repository
         self.production_data_repository = production_data_repository
@@ -23,7 +23,7 @@ class ViewAllLotesAndIndicatorsUseCase:
                 production_data = self.production_data_repository.get_by_lote_id(lote.id)
 
                 results.append({
-                    "id_lote": lote.id,
+                    "lote_id": lote.id,
                     "product_name": lote.product_name,
                     "quantity": production_data.quantity if production_data else None,
                     "start_date": lote.start_date,

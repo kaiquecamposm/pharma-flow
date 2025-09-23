@@ -107,3 +107,17 @@ class JSONProductionDataRepository(ProductionDataRepository):
                 self._save_data(data)
                 return True
         return False
+
+    """
+    Inactivate production data entries by lote_id (soft delete).
+    """
+    def inactivate_by_lote_id(self, lote_id: str) -> bool:
+        data = self._load_data()
+        found = False
+        for item in data:
+            if item["lote_id"] == lote_id and item.get("active", True):
+                item["active"] = False
+                found = True
+        if found:
+            self._save_data(data)
+        return found

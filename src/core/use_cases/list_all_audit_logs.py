@@ -6,7 +6,7 @@ from utils import console
 
 
 @dataclass
-class ViewAllAuditLogsUseCase:
+class ListAllAuditLogsUseCase:
     def __init__(self, audit_log_repository: AuditLogRepository):
         self.audit_log_repository = audit_log_repository
 

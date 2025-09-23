@@ -46,7 +46,7 @@
 
 - [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
 
-- [ ] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
+- [x] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
 
 - [x] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
 
