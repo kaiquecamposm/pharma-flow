@@ -277,5 +277,23 @@
         "target_type": "ProductionData, ClinicalData",
         "timestamp": "2025-09-23T17:25:08.671931",
         "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "f3c0c99d-9bec-47fd-a61e-643af13a82dd",
+        "user_id": "admin",
+        "action": "VIEW_PROFILE",
+        "target_id": "admin",
+        "target_type": "User",
+        "timestamp": "2025-09-23T17:47:25.175436",
+        "details": "User admin viewed their profile."
+    },
+    {
+        "id": "0ab8d5d1-37d0-4e27-91a5-6dcb0f3d65d0",
+        "user_id": "admin",
+        "action": "VIEW_ALL_CLINICAL_DATA",
+        "target_id": "*MULTIPLE*",
+        "target_type": "CLINICAL_DATA",
+        "timestamp": "2025-09-23T19:19:36.039503",
+        "details": "User viewed all clinical data records."
     }
 ]

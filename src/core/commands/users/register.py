@@ -64,7 +64,6 @@ def register_user_command(user_id: int):
     user = register_user_use_case.execute(user)
 
     register_audit_log_use_case = make_create_audit_log_use_case()
-
     register_audit_log_use_case.execute(AuditLog(
         user_id=user_id,
         action="REGISTER_USER",

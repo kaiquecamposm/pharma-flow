@@ -47,7 +47,6 @@ def register_lote_command(user_id: str):
     lote = register_lote_use_case.execute(lote_data, production_data)
 
     create_audit_log_use_case = make_create_audit_log_use_case()
-
     create_audit_log_use_case.execute(AuditLog(
         user_id=user_id,
         action="REGISTER_LOTE",

@@ -18,7 +18,6 @@ def view_all_clinical_data_command(user_id: str):
     clinical_data = view_all_clinical_data_use_case.execute()
 
     create_audit_log_use_case = make_create_audit_log_use_case()
-
     create_audit_log_use_case.execute(AuditLog(
         user_id=user_id,
         action="VIEW_ALL_CLINICAL_DATA",

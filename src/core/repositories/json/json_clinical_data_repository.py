@@ -42,9 +42,11 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     Add a new clinical data entry.
     """
     def add(self, clinical_data: ClinicalData) -> ClinicalData:
-        data = self._load_data()
-        data.append(clinical_data.__dict__)
+        data = self._load_data() 
+        
+        data.append(clinical_data.__dict__) 
         self._save_data(data)
+         
         return clinical_data
 
     """
@@ -52,8 +54,13 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     def update(self, id: str, user_id: str, data_type: str, value: str, unit: str, description: str) -> ClinicalData:
         data = self._load_data()
+        
         for item in data:
             if item["id"] == id:
+                # Inactivate old version
+                item["active"] = False
+
+                # Create new version
                 clinical_data = ClinicalData(
                     data_type=data_type,
                     value=value,
@@ -63,12 +70,10 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
                     patient_id=item["patient_id"],
                     timestamp=datetime.now(timezone.utc).isoformat(),
                     version=item.get("version", 1) + 1,
-                    active=item.get("active", True)
+                    active=True
                 )
                 data.append(clinical_data.__dict__)
                 break
-        self._save_data(data)
-        return clinical_data
 
     """
     Return a clinical data entry by ID.
@@ -115,3 +120,14 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
                 self._save_data(data)
                 return True
         return False
+
+    def inactivate_by_patient_id(self, patient_id):
+        data = self._load_data()
+        updated = False
+        for item in data:
+            if item.get("patient_id") == patient_id and item.get("active", True):
+                item["active"] = False
+                updated = True
+        if updated:
+            self._save_data(data)
+        return updated

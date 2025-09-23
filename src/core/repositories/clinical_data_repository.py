@@ -36,3 +36,7 @@ class ClinicalDataRepository(ABC):
     @abstractmethod
     def inactivate(self, clinical_data_id: str) -> None:
         pass
+
+    @abstractmethod
+    def inactivate_by_patient_id(self, patient_id: str) -> None:
+        pass

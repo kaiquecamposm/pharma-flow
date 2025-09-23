@@ -40,7 +40,7 @@ def select_patient() -> str:
 
     return patients[int(choice) - 1].id
 
-def select_clinical_data(patient_id: str) -> str:
+def select_clinical_data(patient_id: str) -> ClinicalData:
     list_clinical_data_by_patient_id_use_case = make_list_clinical_data_by_patient_id_use_case()
     clinical_data = list_clinical_data_by_patient_id_use_case.execute(patient_id)
 
@@ -60,22 +60,6 @@ def select_clinical_data(patient_id: str) -> str:
 
     return clinical_data[int(choice) - 1]
 
-def update_clinical_data(clinical_data: ClinicalData):
-    console.io.print("\n[bold cyan]Enter new clinical data details:[/bold cyan]")
-
-    data_type = Prompt.ask("Data Type", default=clinical_data.data_type)
-    value = Prompt.ask("Value", default=clinical_data.value)
-    unit = Prompt.ask("Unit", default=clinical_data.unit)
-    description = Prompt.ask("Description", default=clinical_data.description)
-
-    return {
-        data_type: data_type if data_type else clinical_data.data_type,
-        value: value if value else clinical_data.value,
-        unit: unit if unit else clinical_data.unit,
-        description: description if description else clinical_data.description,
-    }
-
-
 def update_clinical_data_command(user_id: str):
     console.io.print("[bold cyan]--- Update Clinical Data ---[/bold cyan]\n")
 
@@ -85,22 +69,17 @@ def update_clinical_data_command(user_id: str):
     if not patient_id or not clinical_data:
         return
 
-    data_type, value, unit, description = update_clinical_data(clinical_data)
+    console.io.print("\n[bold cyan]Enter new clinical data details:[/bold cyan]")
 
-    clinical_data_formatted = {
-        "id": clinical_data.id,
-        "user_id": user_id,
-        "data_type": data_type,
-        "value": value,
-        "unit": unit,
-        "description": description,
-    }
+    data_type = Prompt.ask("Data Type", default=clinical_data.data_type)
+    value = Prompt.ask("Value", default=clinical_data.value)
+    unit = Prompt.ask("Unit", default=clinical_data.unit)
+    description = Prompt.ask("Description", default=clinical_data.description)
 
     update_clinical_data_use_case = make_update_clinical_data_use_case()
-    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, **clinical_data_formatted)
+    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, id=clinical_data.id, user_id=user_id, data_type=data_type, value=value, unit=unit, description=description)
 
     create_audit_log_use_case = make_create_audit_log_use_case()
-
     create_audit_log_use_case.execute(AuditLog(
         user_id=user_id,
         action="UPDATE_CLINICAL_DATA",

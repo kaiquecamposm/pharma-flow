@@ -24,8 +24,6 @@ def generate_sprint_report_command(user_id: str):
     generate_sprint_report_use_case = make_generate_sprint_report_use_case()
     report = generate_sprint_report_use_case.execute(user_id, start_date, end_date)
 
-    create_audit_log_use_case = make_create_audit_log_use_case()
-
     clear()
 
     if report:
@@ -44,6 +42,7 @@ def generate_sprint_report_command(user_id: str):
             else:
                 console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
 
+        create_audit_log_use_case = make_create_audit_log_use_case()
         create_audit_log_use_case.execute(AuditLog(
             user_id=user_id,
             action="GENERATE_SPRINT_REPORT",

@@ -3,7 +3,7 @@ from time import sleep
 from rich.panel import Panel
 from rich.prompt import Prompt
 
-from core.commands.login import login_command
+from core.commands.users.login import login_command
 from utils import console
 from utils.clear_terminal import clear
 from utils.menu import (
@@ -81,9 +81,4 @@ def main():
                     console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
 
 if __name__ == "__main__":
-    import time
-
-    start = time.perf_counter()
     main()
-    elapsed = time.perf_counter() - start
-    print(f"{__file__} executed in {elapsed:0.2f} seconds.")

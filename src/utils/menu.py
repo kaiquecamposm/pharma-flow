@@ -1,30 +1,32 @@
-from core.commands.apply_stratification_in_patients import (
-    apply_stratification_in_patients_command,
-)
-from core.commands.detected_outliers_in_clinical_data import (
+from core.commands.audit_logs.view_all import view_all_audit_logs_command
+from core.commands.clinical_data.detected_outliers import (
     detected_outliers_in_clinical_data_command,
 )
-from core.commands.detected_outliers_in_production_data import (
-    detected_outliers_in_production_data_command,
-)
-from core.commands.generate_sprint_report import generate_sprint_report_command
-from core.commands.get_profile import get_profile_command
-from core.commands.register_clinical_data import register_clinical_data_command
-from core.commands.register_lote import register_lote_command
-from core.commands.register_patient import register_patient_command
-from core.commands.register_user import register_user_command
-from core.commands.update_clinical_data import update_clinical_data_command
-from core.commands.view_all_audit_logs import view_all_audit_logs_command
-from core.commands.view_all_clinical_data import view_all_clinical_data_command
-from core.commands.view_all_lotes_and_indicators_command import (
+from core.commands.clinical_data.register import register_clinical_data_command
+from core.commands.clinical_data.update import update_clinical_data_command
+from core.commands.clinical_data.view_all import view_all_clinical_data_command
+from core.commands.lotes.register import register_lote_command
+from core.commands.lotes.view_all_lotes_and_indicators import (
     view_all_lotes_and_indicators_command,
 )
+from core.commands.patients.apply_stratification import (
+    apply_stratification_in_patients_command,
+)
+from core.commands.patients.archive import archive_patient_command
+from core.commands.patients.register import register_patient_command
+from core.commands.production_data.detected_outliers import (
+    detected_outliers_in_production_data_command,
+)
+from core.commands.sprint_report.generate import generate_sprint_report_command
+from core.commands.users.get_profile import get_profile_command
+from core.commands.users.register import register_user_command
 from utils.show_menu import show_menu
 
 
 def patients_menu(user):
     show_menu("Patients Menu", {
         "Register Patient": lambda: register_patient_command(user.id),
+        "Archive Patient": lambda: archive_patient_command(user.id),
         "Back to Main Menu": None
     })
 

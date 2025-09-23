@@ -15,8 +15,6 @@ def get_profile_command(user_id: str):
     get_profile_use_case = make_get_profile_use_case()
     profile = get_profile_use_case.execute(user_id)
 
-    create_audit_log_use_case = make_create_audit_log_use_case()
-
     if profile:
         console.io.print(f"[bold green]ID:[/bold green] {profile.id}")
         console.io.print(f"[bold green]Full Name:[/bold green] {profile.full_name}")
@@ -25,6 +23,7 @@ def get_profile_command(user_id: str):
         console.io.print(f"[bold green]Role:[/bold green] {profile.role_name}")
         console.io.print(f"[bold green]Active:[/bold green] {'Yes' if profile.active else 'No'}")
 
+        create_audit_log_use_case = make_create_audit_log_use_case()
         create_audit_log_use_case.execute(AuditLog(
             user_id=user_id,
             action="VIEW_PROFILE",
