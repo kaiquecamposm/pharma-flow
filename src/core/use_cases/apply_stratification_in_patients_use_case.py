@@ -25,7 +25,7 @@ class ApplyStratificationInPatientsUseCase:
                 raise ValueError("\n[bold red]No patients found.[/bold red]")
 
             for patient in patients:
-                clinical_data = self.clinical_data_repository.get_by_patient_id(patient.id)
+                clinical_data = self.clinical_data_repository.list_by_patient_id(patient.id)
                 
                 if clinical_data:
                     stratifications = stratify_algorithm(clinical_data)

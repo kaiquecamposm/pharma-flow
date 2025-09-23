@@ -12,13 +12,17 @@ class ClinicalDataRepository(ABC):
     @abstractmethod
     def add(self, clinical_data: ClinicalData) -> ClinicalData:
         pass
+
+    @abstractmethod
+    def update(self, id: str, user_id: str, data_type: str, value: str, unit: str, description: str) -> ClinicalData:
+        pass
     
     @abstractmethod
     def get_by_id(self, clinical_data_id: str) -> ClinicalData:
         pass
 
     @abstractmethod
-    def get_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+    def list_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
         pass
 
     @abstractmethod

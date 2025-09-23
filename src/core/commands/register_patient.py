@@ -35,7 +35,6 @@ def register_patient_command(user_id: str):
         email=email_b64,
         dob=dob,
         gender=gender,
-        clinical_history=None,
         active=active,
     )
 

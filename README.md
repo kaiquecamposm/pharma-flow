@@ -40,7 +40,7 @@
 
 - [x] Todo acesso ao sistema deve ser registrado em log de auditoria com data, hora e identidade do usuário;
 
-- [ ] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
+- [x] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
 
 - [x] Indicadores ambientais devem ser registrados por lote produzido;
 

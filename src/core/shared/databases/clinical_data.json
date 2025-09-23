@@ -514,5 +514,17 @@
         "version": 1,
         "active": true,
         "timestamp": "2025-09-19T19:19:55.569400+00:00"
+    },
+    {
+        "id": "7342e171-4a93-4b07-90cb-a451ec807602",
+        "data_type": "Heart Rate",
+        "value": "100",
+        "unit": "bpm",
+        "description": "Normal",
+        "user_id": "admin",
+        "patient_id": "p001",
+        "version": 2,
+        "active": true,
+        "timestamp": "2025-09-23T17:25:22.587204+00:00"
     }
 ]

@@ -232,5 +232,50 @@
         "target_type": "ProductionData, ClinicalData",
         "timestamp": "2025-09-23T14:40:53.158066",
         "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "9102db42-c7a9-4144-9b20-c692cb88e493",
+        "user_id": "admin",
+        "action": "UPDATE_CLINICAL_DATA",
+        "target_id": "p001",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-23T16:34:00.328114",
+        "details": "Updated clinical data for patient: p001"
+    },
+    {
+        "id": "24bdbb4a-258d-409f-8449-8ab05c6b0d8a",
+        "user_id": "admin",
+        "action": "UPDATE_CLINICAL_DATA",
+        "target_id": "p001",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-23T17:07:46.381536",
+        "details": "Updated clinical data for patient: p001"
+    },
+    {
+        "id": "0aaf58c6-3ae0-40d5-a7d1-e7b008ce25d9",
+        "user_id": "admin",
+        "action": "UPDATE_CLINICAL_DATA",
+        "target_id": "p001",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-23T17:20:56.547352",
+        "details": "Updated clinical data for patient: p001"
+    },
+    {
+        "id": "a734bf6e-0665-4797-b494-c44748a0e86b",
+        "user_id": "admin",
+        "action": "UPDATE_CLINICAL_DATA",
+        "target_id": "p001",
+        "target_type": "Patient, ClinicalData",
+        "timestamp": "2025-09-23T17:25:08.671931",
+        "details": "Updated clinical data for patient: p001"
+    },
+    {
+        "id": "a734bf6e-0665-4797-b494-c44748a0e86b",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T17:25:08.671931",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
     }
 ]

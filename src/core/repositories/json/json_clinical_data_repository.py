@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime, timezone
 from typing import List, Optional
 
 from core.entities.clinical_data import ClinicalData
@@ -47,6 +48,29 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
         return clinical_data
 
     """
+    Update a clinical data entry by creating a new version (does not overwrite previous version).
+    """
+    def update(self, id: str, user_id: str, data_type: str, value: str, unit: str, description: str) -> ClinicalData:
+        data = self._load_data()
+        for item in data:
+            if item["id"] == id:
+                clinical_data = ClinicalData(
+                    data_type=data_type,
+                    value=value,
+                    unit=unit,
+                    description=description,
+                    user_id=user_id,
+                    patient_id=item["patient_id"],
+                    timestamp=datetime.now(timezone.utc).isoformat(),
+                    version=item.get("version", 1) + 1,
+                    active=item.get("active", True)
+                )
+                data.append(clinical_data.__dict__)
+                break
+        self._save_data(data)
+        return clinical_data
+
+    """
     Return a clinical data entry by ID.
     """
     def get_by_id(self, clinical_data_id: str) -> Optional[ClinicalData]:
@@ -59,7 +83,7 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     Return a list of clinical data entries by patient ID.
     """
-    def get_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+    def list_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
         data = self._load_data()
         return [ClinicalData(**item) for item in data if item.get("patient_id") == patient_id]
 
@@ -79,19 +103,6 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
             ClinicalData(**item) for item in data 
             if start_date <= item.get("timestamp", "") <= end_date and item.get("active", True)
         ]
-
-    """
-    Update a clinical data entry by creating a new version (does not overwrite previous version).
-    """
-    def update(self, clinical_data: ClinicalData) -> ClinicalData:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == clinical_data.id:
-                clinical_data.version = item.get("version", 1) + 1
-                item.update(clinical_data.__dict__)
-                break
-        self._save_data(data)
-        return clinical_data
 
     """
     Inactivate a clinical data entry (soft delete).

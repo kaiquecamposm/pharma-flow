@@ -13,6 +13,7 @@ from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_lote import register_lote_command
 from core.commands.register_patient import register_patient_command
 from core.commands.register_user import register_user_command
+from core.commands.update_clinical_data import update_clinical_data_command
 from core.commands.view_all_audit_logs import view_all_audit_logs_command
 from core.commands.view_all_clinical_data import view_all_clinical_data_command
 from core.commands.view_all_lotes_and_indicators_command import (
@@ -39,6 +40,7 @@ def users_menu(user):
 def clinical_data_menu(user):
     show_menu("Clinical Data Menu", {
         "Register Clinical Data": lambda: register_clinical_data_command(user.id),
+        "Update Clinical Data": lambda: update_clinical_data_command(user.id),
         "View Clinical Data": lambda: view_all_clinical_data_command(user.id),
         "Back to Main Menu": None
     })

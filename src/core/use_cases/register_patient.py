@@ -27,7 +27,6 @@ class RegisterPatientUseCase:
                 email=patient_data.email,
                 dob=patient_data.dob,
                 gender=patient_data.gender,
-                clinical_history=patient_data.clinical_history,
                 active=patient_data.active,
             )
             

@@ -28,7 +28,7 @@ class DetectedOutliersInClinicalDataUseCase:
             results = defaultdict(dict)
 
             for patient in patients:
-                clinical_data = self.clinical_data_repository.get_by_patient_id(patient.id)
+                clinical_data = self.clinical_data_repository.list_by_patient_id(patient.id)
 
                 # group values by type
                 grouped = defaultdict(list)

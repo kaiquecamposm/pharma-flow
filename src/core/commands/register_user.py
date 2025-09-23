@@ -20,7 +20,9 @@ def select_role() -> str:
 
     for idx, role in enumerate(roles, 1):
         console.io.print(f"[yellow]{idx}. {role}[/yellow]")
+
     role_choice = Prompt.ask("Enter the number for your role", choices=[str(i) for i in range(1, len(roles)+1)])
+
     try:
         role_idx = int(role_choice) - 1
         if role_idx < 0 or role_idx >= len(roles):
