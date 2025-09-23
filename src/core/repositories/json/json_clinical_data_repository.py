@@ -71,6 +71,16 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
         return [ClinicalData(**item) for item in data if item.get("active", True)]
 
     """
+    List by period.
+    """
+    def list_by_period(self, start_date: str, end_date: str) -> List[ClinicalData]:
+        data = self._load_data()
+        return [
+            ClinicalData(**item) for item in data 
+            if start_date <= item.get("timestamp", "") <= end_date and item.get("active", True)
+        ]
+
+    """
     Update a clinical data entry by creating a new version (does not overwrite previous version).
     """
     def update(self, clinical_data: ClinicalData) -> ClinicalData:

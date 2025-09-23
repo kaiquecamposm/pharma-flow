@@ -48,7 +48,7 @@ def main():
                 case "5":
                     analysis_menu(user)
                 case "6":
-                    audit_menu()
+                    audit_menu(user)
                 case "7":
                     console.io.print("[bold green]Exiting...[/bold green]")
                     sleep(1)

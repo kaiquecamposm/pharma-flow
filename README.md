@@ -28,7 +28,7 @@
 
 - [x] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
 
-- [ ] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
+- [x] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
 
 - [ ] Deve ser possível acessar módulos educacionais interativos sobre boas práticas ambientais;
 
@@ -46,9 +46,9 @@
 
 - [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
 
-- [x] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
+- [ ] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
 
-- [ ] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
+- [x] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
 
 📌 Requisitos Não Funcionais (RNF)
 
@@ -56,10 +56,10 @@
 
 - [ ] Cada função deve ser acompanhada de análise assintótica de complexidade (notação Big-O) e de suíte de testes unitários com cobertura superior a 80%;
 
-- [ ] O sistema deve operar de acordo com os princípios de Engenharia de Software Ágil, permitindo ciclos iterativos e inspeção contínua;
+- [x] O sistema deve operar de acordo com os princípios de Engenharia de Software Ágil, permitindo ciclos iterativos e inspeção contínua;
 
-- [ ] O sistema deve respeitar a conformidade com normas GxP (GLP, GCP, GMP) e requisitos do FDA 21 CFR Part 11;
+- [x] O sistema deve respeitar a conformidade com normas GxP (GLP, GCP, GMP) e requisitos do FDA 21 CFR Part 11;
 
-- [ ] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
+- [x] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
 
 - [x] Trilhas de auditoria e registros devem ser mantidos de forma imutável.

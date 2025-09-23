@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 from core.entities.clinical_data import ClinicalData
 
@@ -22,6 +23,10 @@ class ClinicalDataRepository(ABC):
 
     @abstractmethod
     def list_all(self) -> list[ClinicalData]:
+        pass
+
+    @abstractmethod
+    def list_by_period(self, start_date: datetime, end_date: datetime) -> list[ClinicalData]:
         pass
     
     @abstractmethod

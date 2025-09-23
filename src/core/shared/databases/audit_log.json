@@ -142,5 +142,95 @@
         "target_type": "Patient, ClinicalData",
         "timestamp": "2025-09-20T13:03:40.831682",
         "details": "Detected outliers for 3 patients."
+    },
+    {
+        "id": "6ba40c7b-bf88-4a7b-b90e-7a6021bd9deb",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T13:57:46.173211",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "9e3252ba-4fcc-47b1-9798-c46830664108",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:01:35.589713",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "366465f2-9bd3-4801-aa2b-caf2dc27c979",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:26:22.588887",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "f3d286d4-0c5d-47c0-b952-e0797a72b7f0",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:31:09.727634",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "af4a8e2b-e066-4d6b-bf5a-afb9851ca4ed",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:33:21.322919",
+        "details": "Generated sprint report from 2000-12 to 2025-09-23"
+    },
+    {
+        "id": "893ced4b-0e9f-401e-a1df-e8ec239d9e6f",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:34:38.599905",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "f69c9719-721c-45ab-8632-6167a7e45a81",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:35:27.475466",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "2453700c-8061-4fa3-85bb-df3fcf1f8c76",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:37:09.330965",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "5eb42ed7-1b23-4d5f-bb5a-6446cab23712",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:38:12.009783",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
+    },
+    {
+        "id": "737f403d-d561-4610-a282-1697111c9501",
+        "user_id": "admin",
+        "action": "GENERATE_SPRINT_REPORT",
+        "target_id": "*MULTIPLE*",
+        "target_type": "ProductionData, ClinicalData",
+        "timestamp": "2025-09-23T14:40:53.158066",
+        "details": "Generated sprint report from 2000-12-12 to 2025-09-23"
     }
 ]

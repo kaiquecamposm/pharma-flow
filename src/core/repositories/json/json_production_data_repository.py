@@ -74,6 +74,16 @@ class JSONProductionDataRepository(ProductionDataRepository):
         return [ProductionData(**item) for item in data if item.get("active", True)]
 
     """
+    List by period.
+    """
+    def list_by_period(self, start_date, end_date) -> List[ProductionData]:
+        data = self._load_data()
+        return [
+            ProductionData(**item) for item in data 
+            if start_date <= item.get("timestamp", "") <= end_date and item.get("active", True)
+        ]
+
+    """
     Update a production data entry by creating a new version (does not overwrite previous version).
     """
     def update(self, production_data: ProductionData) -> ProductionData:

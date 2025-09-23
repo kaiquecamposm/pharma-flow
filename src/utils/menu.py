@@ -7,6 +7,7 @@ from core.commands.detected_outliers_in_clinical_data import (
 from core.commands.detected_outliers_in_production_data import (
     detected_outliers_in_production_data_command,
 )
+from core.commands.generate_sprint_report import generate_sprint_report_command
 from core.commands.get_profile import get_profile_command
 from core.commands.register_clinical_data import register_clinical_data_command
 from core.commands.register_lote import register_lote_command
@@ -60,8 +61,9 @@ def analysis_menu(user):
     })
 
 
-def audit_menu():
+def audit_menu(user):
     show_menu("Audit Menu", {
         "Audit Logs": view_all_audit_logs_command,
+        "Sprint Report": lambda: generate_sprint_report_command(user.id),
         "Back to Main Menu": None
     })

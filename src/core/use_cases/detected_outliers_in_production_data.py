@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 import numpy as np
 
-from core.constants.production_data_limits import ABSOLUTE_LIMITS
+from core.constants.production_rules import ENVIRONMENTAL_RULES
 from core.entities.production_data import ProductionData
 from core.repositories.production_data_repository import ProductionDataRepository
 from utils import console
@@ -19,10 +19,10 @@ def generate_process_data(num_records=50, with_outliers=True):
     for i in range(num_records):
         record = ProductionData(
             id=str(uuid.uuid4()),
-            quantity=random.normalvariate(1000, 50),  # média 1000, desvio 50
-            energy_consumption=random.normalvariate(1500, 100),  # média 1500, desvio 100
-            recovered_solvent_volume=random.normalvariate(350, 30),  # média 350, desvio 30
-            emissions=random.normalvariate(400, 40),  # média 400, desvio 40
+            quantity=random.normalvariate(1000, 50),  # average 1000, stddev 50
+            energy_consumption=random.normalvariate(1500, 100),  # average 1500, stddev 100
+            recovered_solvent_volume=random.normalvariate(350, 30),  # average 350, stddev 30
+            emissions=random.normalvariate(400, 40),  # average 400, stddev 40
             user_id="admin",
             lote_id=str(uuid.uuid4()),
             version=1,
@@ -32,7 +32,7 @@ def generate_process_data(num_records=50, with_outliers=True):
         records.append(record)
 
     if with_outliers:
-        # inserir alguns outliers extremos
+        # insert some extreme outliers
         for _ in range(3):
             record = ProductionData(
                 id=str(uuid.uuid4()),
@@ -69,7 +69,7 @@ class DetectedOutliersInProductionDataUseCase:
                 raise ValueError("\n[bold red]No production data found.[/bold red]")
 
             results = defaultdict(dict)
-            metrics = ["quantity", "energy_consumption", "recovered_solvent_volume", "emissions"]
+            metrics = ["energy_consumption", "recovered_solvent_volume", "emissions"]
 
             # Agrupa por lote_id
             grouped = defaultdict(lambda: defaultdict(list))
@@ -90,7 +90,7 @@ class DetectedOutliersInProductionDataUseCase:
 
                     outliers = [
                         v for v in values
-                        if abs(v - mean) > threshold * std or v > ABSOLUTE_LIMITS[metric]
+                        if abs(v - mean) > threshold * std or v > ENVIRONMENTAL_RULES[metric]
                     ]
 
                     results[lote_id][metric] = {
