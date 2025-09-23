@@ -1,4 +1,5 @@
 from core.commands.audit_logs.view_all import view_all_audit_logs_command
+from core.commands.clinical_data.archive import archive_clinical_data_command
 from core.commands.clinical_data.detected_outliers import (
     detected_outliers_in_clinical_data_command,
 )
@@ -42,6 +43,7 @@ def users_menu(user):
 def clinical_data_menu(user):
     show_menu("Clinical Data Menu", {
         "Register Clinical Data": lambda: register_clinical_data_command(user.id),
+        "Archive Clinical Data": lambda: archive_clinical_data_command(user.id),
         "Update Clinical Data": lambda: update_clinical_data_command(user.id),
         "View Clinical Data": lambda: view_all_clinical_data_command(user.id),
         "Back to Main Menu": None

@@ -295,5 +295,14 @@
         "target_type": "CLINICAL_DATA",
         "timestamp": "2025-09-23T19:19:36.039503",
         "details": "User viewed all clinical data records."
+    },
+    {
+        "id": "d56e660a-44a7-4f3c-9576-c3e148be2f90",
+        "user_id": "admin",
+        "action": "ARCHIVE_CLINICAL_DATA",
+        "target_id": "1a1f3c1b-0009-4d29-9f6a-1f0b1c2d3e09",
+        "target_type": "ClinicalData",
+        "timestamp": "2025-09-23T19:33:44.993031",
+        "details": "Archived clinical data with ID: 1a1f3c1b-0009-4d29-9f6a-1f0b1c2d3e09"
     }
 ]

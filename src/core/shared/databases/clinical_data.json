@@ -104,7 +104,7 @@
         "user_id": "admin",
         "patient_id": "p002",
         "version": 1,
-        "active": true,
+        "active": false,
         "timestamp": "2025-09-17T19:08:00+00:00"
     },
     {
