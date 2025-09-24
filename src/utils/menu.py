@@ -15,6 +15,7 @@ from core.commands.lotes.list_all_lotes_and_indicators import (
     list_all_lotes_and_indicators_command,
 )
 from core.commands.lotes.register import register_lote_command
+from core.commands.modules.access_modules import access_modules_command
 from core.commands.patients.apply_stratification import (
     apply_stratification_in_patients_command,
 )
@@ -71,6 +72,13 @@ def analysis_menu(user):
         "Stratification in Patients": lambda: apply_stratification_in_patients_command(user),
         "Detected Outliers in Clinical Data": lambda: detected_outliers_in_clinical_data_command(user),
         "Detected Outliers in Production Data": lambda: detected_outliers_in_production_data_command(user),
+        "Back to Main Menu": None
+    })
+
+@authorize("education")
+def education_menu(user):
+    show_menu("Education Menu", {
+        "Access Modules": lambda: access_modules_command(user),
         "Back to Main Menu": None
     })
 

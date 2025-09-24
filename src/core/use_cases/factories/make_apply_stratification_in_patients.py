@@ -2,7 +2,7 @@ from core.repositories.json.json_clinical_data_repository import (
     JSONClinicalDataRepository,
 )
 from core.repositories.json.json_patient_repository import JSONPatientRepository
-from core.use_cases.apply_stratification_in_patients_use_case import (
+from core.use_cases.apply_stratification_in_patients import (
     ApplyStratificationInPatientsUseCase,
 )
 

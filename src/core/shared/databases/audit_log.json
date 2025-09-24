@@ -304,5 +304,176 @@
         "target_type": "ClinicalData",
         "timestamp": "2025-09-23T19:33:44.993031",
         "details": "Archived clinical data with ID: 1a1f3c1b-0009-4d29-9f6a-1f0b1c2d3e09"
+    },
+    {
+        "id": "94e45455-671f-4c19-9407-9681ec52cbda",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:06:22.156368",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "b7b54a0e-7a92-4ced-a135-c87cbe3e962d",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:07:20.251263",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "7a624290-217a-4806-9b56-76078193f059",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:08:27.445415",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "59d8141a-fd50-4e05-828c-93f884b04150",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:09:56.602987",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "c005d8ff-76e8-4bd8-b6b0-7edade84586d",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:13:03.362644",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "f0569fe0-d796-4c59-8b71-e6a4a884df47",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:14:46.290932",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "29256b18-48e5-4689-afe5-56d699cde290",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:15:10.437636",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "94577b25-d24a-467e-855d-e149fb8d25b7",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:15:33.185897",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "6295b2b8-d7d6-4297-bb5d-97a4c2618a15",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:16:25.961571",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "d9bb5ec5-ed37-4439-aa4f-653a7b9629b8",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:17:05.709161",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "52aaeb2d-b204-4c81-8de7-04ba98499efd",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:17:56.673228",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "4405a51e-20ba-43f0-8529-63e1d6d436c8",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:37:43.063181",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "f7d610c9-a4e6-41c2-a0e0-978cf84fef82",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T21:39:11.192417",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "c7c87a84-7386-4e47-a1fb-8cabd8a75796",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T22:03:57.032469",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "120adefb-07e6-455c-aaf5-bd3573a25668",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T22:04:52.454835",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "1bc6c08f-c753-4562-bbc6-559e8229a489",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T22:11:18.191094",
+        "details": "User admin accessed module 'Introdução às Boas Práticas Ambientais'"
+    },
+    {
+        "id": "1bc6c08f-c753-4562-bbc6-559e8229a489",
+        "user_id": "admin",
+        "action": "UPDATE_EDUCATION_PROGRESS",
+        "target_id": "3bccab4f-9ca3-4b4f-849b-24a8c73cb864",
+        "target_type": "EducationProgress",
+        "timestamp": "2025-09-24T22:11:18.191094",
+        "details": "Updated education progress for module bab604cd-aa8b-4477-b82d-b39a40541090 with score 1"
+    },
+    {
+        "id": "1bc6c08f-c753-4562-bbc6-559e8229a489",
+        "user_id": "admin",
+        "action": "ACCESS_MODULE",
+        "target_id": "f8633ee7-3856-4397-90ed-3db05bd4bf69",
+        "target_type": "EducationModule, EducationProgress",
+        "timestamp": "2025-09-24T22:11:18.191094",
+        "details": "User admin accessed module 'Gestão de Resíduos e Solventes'"
+    },
+    {
+        "id": "1bc6c08f-c753-4562-bbc6-559e8229a489",
+        "user_id": "admin",
+        "action": "UPDATE_EDUCATION_PROGRESS",
+        "target_id": "9aea3df0-b460-48ca-a0e7-8cdf6a4b06be",
+        "target_type": "EducationProgress",
+        "timestamp": "2025-09-24T22:11:18.191094",
+        "details": "Updated education progress for module f8633ee7-3856-4397-90ed-3db05bd4bf69 with score 1"
     }
 ]

@@ -2,7 +2,7 @@ from core.repositories.json.json_lote_repository import JSONLoteRepository
 from core.repositories.json.json_production_data_repository import (
     JSONProductionDataRepository,
 )
-from core.use_cases.list_all_lotes_and_indicators_use_case import (
+from core.use_cases.list_all_lotes_and_indicators import (
     ListAllLotesAndIndicatorsUseCase,
 )
 

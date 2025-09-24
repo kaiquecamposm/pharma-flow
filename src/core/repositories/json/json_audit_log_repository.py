@@ -40,11 +40,21 @@ class JSONAuditLogRepository(AuditLogRepository):
     """
     Add a new audit log entry.
     """
-    def add(self, audit_log: AuditLog) -> AuditLog:
+    def add(self, user_id: str, action: str, target_id: str, target_type: str, details: str) -> AuditLog:
         data = self._load_data()
-        data.append(audit_log.__dict__)
+
+        new_audit_log = AuditLog(
+            user_id=user_id,
+            action=action,
+            target_id=target_id,
+            target_type=target_type,
+            details=details,
+        )
+
+        data.append(new_audit_log.__dict__)
         self._save_data(data)
-        return audit_log
+        
+        return new_audit_log
 
     """
     List all active audit log entries.

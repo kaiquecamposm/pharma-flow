@@ -1,0 +1,87 @@
+[
+    {
+        "id": "bab604cd-aa8b-4477-b82d-b39a40541090",
+        "title": "Introdução às Boas Práticas Ambientais",
+        "description": "Fundamentos de sustentabilidade e responsabilidade ambiental na indústria farmacêutica.",
+        "content": "\n            Este módulo apresenta os conceitos básicos de sustentabilidade aplicados\n            à indústria farmacêutica. São discutidos os impactos ambientais de processos\n            clínicos e fabris, bem como práticas recomendadas para reduzir a poluição\n            e promover a responsabilidade socioambiental.\n            ",
+        "quiz": {
+            "question": "Qual é o principal objetivo das boas práticas ambientais na indústria farmacêutica?",
+            "options": [
+                "Reduzir custos operacionais",
+                "Minimizar impactos ambientais e promover sustentabilidade",
+                "Aumentar a produção de medicamentos",
+                "Melhorar a estética das instalações"
+            ],
+            "answer": "Minimizar impactos ambientais e promover sustentabilidade"
+        },
+        "created_at": "2025-09-24T18:09:53.103378+00:00"
+    },
+    {
+        "id": "f8633ee7-3856-4397-90ed-3db05bd4bf69",
+        "title": "Gestão de Resíduos e Solventes",
+        "description": "Práticas seguras para descarte e recuperação de solventes.",
+        "content": "\n            A gestão de resíduos envolve procedimentos corretos de segregação,\n            armazenamento temporário e descarte final. Além disso, este módulo aborda\n            técnicas de recuperação de solventes para reaproveitamento, reduzindo\n            custos e impactos ambientais.\n            ",
+        "quiz": {
+            "question": "Quais são os principais métodos para a recuperação de solventes na indústria farmacêutica?",
+            "options": [
+                "Destilação e adsorção",
+                "Incineração e aterro sanitário",
+                "Compostagem e reciclagem",
+                "Filtração e decantação"
+            ],
+            "answer": "Destilação e adsorção"
+        },
+        "created_at": "2025-09-24T18:09:53.103428+00:00"
+    },
+    {
+        "id": "5de6d8d0-cd42-40b4-9967-fe8ca9c5e5a2",
+        "title": "Consumo Energético e Eficiência",
+        "description": "Estratégias para monitorar e reduzir o consumo energético.",
+        "content": "\n            O consumo energético é um dos principais indicadores ambientais da indústria.\n            Este módulo ensina como medir a eficiência energética por lote de produção,\n            implementar sistemas de monitoramento e aplicar práticas para redução do\n            consumo sem comprometer a produtividade.\n            ",
+        "quiz": {
+            "question": "Qual é uma prática eficaz para reduzir o consumo energético na indústria farmacêutica?",
+            "options": [
+                "Aumentar a temperatura dos processos",
+                "Implementar sistemas de monitoramento e otimização",
+                "Reduzir a manutenção dos equipamentos",
+                "Aumentar o uso de iluminação artificial"
+            ],
+            "answer": "Implementar sistemas de monitoramento e otimização"
+        },
+        "created_at": "2025-09-24T18:09:53.103436+00:00"
+    },
+    {
+        "id": "fabca242-e8f8-4009-952c-945378bdb8bd",
+        "title": "Normas Ambientais e Compliance",
+        "description": "Conformidade com legislações internacionais e nacionais.",
+        "content": "\n            Este módulo cobre as normas GxP, FDA 21 CFR Part 11 e diretrizes da ANVISA\n            relacionadas à proteção ambiental. São discutidos os requisitos legais,\n            auditorias regulatórias e como garantir conformidade em processos clínicos\n            e fabris.\n            ",
+        "quiz": {
+            "question": "Qual norma regula a proteção ambiental na indústria farmacêutica?",
+            "options": [
+                "ISO 9001",
+                "FDA 21 CFR Part 11",
+                "GxP",
+                "ANVISA RDC 306"
+            ],
+            "answer": "ANVISA RDC 306"
+        },
+        "created_at": "2025-09-24T18:09:53.103443+00:00"
+    },
+    {
+        "id": "4a0b7354-f5c8-45f3-b574-307ab7e3f427",
+        "title": "Ciclo PDCA aplicado ao Meio Ambiente",
+        "description": "Implementação do ciclo PDCA para melhoria contínua.",
+        "content": "\n            O ciclo PDCA (Plan, Do, Check, Act) é uma ferramenta de gestão que pode\n            ser aplicada ao controle ambiental. Este módulo mostra como planejar ações\n            ambientais, executá-las, verificar resultados e implementar ajustes para\n            garantir melhoria contínua.\n            ",
+        "quiz": {
+            "question": "Qual é a sequência correta do ciclo PDCA?",
+            "options": [
+                "Plan, Do, Check, Act",
+                "Do, Plan, Act, Check",
+                "Check, Act, Plan, Do",
+                "Act, Check, Do, Plan"
+            ],
+            "answer": "Plan, Do, Check, Act"
+        },
+        "created_at": "2025-09-24T18:09:53.103448+00:00"
+    }
+]

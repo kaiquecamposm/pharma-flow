@@ -10,6 +10,7 @@ from utils.menu import (
     analysis_menu,
     audit_menu,
     clinical_data_menu,
+    education_menu,
     lotes_menu,
     patients_menu,
     users_menu,
@@ -20,15 +21,16 @@ def main():
     user = login_command()
 
     while True:
-        console.io.print(Panel.fit("[bold cyan]🛠️ MENU[/bold cyan]", border_style="bright_magenta"))
+        console.io.print(Panel.fit("[bold cyan]🛠️  MENU[/bold cyan]", border_style="bright_magenta"))
 
         console.io.print("[bold]1.[/bold] Users")
         console.io.print("[bold]2.[/bold] Patients")
         console.io.print("[bold]3.[/bold] Clinical Data")
         console.io.print("[bold]4.[/bold] Lotes")
         console.io.print("[bold]5.[/bold] Analysis")
-        console.io.print("[bold]6.[/bold] Audit")
-        console.io.print("[bold]7.[/bold] Exit")
+        console.io.print("[bold]6.[/bold] Education")
+        console.io.print("[bold]7.[/bold] Audit")
+        console.io.print("[bold]8.[/bold] Exit")
 
         choice = Prompt.ask("\n[bold]Choose an option[/bold]")
         clear()
@@ -45,8 +47,10 @@ def main():
             case "5":
                 analysis_menu(user)
             case "6":
-                audit_menu(user)
+                education_menu(user)
             case "7":
+                audit_menu(user)
+            case "8":
                 console.io.print("[bold green]Exiting...[/bold green]")
                 sleep(1)
                 clear()

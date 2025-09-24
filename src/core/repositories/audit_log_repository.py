@@ -9,7 +9,7 @@ class AuditLogRepository(ABC):
     Defines methods for adding and retrieving audit logs.
     """
     @abstractmethod
-    def add(self, audit_log: AuditLog) -> AuditLog:
+    def add(self, user_id: str, action: str, target_id: str, target_type: str, details: str) -> AuditLog:
         pass
 
     @abstractmethod

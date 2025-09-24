@@ -6,8 +6,9 @@ from core.repositories.clinical_data_repository import ClinicalDataRepository
 
 @dataclass
 class ArchiveClinicalDataUseCase:
-    def __init__(self, clinical_data_repository: ClinicalDataRepository):
+    def __init__(self, clinical_data_repository: ClinicalDataRepository, audit_log_repository: ClinicalDataRepository):
         self.clinical_data_repository = clinical_data_repository
+        self.audit_log_repository = audit_log_repository
 
     def execute(self, clinical_data_id) -> ClinicalData:
         """

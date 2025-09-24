@@ -7,6 +7,7 @@ MODULE_ACCESS = {
     "clinical_data": ["Admin", "Researcher"],
     "lotes": ["Admin", "Lab Technician"],
     "analysis": ["Admin", "Researcher", "Lab Technician"],
+    "education": ["Admin", "Researcher", "Lab Technician", "Auditor"],
     "audit": ["Admin", "Auditor"]
 }
 
