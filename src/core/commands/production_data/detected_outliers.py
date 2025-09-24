@@ -3,6 +3,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -13,7 +15,8 @@ from utils import console
 from utils.clear_terminal import clear
 
 
-def detected_outliers_in_production_data_command(user_id: str):
+@authorize("analysis")
+def detected_outliers_in_production_data_command(user: User):
     detected_outliers_in_production_data_use_case = make_detected_outliers_in_production_data_use_case()
     outliers = detected_outliers_in_production_data_use_case.execute()
 
@@ -30,7 +33,7 @@ def detected_outliers_in_production_data_command(user_id: str):
         
         create_audit_log_use_case = make_create_audit_log_use_case()
         create_audit_log_use_case.execute(AuditLog(
-            user_id=user_id,
+            user_id=user.id,
             action="DETECTED_OUTLIERS_IN_PRODUCTION_DATA",
             target_id="*MULTIPLE*",
             target_type="Patient, ProductionData",

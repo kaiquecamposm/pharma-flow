@@ -5,6 +5,8 @@ from rich.prompt import Prompt
 
 from core.entities.audit_log import AuditLog
 from core.entities.clinical_data import ClinicalData
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -60,7 +62,8 @@ def select_clinical_data(patient_id: str) -> ClinicalData:
 
     return clinical_data[int(choice) - 1]
 
-def update_clinical_data_command(user_id: str):
+@authorize("clinical_data")
+def update_clinical_data_command(user: User):
     console.io.print("[bold cyan]--- Update Clinical Data ---[/bold cyan]\n")
 
     patient_id = select_patient()
@@ -77,11 +80,11 @@ def update_clinical_data_command(user_id: str):
     description = Prompt.ask("Description", default=clinical_data.description)
 
     update_clinical_data_use_case = make_update_clinical_data_use_case()
-    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, id=clinical_data.id, user_id=user_id, data_type=data_type, value=value, unit=unit, description=description)
+    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, clinical_data.id, user.id, data_type, value, unit, description)
 
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="UPDATE_CLINICAL_DATA",
         target_id=patient_id if patient_id else "N/A",
         target_type="Patient, ClinicalData",

@@ -1,6 +1,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_archive_clinical_data import (
     make_archive_clinical_data_use_case,
 )
@@ -36,7 +38,8 @@ def select_clinical_data():
         except ValueError:
             console.io.print("[bold red]Please enter a valid number.[/bold red]")
 
-def archive_clinical_data_command(user_id: str):
+@authorize("clinical_data")
+def archive_clinical_data_command(user: User):
     console.io.print("[bold cyan]--- Archive Clinical Data ---[/bold cyan]\n")
 
     clinical_data_id = select_clinical_data()
@@ -50,7 +53,7 @@ def archive_clinical_data_command(user_id: str):
     
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="ARCHIVE_CLINICAL_DATA",
         target_id=clinical_data_id,
         target_type="ClinicalData",

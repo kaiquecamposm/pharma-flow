@@ -1,6 +1,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_archive_lote import make_archive_lote_use_case
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
@@ -34,7 +36,8 @@ def select_lote():
         except ValueError:
             console.io.print("[bold red]Please enter a valid number.[/bold red]")
 
-def archive_lote_command(user_id: str):
+@authorize("lotes")
+def archive_lote_command(user: User):
     console.io.print("[bold cyan]--- Archive Lote ---[/bold cyan]\n")
 
     lote_id = select_lote()
@@ -48,7 +51,7 @@ def archive_lote_command(user_id: str):
     
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="ARCHIVE_LOTE",
         target_id=lote_id,
         target_type="Lote, ProductionData",

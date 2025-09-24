@@ -1,5 +1,7 @@
 from time import sleep
 
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_list_all_audit_logs import (
     make_list_all_audit_logs,
 )
@@ -7,7 +9,8 @@ from utils import console
 from utils.clear_terminal import clear
 
 
-def list_all_audit_logs_command():
+@authorize("audit")
+def list_all_audit_logs_command(user: User):
     console.io.print("[bold cyan]--- List All Audit Logs ---[/bold cyan]\n")
 
     list_all_audit_logs_use_case = make_list_all_audit_logs()

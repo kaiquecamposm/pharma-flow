@@ -1,6 +1,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -11,7 +13,8 @@ from utils import console
 from utils.clear_terminal import clear
 
 
-def list_all_clinical_data_command(user_id: str):
+@authorize("clinical_data")
+def list_all_clinical_data_command(user: User):
     console.io.print("[bold cyan]--- View All Clinical Data ---[/bold cyan]\n")
 
     list_all_clinical_data_use_case = make_list_all_clinical_data_use_case()
@@ -19,7 +22,7 @@ def list_all_clinical_data_command(user_id: str):
 
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="VIEW_ALL_CLINICAL_DATA",
         target_id="*MULTIPLE*",
         target_type="CLINICAL_DATA",

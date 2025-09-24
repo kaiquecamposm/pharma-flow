@@ -1,6 +1,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -9,11 +11,12 @@ from utils import console
 from utils.clear_terminal import clear
 
 
-def get_profile_command(user_id: str):
+@authorize("users")
+def get_profile_command(user: User):
     console.io.print("[bold cyan]--- My Profile ---[/bold cyan]\n")
 
     get_profile_use_case = make_get_profile_use_case()
-    profile = get_profile_use_case.execute(user_id)
+    profile = get_profile_use_case.execute(user.id)
 
     if profile:
         console.io.print(f"[bold green]ID:[/bold green] {profile.id}")
@@ -25,9 +28,9 @@ def get_profile_command(user_id: str):
 
         create_audit_log_use_case = make_create_audit_log_use_case()
         create_audit_log_use_case.execute(AuditLog(
-            user_id=user_id,
+            user_id=user.id,
             action="VIEW_PROFILE",
-            target_id=user_id,
+            target_id=user.id,
             target_type="User",
             details=f"User {profile.full_name} viewed their profile."
         ))

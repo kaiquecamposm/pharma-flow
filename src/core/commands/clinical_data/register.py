@@ -7,6 +7,8 @@ from core.constants.clinical_data_types import CLINICAL_DATA_TYPES
 from core.entities.audit_log import AuditLog
 from core.entities.clinical_data import ClinicalData
 from core.entities.patient import Patient
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -57,13 +59,14 @@ def select_data_type():
         console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
         return None
 
-def register_clinical_data_command(user_id: str = None):
+@authorize("clinical_data")
+def register_clinical_data_command(user: User):
     list_patients_use_case = make_list_patients_use_case()
     patients = list_patients_use_case.execute()
 
     create_audit_log_use_case = make_create_audit_log_use_case()
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="LIST_PATIENTS",
         target_id="*MULTIPLE*",
         target_type="Patient",
@@ -87,14 +90,14 @@ def register_clinical_data_command(user_id: str = None):
         value=Prompt.ask(f"[green]Enter the value for {data_type['type']} ({data_type['unit']})[green]").strip(),
         unit=data_type["unit"],
         description=Prompt.ask("[green]Description[/green]").strip(),
-        user_id=user_id
+        user_id=user.id
     )
 
     register_clinical_data_use_case = make_register_clinical_data_use_case()
     clinical_data = register_clinical_data_use_case.execute(clinical_data)
 
     create_audit_log_use_case.execute(AuditLog(
-        user_id=user_id,
+        user_id=user.id,
         action="REGISTER_CLINICAL_DATA",
         target_id=clinical_data.id if clinical_data else "N/A",
         target_type="ClinicalData",

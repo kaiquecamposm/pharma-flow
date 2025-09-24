@@ -3,6 +3,8 @@
 from time import sleep
 
 from core.entities.audit_log import AuditLog
+from core.entities.user import User
+from core.middlewares.authorize import authorize
 from core.use_cases.factories.make_create_audit_log import (
     make_create_audit_log_use_case,
 )
@@ -13,7 +15,8 @@ from utils import console
 from utils.clear_terminal import clear
 
 
-def generate_sprint_report_command(user_id: str):
+@authorize("analysis")
+def generate_sprint_report_command(user: User):
     start_date = console.io.input(
         "[bold yellow]Enter the start date for the sprint report (YYYY-MM-DD): [/bold yellow]"
     )
@@ -22,7 +25,7 @@ def generate_sprint_report_command(user_id: str):
     )
 
     generate_sprint_report_use_case = make_generate_sprint_report_use_case()
-    report = generate_sprint_report_use_case.execute(user_id, start_date, end_date)
+    report = generate_sprint_report_use_case.execute(user.id, start_date, end_date)
 
     clear()
 
@@ -44,7 +47,7 @@ def generate_sprint_report_command(user_id: str):
 
         create_audit_log_use_case = make_create_audit_log_use_case()
         create_audit_log_use_case.execute(AuditLog(
-            user_id=user_id,
+            user_id=user.id,
             action="GENERATE_SPRINT_REPORT",
             target_id="*MULTIPLE*",
             target_type="ProductionData, ClinicalData",
