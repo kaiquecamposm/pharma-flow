@@ -8,6 +8,7 @@ import numpy as np
 
 from core.constants.production_rules import ENVIRONMENTAL_RULES
 from core.entities.production_data import ProductionData
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.production_data_repository import ProductionDataRepository
 from utils import console
 
@@ -53,10 +54,11 @@ def generate_process_data(num_records=50, with_outliers=True):
 
 @dataclass
 class DetectedOutliersInProductionDataUseCase:
-    def __init__(self, production_data_repository: ProductionDataRepository):
+    def __init__(self, production_data_repository: ProductionDataRepository, audit_log_repository: AuditLogRepository):
         self.production_data_repository = production_data_repository
+        self.audit_log_repository = audit_log_repository
 
-    def execute(self, threshold: int = 3) -> dict:
+    def execute(self, user_id, threshold = 3) -> dict:
         """
         Detect outliers in production data grouped by lote.
         Outlier = value more than `threshold * std` from mean
@@ -69,12 +71,12 @@ class DetectedOutliersInProductionDataUseCase:
                 raise ValueError("\n[bold red]No production data found.[/bold red]")
 
             results = defaultdict(dict)
-            metrics = ["energy_consumption", "recovered_solvent_volume", "emissions"]
+            METRICS = ["energy_consumption", "recovered_solvent_volume", "emissions"]
 
             # Agrupa por lote_id
             grouped = defaultdict(lambda: defaultdict(list))
             for record in production_data:
-                for metric in metrics:
+                for metric in METRICS:
                     value = getattr(record, metric, None)
                     if value is not None:
                         grouped[record.lote_id][metric].append(float(value))
@@ -98,6 +100,14 @@ class DetectedOutliersInProductionDataUseCase:
                         "std": std,
                         "outliers": outliers,
                     }
+
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "DETECTED_OUTLIERS_IN_PRODUCTION_DATA",
+                "target_id": "*MULTIPLE*",
+                "target_type": "Lote, ProductionData",
+                "details": f"Detected outliers for {len(results)} lotes."
+            })
 
             return results
 

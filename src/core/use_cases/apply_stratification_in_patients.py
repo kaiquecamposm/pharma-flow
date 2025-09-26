@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from core.algorithms.stratification_patients import stratify_algorithm
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
 from utils import console
@@ -8,11 +9,12 @@ from utils import console
 
 @dataclass
 class ApplyStratificationInPatientsUseCase:
-    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository):
+    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository, audit_log_repository: AuditLogRepository):
         self.patient_repository = patient_repository
         self.clinical_data_repository = clinical_data_repository
+        self.audit_log_repository = audit_log_repository
 
-    def execute(self) -> list:
+    def execute(self, user_id) -> list:
         """
         Apply stratification algorithms to patients.
         """
@@ -48,6 +50,14 @@ class ApplyStratificationInPatientsUseCase:
                     console.io.print(f"[bold yellow]No clinical data found for patient ID {patient.id}.[/bold yellow]")
 
             results_sorted = sorted(results, key=lambda x: x['priority'])
+
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "APPLY_STRATIFICATION_IN_PATIENTS",
+                "target_id": "*MULTIPLE*",
+                "target_type": "Patient, ClinicalData",
+                "details": f"Applied stratification in {len(results_sorted)} patients"
+            })
 
             return results_sorted
         except Exception as e:

@@ -30,9 +30,9 @@
 
 - [x] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
 
-- [ ] Deve ser possível acessar módulos educacionais interativos sobre boas práticas ambientais;
+- [x] Deve ser possível acessar módulos educacionais interativos sobre boas práticas ambientais;
 
-- [ ] Deve ser possível emitir certificados de conclusão de treinamentos após participação completa.
+- [x] Deve ser possível emitir certificados de conclusão de treinamentos após participação completa.
 
 📌 Regras de Negócio (RN)
 

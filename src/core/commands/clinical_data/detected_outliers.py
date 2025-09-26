@@ -2,12 +2,8 @@
 
 from time import sleep
 
-from core.entities.audit_log import AuditLog
 from core.entities.user import User
 from core.middlewares.authorize import authorize
-from core.use_cases.factories.make_create_audit_log import (
-    make_create_audit_log_use_case,
-)
 from core.use_cases.factories.make_detected_outliers_in_clinical_data import (
     make_detected_outliers_in_clinical_data_use_case,
 )
@@ -18,7 +14,7 @@ from utils.clear_terminal import clear
 @authorize("clinical_data")
 def detected_outliers_in_clinical_data_command(user: User):
     detected_outliers_in_clinical_data_use_case = make_detected_outliers_in_clinical_data_use_case()
-    outliers = detected_outliers_in_clinical_data_use_case.execute()
+    outliers = detected_outliers_in_clinical_data_use_case.execute(user.id)
 
     if outliers:
         console.io.print("[bold yellow]Detected Outliers in Clinical Data:[/bold yellow]\n")
@@ -30,15 +26,6 @@ def detected_outliers_in_clinical_data_command(user: User):
                     f"Std: {stats['std']:.2f}, "
                     f"Outliers: {stats['outliers']}"
                 )
-        
-        create_audit_log_use_case = make_create_audit_log_use_case()
-        create_audit_log_use_case.execute(AuditLog(
-            user_id=user.id,
-            action="DETECTED_OUTLIERS_IN_CLINICAL_DATA",
-            target_id="*MULTIPLE*",
-            target_type="Patient, ClinicalData",
-            details=f"Detected outliers for {len(outliers)} patients."
-        ))
     else:
         console.io.print("[bold green]No outliers detected in clinical data.[/bold green]")
 

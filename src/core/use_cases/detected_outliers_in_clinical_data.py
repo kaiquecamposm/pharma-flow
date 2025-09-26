@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from core.algorithms.apply_clinical_rules import apply_clinical_rules
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
 from utils import console
@@ -11,11 +12,12 @@ from utils import console
 
 @dataclass
 class DetectedOutliersInClinicalDataUseCase:
-    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository):
+    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository, audit_log_repository: AuditLogRepository):
         self.patient_repository = patient_repository
         self.clinical_data_repository = clinical_data_repository
+        self.audit_log_repository = audit_log_repository
 
-    def execute(self, threshold: int = 3) -> dict:
+    def execute(self, user_id, threshold: int = 3) -> dict:
         """
         Detect outliers in clinical data grouped by patient and data_type.
         An outlier is defined as a value that is more than `threshold` standard deviations away from the mean.
@@ -65,6 +67,14 @@ class DetectedOutliersInClinicalDataUseCase:
                         "std": std,
                         "outliers": outliers,
                     }
+
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "DETECTED_OUTLIERS_IN_CLINICAL_DATA",
+                "target_id": "*MULTIPLE*",
+                "target_type": "Patient, ClinicalData",
+                "details": f"Detected outliers for {len(results)} patients."
+            })
 
             return results
         except Exception as e:

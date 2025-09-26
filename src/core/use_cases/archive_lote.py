@@ -11,7 +11,7 @@ class ArchiveLoteUseCase:
         self.lote_repository = lote_repository
         self.production_data_repository = production_data_repository
 
-    def execute(self, lote_id) -> Lote:
+    def execute(self, user_id, lote_id) -> Lote:
         """
         Archive a lote.
         """
@@ -26,6 +26,14 @@ class ArchiveLoteUseCase:
             if not production_data_archived:
                 raise ValueError("Failed to inactivate production data")
 
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "ARCHIVE_LOTE",
+                "target_id": lote_id,
+                "target_type": "Lote, ProductionData",
+                "details": f"Lote {lote_id} archived successfully.",
+            })
+
             return lote_archived
         except Exception as e:
-            raise ValueError(f"Failed to archive patient: {str(e)}")
+            raise ValueError(f"Failed to archive lote: {str(e)}")

@@ -1,17 +1,19 @@
 from dataclasses import dataclass
 
 from core.entities.patient import Patient
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
 
 
 @dataclass
 class ArchivePatientUseCase:
-    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository):
+    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository, audit_log_repository: AuditLogRepository):
         self.patient_repository = patient_repository
         self.clinical_data_repository = clinical_data_repository
+        self.audit_log_repository = audit_log_repository
 
-    def execute(self, patient_id) -> Patient:
+    def execute(self, user_id, patient_id) -> Patient:
         """
         Archive a patient.
         """
@@ -25,6 +27,14 @@ class ArchivePatientUseCase:
 
             if not clinical_data_archived:
                 raise ValueError("Failed to inactivate clinical data")
+
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "ARCHIVE_PATIENT",
+                "target_id": patient_id,
+                "target_type": "Patient, ClinicalData",
+                "details": f"Archived patient with ID: {patient_id}",
+            })
 
             return patient_archived
         except Exception as e:

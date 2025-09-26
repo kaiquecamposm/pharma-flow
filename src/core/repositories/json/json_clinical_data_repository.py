@@ -41,13 +41,20 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     Add a new clinical data entry.
     """
-    def add(self, clinical_data: ClinicalData) -> ClinicalData:
-        data = self._load_data() 
-        
-        data.append(clinical_data.__dict__) 
+    def add(self, data_type: str, value: str, unit: str, description: str, user_id: str, patient_id: str) -> ClinicalData:
+        new_clinical_data = ClinicalData(
+            data_type=data_type,
+            value=value,
+            unit=unit,
+            description=description,
+            user_id=user_id,
+            patient_id=patient_id,
+        )
+        data = self._load_data()
+        data.append(new_clinical_data.__dict__)
         self._save_data(data)
-         
-        return clinical_data
+
+        return new_clinical_data
 
     """
     Update a clinical data entry by creating a new version (does not overwrite previous version).

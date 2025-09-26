@@ -1,3 +1,4 @@
+from core.repositories.json.json_audit_log_repository import JSONAuditLogRepository
 from core.repositories.json.json_clinical_data_repository import (
     JSONClinicalDataRepository,
 )
@@ -11,7 +12,8 @@ from core.use_cases.detected_outliers_in_clinical_data import (
 def make_detected_outliers_in_clinical_data_use_case() -> DetectedOutliersInClinicalDataUseCase:
     patient_repository = JSONPatientRepository()
     clinical_data_repository = JSONClinicalDataRepository()
+    audit_log_repository = JSONAuditLogRepository()
 
-    use_case = DetectedOutliersInClinicalDataUseCase(patient_repository, clinical_data_repository)
+    use_case = DetectedOutliersInClinicalDataUseCase(patient_repository, clinical_data_repository, audit_log_repository)
 
     return use_case

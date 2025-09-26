@@ -1,3 +1,4 @@
+from core.repositories.json.json_audit_log_repository import JSONAuditLogRepository
 from core.repositories.json.json_clinical_data_repository import (
     JSONClinicalDataRepository,
 )
@@ -11,7 +12,8 @@ from core.use_cases.apply_stratification_in_patients import (
 def make_apply_stratification_in_patients_use_case() -> ApplyStratificationInPatientsUseCase:
     patient_repository = JSONPatientRepository()
     clinical_data_repository = JSONClinicalDataRepository()
+    audit_log_repository = JSONAuditLogRepository()
 
-    use_case = ApplyStratificationInPatientsUseCase(patient_repository, clinical_data_repository)
+    use_case = ApplyStratificationInPatientsUseCase(patient_repository, clinical_data_repository, audit_log_repository)
 
     return use_case

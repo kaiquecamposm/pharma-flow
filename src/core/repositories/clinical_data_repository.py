@@ -10,7 +10,7 @@ class ClinicalDataRepository(ABC):
     Defines methods for adding and retrieving clinical data.
     """
     @abstractmethod
-    def add(self, clinical_data: ClinicalData) -> ClinicalData:
+    def add(self, data_type: str, value: str, unit: str, description: str, user_id: str, patient_id: str) -> ClinicalData:
         pass
 
     @abstractmethod

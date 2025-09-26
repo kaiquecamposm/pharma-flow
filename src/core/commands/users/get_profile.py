@@ -1,11 +1,7 @@
 from time import sleep
 
-from core.entities.audit_log import AuditLog
 from core.entities.user import User
 from core.middlewares.authorize import authorize
-from core.use_cases.factories.make_create_audit_log import (
-    make_create_audit_log_use_case,
-)
 from core.use_cases.factories.make_get_profile import make_get_profile_use_case
 from utils import console
 from utils.clear_terminal import clear
@@ -25,15 +21,6 @@ def get_profile_command(user: User):
         console.io.print(f"[bold green]Password:[/bold green] {profile.password.__len__() * '*'}")
         console.io.print(f"[bold green]Role:[/bold green] {profile.role_name}")
         console.io.print(f"[bold green]Active:[/bold green] {'Yes' if profile.active else 'No'}")
-
-        create_audit_log_use_case = make_create_audit_log_use_case()
-        create_audit_log_use_case.execute(AuditLog(
-            user_id=user.id,
-            action="VIEW_PROFILE",
-            target_id=user.id,
-            target_type="User",
-            details=f"User {profile.full_name} viewed their profile."
-        ))
     else:
         console.io.print("\n[bold red]Profile not found.[/bold red]")
 

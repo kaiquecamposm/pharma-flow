@@ -1,3 +1,4 @@
+from core.repositories.json.json_audit_log_repository import JSONAuditLogRepository
 from core.repositories.json.json_production_data_repository import (
     JSONProductionDataRepository,
 )
@@ -9,7 +10,8 @@ from core.use_cases.detected_outliers_in_production_data import (
 # Factory to create an instance of DetectedOutliersInProductionDataUseCase
 def make_detected_outliers_in_production_data_use_case() -> DetectedOutliersInProductionDataUseCase:
     production_data_repository = JSONProductionDataRepository()
+    audit_log_repository = JSONAuditLogRepository()
 
-    use_case = DetectedOutliersInProductionDataUseCase(production_data_repository)
+    use_case = DetectedOutliersInProductionDataUseCase(production_data_repository, audit_log_repository)
 
     return use_case

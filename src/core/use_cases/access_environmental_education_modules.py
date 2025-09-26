@@ -29,13 +29,13 @@ class AccessEnvironmentalEducationModulesUseCase:
             if not progress:
                 progress = self.education_progress_repository.create(user_id, module_id)
 
-            self.audit_log_repository.add(
-                user_id=user_id,
-                action="ACCESS_MODULE",
-                target_id=module_id,
-                target_type="EducationModule, EducationProgress",
-                details=f"User {user_id} accessed module '{module.title}'"
-            )
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "ACCESS_MODULE",
+                "target_id": module_id,
+                "target_type": "EducationModule, EducationProgress",
+                "details": f"User {user_id} accessed module '{module.title}'"
+            })
 
             return {
                 "module": module,

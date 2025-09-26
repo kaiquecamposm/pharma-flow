@@ -2,12 +2,8 @@
 
 from time import sleep
 
-from core.entities.audit_log import AuditLog
 from core.entities.user import User
 from core.middlewares.authorize import authorize
-from core.use_cases.factories.make_create_audit_log import (
-    make_create_audit_log_use_case,
-)
 from core.use_cases.factories.make_generate_sprint_report import (
     make_generate_sprint_report_use_case,
 )
@@ -44,15 +40,6 @@ def generate_sprint_report_command(user: User):
                 console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold red]{value}[/bold red]")
             else:
                 console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
-
-        create_audit_log_use_case = make_create_audit_log_use_case()
-        create_audit_log_use_case.execute(AuditLog(
-            user_id=user.id,
-            action="GENERATE_SPRINT_REPORT",
-            target_id="*MULTIPLE*",
-            target_type="ProductionData, ClinicalData",
-            details=f"Generated sprint report from {start_date} to {end_date}"
-        ))
     else:
         console.io.print("[bold red]No data found for the given period.[/bold red]")
 

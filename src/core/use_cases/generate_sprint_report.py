@@ -5,14 +5,16 @@ import numpy as np
 
 from core.constants.production_rules import ENVIRONMENTAL_RULES
 from core.entities.sprint_report import SprintReport
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.production_data_repository import ProductionDataRepository
 
 
 class GenerateSprintReportUseCase:
-    def __init__(self, clinical_data_repository: ClinicalDataRepository, production_data_repository: ProductionDataRepository):
+    def __init__(self, clinical_data_repository: ClinicalDataRepository, production_data_repository: ProductionDataRepository, audit_log_repository: AuditLogRepository):
         self.clinical_data_repository = clinical_data_repository
         self.production_data_repository = production_data_repository
+        self.audit_log_repository = audit_log_repository
 
     def _parse_value(self, data_type: str, value: str):
         """
@@ -210,5 +212,13 @@ class GenerateSprintReportUseCase:
             regulatory_indicators=regulatory_indicators,
             environmental_indicators=environmental_indicators
         )
+
+        self.audit_log_repository.create({
+            "user_id": user_id,
+            "action": "GENERATE_SPRINT_REPORT",
+            "target_id": report.id,
+            "target_type": "SprintReport",
+            "details": f"Sprint report generated for period {start_date} to {end_date}"
+        })
 
         return report

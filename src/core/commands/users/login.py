@@ -18,18 +18,14 @@ def login_command():
     
     verify_credentials_use_case = make_verify_credentials_use_case()
     user = verify_credentials_use_case.execute(email, password)
-
-    is_authenticated = user is not None
     
-    if is_authenticated:
-        console.io.print(f"\n[bold green]Welcome, {user.full_name}![/bold green]\n")
-        sleep(1)
-        clear()
-
-        return user
-    else:
+    if not user:
         console.io.print("\n[bold red]Invalid credentials. Please try again.[/bold red]")
         sleep(3)
         clear()
 
-        return None
+        return
+
+    console.io.print(f"\n[bold green]Welcome, {user.full_name}![/bold green]\n")
+    sleep(1)
+    clear()

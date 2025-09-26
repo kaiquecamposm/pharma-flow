@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from core.entities.clinical_data import ClinicalData
+from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
 from utils import console
@@ -8,11 +9,12 @@ from utils import console
 
 @dataclass
 class ListClinicalDataByPatientIdUseCase:
-    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository):
+    def __init__(self, patient_repository: PatientRepository, clinical_data_repository: ClinicalDataRepository, audit_log_repository: AuditLogRepository):
         self.patient_repository = patient_repository
         self.clinical_data_repository = clinical_data_repository
+        self.audit_log_repository = audit_log_repository
 
-    def execute(self, patient_id: str) -> list[ClinicalData]:
+    def execute(self, user_id: str, patient_id: str) -> list[ClinicalData]:
         """
         Get all clinical data for a specific patient.
         """
@@ -24,6 +26,14 @@ class ListClinicalDataByPatientIdUseCase:
                 return []
 
             clinical_data = self.clinical_data_repository.list_by_patient_id(patient_id)
+
+            self.audit_log_repository.add({
+                "user_id": user_id,
+                "action": "LIST_CLINICAL_DATA_BY_PATIENT_ID",
+                "target_id": patient_id,
+                "target_type": "Patient, ClinicalData",
+                "details": f"Listed {len(clinical_data)} clinical data entries for patient ID {patient_id}",
+            })
 
             return clinical_data
         except Exception as e:

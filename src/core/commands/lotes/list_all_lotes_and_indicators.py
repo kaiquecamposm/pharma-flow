@@ -1,11 +1,7 @@
 from time import sleep
 
-from core.entities.audit_log import AuditLog
 from core.entities.user import User
 from core.middlewares.authorize import authorize
-from core.use_cases.factories.make_create_audit_log import (
-    make_create_audit_log_use_case,
-)
 from core.use_cases.factories.make_list_all_lotes_and_indicators import (
     make_list_all_lotes_and_indicators_use_case,
 )
@@ -18,16 +14,7 @@ def list_all_lotes_and_indicators_command(user: User):
     console.io.print("[bold cyan]--- List All Lotes ---[/bold cyan]\n")
 
     list_all_lotes_and_indicators_use_case = make_list_all_lotes_and_indicators_use_case()
-    lotes = list_all_lotes_and_indicators_use_case.execute()
-
-    create_audit_log_use_case = make_create_audit_log_use_case()
-    create_audit_log_use_case.execute(AuditLog(
-        user_id=user.id,
-        action="LIST_ALL_LOTES_AND_INDICATORS",
-        target_id="*MULTIPLE*",
-        target_type="Lote, ProductionData",
-        details="User listed all lotes and their environmental indicators."
-    ))
+    lotes = list_all_lotes_and_indicators_use_case.execute(user.id)
 
     if lotes:
         for idx, item in enumerate(lotes, start=1):

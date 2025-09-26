@@ -10,7 +10,7 @@ class UserRepository(ABC):
     Defines methods for adding and retrieving users.
     """
     @abstractmethod
-    def add(self, user: User) -> User:
+    def add(self, email: str, password: str, full_name: str, role_name: str, active: bool) -> User:
         pass
     
     @abstractmethod
