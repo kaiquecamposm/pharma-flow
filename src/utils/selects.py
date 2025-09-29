@@ -22,16 +22,17 @@ def select_data_type():
         if 0 <= choice_idx < len(CLINICAL_DATA_TYPES):
             return CLINICAL_DATA_TYPES[choice_idx]
         else:
-            console.io.print("[bold red]Invalid choice. Please try again.[/bold red]")
-            return None
+            console.io.print("[bold red]Invalid choice. Please try again.[/bold red]") 
+            sleep(1)
+            return
     except ValueError:
-        console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
-        return None
+        raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
 
 def select_clinical_data(clinical_data: list[ClinicalData]):
     if not clinical_data:
         console.io.print("[bold red]No clinical data found.[/bold red]")
-        return None
+        sleep(1)
+        return
 
     console.io.print("[bold cyan]Select a clinical data:[/bold cyan]\n")
     for idx, data in enumerate(clinical_data, start=1):
@@ -39,23 +40,23 @@ def select_clinical_data(clinical_data: list[ClinicalData]):
 
     while True:
         try:
-            choice = int(console.io.input("\nEnter the number of the clinical data: "))
+            choice = int(Prompt.ask("\nEnter the number of the clinical data: "))
 
-            clear()
-            if 1 <= choice <= len(clinical_data):
-                return clinical_data[choice - 1]
-            else:
+            if not 1 <= choice <= len(clinical_data):
                 console.io.print("[bold red]Invalid choice. Please try again.[/bold red]")
+                sleep(1)
+                return
+
+            return clinical_data[choice - 1]
         except ValueError:
-            console.io.print("[bold red]Please enter a valid number.[/bold red]")
+            raise ValueError("[bold red]Please enter a valid number.[/bold red]")
 
 def select_patient(patients: list[Patient]) -> str:
     if not patients:
         console.io.print("\n[bold red]No patients found. Please register a patient first.[/bold red]")
         sleep(1)
-        clear()
-        return None
-    
+        return
+
     console.io.print("[bold cyan]Select a patient:[/bold cyan]")
     for idx, patient in enumerate(patients, start=1):
         email_decoded = base64.b64decode(patient.email).decode("utf-8")
@@ -66,19 +67,18 @@ def select_patient(patients: list[Patient]) -> str:
         choice_idx = int(choice) - 1
 
         clear()
-        if 0 <= choice_idx < len(patients):
-            return patients[choice_idx].id
-        else:
+        if not 0 <= choice_idx < len(patients):
             console.io.print("[bold red]Invalid choice. Please try again.[/bold red]")
-            return None
+
+        return patients[choice_idx].id
     except ValueError:
-        console.io.print("[bold red]Invalid input. Please enter a number.[/bold red]")
-        return None
+        raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
 
 def select_lote(lotes_and_indicators: list):
     if not lotes_and_indicators:
         console.io.print("[bold red]No lotes found.[/bold red]")
-        return None
+        sleep(1)
+        return
 
     console.io.print("[bold cyan]Select a lote:[/bold cyan]\n")
     for idx, lote in enumerate(lotes_and_indicators, start=1):
@@ -94,7 +94,7 @@ def select_lote(lotes_and_indicators: list):
             else:
                 console.io.print("[bold red]Invalid choice. Please try again.[/bold red]")
         except ValueError:
-            console.io.print("[bold red]Please enter a valid number.[/bold red]")
+            raise ValueError("[bold red]Please enter a valid number.[/bold red]")
 
 def select_role() -> str:
     console.io.print("[bold]Select role:[/bold]")
@@ -108,14 +108,11 @@ def select_role() -> str:
         role_choice = Prompt.ask("Enter the number for your role", choices=[str(i) for i in range(1, len(ROLES)+1)])
         role_idx = int(role_choice) - 1
 
-        clear()
-        if role_idx < 0 or role_idx >= len(ROLES):
+        if not (role_idx > 0 or role_idx < len(ROLES)):
             console.io.print("\n[bold red]Invalid role selection.[/bold red]")
-            return
+
         role_name = ROLES[role_idx]
+
+        return role_name
     except ValueError:
-        console.io.print("\n[bold red]Invalid input. Please enter a number.[/bold red]")
-        clear()
-        return
-    
-    return role_name
+        raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
