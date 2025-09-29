@@ -41,11 +41,21 @@ class JSONPatientRepository(UserRepository):
     """
     Add a new patient.
     """
-    def add(self, patient: Patient) -> Patient:
+    def add(self, full_name, email, dob, gender, active) -> Patient:
         data = self._load_data()
-        data.append(patient.__dict__)
+
+        new_patient = Patient(
+            full_name,
+            email,
+            dob,
+            gender,
+            active
+        )
+
+        data.append(new_patient.__dict__)
         self._save_data(data)
-        return patient
+
+        return new_patient
 
     """
     Return a patient by ID.

@@ -1,14 +1,14 @@
 import uuid
-from dataclasses import dataclass
-from datetime import datetime
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
 
 
-@dataclass(kw_only=True)
+@dataclass
 class AuditLog:
-    id: str = str(uuid.uuid4())
     user_id: str
     action: str
     target_id: str
     target_type: str
-    timestamp: str = datetime.utcnow().isoformat()
-    details: str = ""
+    details: str
+    id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())

@@ -20,13 +20,13 @@ class ArchiveClinicalDataUseCase:
             if not clinical_data_archived:
                 raise ValueError("Failed to inactivate clinical data")
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "ARCHIVE_CLINICAL_DATA",
-                "target_id": clinical_data_id,
-                "target_type": "ClinicalData",
-                "details": f"Archived clinical data with ID: {clinical_data_id}",
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="ARCHIVE_CLINICAL_DATA",
+                target_id=clinical_data_id,
+                target_type="ClinicalData",
+                details=f"Archived clinical data with ID: {clinical_data_id}",
+            )
 
             return clinical_data_archived
         except Exception as e:

@@ -30,5 +30,5 @@ class PatientRepository(ABC):
         pass
     
     @abstractmethod
-    def inactivate(self, patient_id: str) -> None:
+    def inactivate(self, patient_id: str) -> bool:
         pass

@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List, Optional
+from typing import List
 
 from core.entities.lote import Lote
 from core.repositories.lote_repository import LoteRepository
@@ -40,41 +40,21 @@ class JSONLoteRepository(LoteRepository):
     """
     Add a new lote entry.
     """
-    def add(self, lote: Lote) -> Lote:
+    def add(self, code: str, product_name: str, start_date: str, end_date: str, user_id: str) -> Lote:
         data = self._load_data()
-        data.append(lote.__dict__)
+
+        new_lote = Lote(
+            code,
+            product_name,
+            start_date,
+            end_date,
+            user_id
+        )
+
+        data.append(new_lote.__dict__)
         self._save_data(data)
-        return lote
 
-    """
-    Return a lote entry by ID.
-    """
-    def get_by_id(self, lote_id: str) -> Optional[Lote]:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == lote_id:
-                return Lote(**item)
-        return None
-
-    """
-    List all active lote entries.
-    """
-    def list_all(self) -> List[Lote]:
-        data = self._load_data()
-        return [Lote(**item) for item in data if item.get("active", True)]
-
-    """
-    Update a lote entry by creating a new version (does not overwrite previous version).
-    """
-    def update(self, lote: Lote) -> Lote:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == lote.id:
-                lote.version = item.get("version", 1) + 1
-                item.update(lote.__dict__)
-                break
-        self._save_data(data)
-        return lote
+        return new_lote
 
     """
     Inactivate a lote entry (soft delete).
@@ -87,3 +67,10 @@ class JSONLoteRepository(LoteRepository):
                 self._save_data(data)
                 return True
         return False
+
+    """
+    List all active lote entries.
+    """
+    def list_all(self) -> List[Lote]:
+        data = self._load_data()
+        return [Lote(**item) for item in data if item.get("active", True)]

@@ -1,6 +1,8 @@
 from functools import wraps
 from time import sleep
 
+from core.entities.user import User
+
 MODULE_ACCESS = {
     "users": ["Admin"],
     "patients": ["Admin", "Researcher"],
@@ -21,12 +23,12 @@ def authorize(module_name: str):
     """
     def decorator(func):
         @wraps(func)
-        def wrapper(user, *args, **kwargs):
+        def wrapper(user: User, *args, **kwargs):
             allowed_roles = MODULE_ACCESS.get(module_name, [])
             if user.role_name not in allowed_roles:
                 from utils import console
                 console.io.print(f"[bold red]Access denied:[/bold red] User role '{user.role_name}' cannot access {module_name}.")
-                sleep(2)
+                sleep(1)
                 return None
             return func(user, *args, **kwargs)
         return wrapper

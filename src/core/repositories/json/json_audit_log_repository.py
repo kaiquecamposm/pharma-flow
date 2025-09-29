@@ -43,13 +43,7 @@ class JSONAuditLogRepository(AuditLogRepository):
     def add(self, user_id: str, action: str, target_id: str, target_type: str, details: str) -> AuditLog:
         data = self._load_data()
 
-        new_audit_log = AuditLog(
-            user_id=user_id,
-            action=action,
-            target_id=target_id,
-            target_type=target_type,
-            details=details,
-        )
+        new_audit_log = AuditLog(user_id, action, target_id, target_type, details)
 
         data.append(new_audit_log.__dict__)
         self._save_data(data)

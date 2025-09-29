@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from core.entities.clinical_data import ClinicalData
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
-from utils import console
 
 
 @dataclass
@@ -19,14 +18,14 @@ class ListAllClinicalDataUseCase:
         try:
             clinical_data = self.clinical_data_repository.list_all()
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "LIST_CLINICAL_DATA",
-                "target_id": "*MULTIPLE*",
-                "target_type": "ClinicalData",
-                "details": f"Listed {len(clinical_data)} clinical data entries."
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="LIST_CLINICAL_DATA",
+                target_id="*MULTIPLE*",
+                target_type="ClinicalData",
+                details=f"Listed {len(clinical_data)} clinical data entries."
+            )
 
             return clinical_data
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get clinical data: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get clinical data: {str(e)}")

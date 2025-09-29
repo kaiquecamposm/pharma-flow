@@ -20,6 +20,12 @@ from utils.menu import (
 def main():
     user = login_command()
 
+    if not user:
+        console.io.print("\n[bold red]Login failed. Exiting...[/bold red]")
+        sleep(1)
+        clear()
+        return
+
     while True:
         console.io.print(Panel.fit("[bold cyan]🛠️  MENU[/bold cyan]", border_style="bright_magenta"))
 

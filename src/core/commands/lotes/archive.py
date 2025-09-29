@@ -8,7 +8,7 @@ from core.use_cases.factories.make_list_all_lotes_and_indicators import (
 )
 from utils import console
 from utils.clear_terminal import clear
-from utils.select_lote import select_lote
+from utils.selects import select_lote
 
 
 @authorize("lotes")
@@ -28,5 +28,5 @@ def archive_lote_command(user: User):
         return
 
     console.io.print(f"\n[bold green]Lote with ID: {lote_id} archived successfully![/bold green]")
-    sleep(2)
+    sleep(1)
     clear()

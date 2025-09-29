@@ -21,11 +21,11 @@ def login_command():
     
     if not user:
         console.io.print("\n[bold red]Invalid credentials. Please try again.[/bold red]")
-        sleep(3)
+        sleep(1)
         clear()
-
         return
 
     console.io.print(f"\n[bold green]Welcome, {user.full_name}![/bold green]\n")
     sleep(1)
     clear()
+    return user

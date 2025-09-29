@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List, Optional
+from typing import List
 
 from core.entities.production_data import ProductionData
 from core.repositories.production_data_repository import ProductionDataRepository
@@ -40,21 +40,22 @@ class JSONProductionDataRepository(ProductionDataRepository):
     """
     Add a new production data entry.
     """
-    def add(self, production_data: ProductionData) -> ProductionData:
+    def add(self, quantity: int, energy_consumption: int, recovered_solvent_volume: int, emissions: int, user_id: str, lote_id: str) -> ProductionData:
         data = self._load_data()
-        data.append(production_data.__dict__)
-        self._save_data(data)
-        return production_data
 
-    """
-    Return a production data entry by ID.
-    """
-    def get_by_id(self, production_data_id: str) -> Optional[ProductionData]:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == production_data_id:
-                return ProductionData(**item)
-        return None
+        new_production_data = ProductionData(
+            quantity,
+            energy_consumption,
+            recovered_solvent_volume,
+            emissions,
+            user_id,
+            lote_id
+        )
+
+        data.append(new_production_data.__dict__)
+        self._save_data(data)
+
+        return new_production_data
     
     """
     Return a production data entry by lote_id
@@ -82,31 +83,6 @@ class JSONProductionDataRepository(ProductionDataRepository):
             ProductionData(**item) for item in data 
             if start_date <= item.get("timestamp", "") <= end_date and item.get("active", True)
         ]
-
-    """
-    Update a production data entry by creating a new version (does not overwrite previous version).
-    """
-    def update(self, production_data: ProductionData) -> ProductionData:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == production_data.id:
-                production_data.version = item.get("version", 1) + 1
-                item.update(production_data.__dict__)
-                break
-        self._save_data(data)
-        return production_data
-
-    """
-    Inactivate a production data entry (soft delete).
-    """
-    def inactivate(self, production_data_id: str) -> bool:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == production_data_id:
-                item["active"] = False
-                self._save_data(data)
-                return True
-        return False
 
     """
     Inactivate production data entries by lote_id (soft delete).

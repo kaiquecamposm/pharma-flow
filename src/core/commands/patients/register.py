@@ -30,18 +30,11 @@ def register_patient_command(user: User):
     email_b64 = base64.b64encode(email_verified.encode("utf-8")).decode("utf-8")
 
     register_patient_use_case = make_register_patient_use_case()
-    patient = register_patient_use_case.execute({
-        "user_id": user.id,
-        "full_name": full_name,
-        "email": email_b64,
-        "dob": dob, 
-        "gender": gender,
-        "active": active,
-    })
+    patient = register_patient_use_case.execute(user.id, full_name, email_b64, dob, gender, active)
 
     if not patient:
         console.io.print("\n[bold red]Failed to register patient.[/bold red]")
-        sleep(3)
+        sleep(1)
         clear()
         return
     

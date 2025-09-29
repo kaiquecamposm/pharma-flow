@@ -10,7 +10,7 @@ from core.use_cases.factories.make_list_all_clinical_data import (
 )
 from utils import console
 from utils.clear_terminal import clear
-from utils.select_clinical_data import select_clinical_data
+from utils.selects import select_clinical_data
 
 
 @authorize("clinical_data")
@@ -30,5 +30,5 @@ def archive_clinical_data_command(user: User):
         return
 
     console.io.print(f"[bold green]Successfully archived clinical data with ID: {clinical_data_id}[/bold green]")
-    sleep(2)
+    sleep(1)
     clear()

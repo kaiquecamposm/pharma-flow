@@ -68,13 +68,13 @@ class DetectedOutliersInClinicalDataUseCase:
                         "outliers": outliers,
                     }
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "DETECTED_OUTLIERS_IN_CLINICAL_DATA",
-                "target_id": "*MULTIPLE*",
-                "target_type": "Patient, ClinicalData",
-                "details": f"Detected outliers for {len(results)} patients."
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="DETECTED_OUTLIERS_IN_CLINICAL_DATA",
+                target_id="*MULTIPLE*",
+                target_type="Patient, ClinicalData",
+                details=f"Detected outliers for {len(results)} patients."
+            )
 
             return results
         except Exception as e:

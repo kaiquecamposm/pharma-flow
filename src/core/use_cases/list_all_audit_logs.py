@@ -2,7 +2,6 @@ from dataclasses import dataclass
 
 from core.entities.audit_log import AuditLog
 from core.repositories.audit_log_repository import AuditLogRepository
-from utils import console
 
 
 @dataclass
@@ -19,4 +18,4 @@ class ListAllAuditLogsUseCase:
 
             return audit_logs
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get audit logs: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get audit logs: {str(e)}")

@@ -10,21 +10,13 @@ class LoteRepository(ABC):
     Defines methods for adding and retrieving lotes.
     """
     @abstractmethod
-    def add(self, lote: Lote) -> Lote:
-        pass
-    
-    @abstractmethod
-    def get_by_id(self, lote_id: str) -> Lote:
+    def add(self, code: str, product_name: str, start_date: str, end_date: str, user_id: str) -> Lote:
         pass
     
     @abstractmethod
     def list_all(self) -> list[Lote]:
         pass
-    
+
     @abstractmethod
-    def update(self, lote: Lote) -> Lote:
-        pass
-    
-    @abstractmethod
-    def inactivate(self, lote_id: str) -> None:
+    def inactivate(self, lote_id: str) -> bool:
         pass

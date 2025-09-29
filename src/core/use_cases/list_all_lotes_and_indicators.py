@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.lote_repository import LoteRepository
 from core.repositories.production_data_repository import ProductionDataRepository
-from utils import console
 
 
 @dataclass
@@ -39,14 +38,14 @@ class ListAllLotesAndIndicatorsUseCase:
                     "registration_date": production_data.timestamp if production_data else None
                 })
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "LIST_ALL_LOTES_AND_INDICATORS",
-                "target_id": "*MULTIPLE*",
-                "target_type": "Lote, ProductionData",
-                "details": f"Listed all lotes and their indicators. Total lotes: {len(results)}",
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="LIST_ALL_LOTES_AND_INDICATORS",
+                target_id="*MULTIPLE*",
+                target_type="Lote, ProductionData",
+                details=f"Listed all lotes and their indicators. Total lotes: {len(results)}",
+            )
 
             return results
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get lotes: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get lotes: {str(e)}")

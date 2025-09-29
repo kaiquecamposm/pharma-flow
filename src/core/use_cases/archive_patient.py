@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-from core.entities.patient import Patient
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
@@ -13,29 +12,32 @@ class ArchivePatientUseCase:
         self.clinical_data_repository = clinical_data_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id, patient_id) -> Patient:
+    def execute(self, user_id, patient_id) -> bool:
         """
         Archive a patient.
         """
         try:
-            patient_archived = self.patient_repository.inactivate(patient_id)
+            is_patient_archived = self.patient_repository.inactivate(patient_id)
 
-            if not patient_archived:
+            if not is_patient_archived:
                 raise ValueError("Patient not found")
 
-            clinical_data_archived = self.clinical_data_repository.inactivate_by_patient_id(patient_id)
+            has_clinical_data = self.clinical_data_repository.list_by_patient_id(patient_id)
 
-            if not clinical_data_archived:
-                raise ValueError("Failed to inactivate clinical data")
+            if has_clinical_data:
+                is_clinical_data_archived = self.clinical_data_repository.inactivate_by_patient_id(patient_id)
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "ARCHIVE_PATIENT",
-                "target_id": patient_id,
-                "target_type": "Patient, ClinicalData",
-                "details": f"Archived patient with ID: {patient_id}",
-            })
+                if not is_clinical_data_archived:
+                    raise ValueError("Failed to inactivate clinical data")
 
-            return patient_archived
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="ARCHIVE_PATIENT",
+                target_id=patient_id,
+                target_type="Patient, ClinicalData",
+                details=f"Archived patient with ID: {patient_id}",
+            )
+
+            return is_patient_archived
         except Exception as e:
             raise ValueError(f"Failed to archive patient: {str(e)}")

@@ -40,11 +40,15 @@ class JSONUserRepository(UserRepository):
     """
     Add a new user.
     """
-    def add(self, user: User) -> User:
+    def add(self, email: str, password: str, full_name: str, role_name: str, active: bool) -> User:
         data = self._load_data()
-        data.append(user.__dict__)
+
+        new_user = User(email, password, full_name, role_name, active)
+
+        data.append(new_user.__dict__)
         self._save_data(data)
-        return user
+
+        return new_user
 
     """
     Return a user by ID.

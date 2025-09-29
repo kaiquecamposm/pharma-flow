@@ -1,6 +1,5 @@
 import json
 import os
-from datetime import datetime, timezone
 from typing import List, Optional
 
 from core.entities.clinical_data import ClinicalData
@@ -43,15 +42,17 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     def add(self, data_type: str, value: str, unit: str, description: str, user_id: str, patient_id: str) -> ClinicalData:
         new_clinical_data = ClinicalData(
-            data_type=data_type,
-            value=value,
-            unit=unit,
-            description=description,
-            user_id=user_id,
-            patient_id=patient_id,
+            data_type,
+            value,
+            unit,
+            description,
+            user_id,
+            patient_id,
         )
+
         data = self._load_data()
         data.append(new_clinical_data.__dict__)
+
         self._save_data(data)
 
         return new_clinical_data
@@ -64,23 +65,24 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
         
         for item in data:
             if item["id"] == id:
-                # Inactivate old version
                 item["active"] = False
 
-                # Create new version
                 clinical_data = ClinicalData(
-                    data_type=data_type,
-                    value=value,
-                    unit=unit,
-                    description=description,
-                    user_id=user_id,
-                    patient_id=item["patient_id"],
-                    timestamp=datetime.now(timezone.utc).isoformat(),
-                    version=item.get("version", 1) + 1,
-                    active=True
+                    data_type, 
+                    value, 
+                    unit, 
+                    description, 
+                    user_id, 
+                    item["patient_id"], 
+                    item.get("version", 1) + 1
                 )
+
                 data.append(clinical_data.__dict__)
                 break
+
+        self._save_data(data)
+        
+        return clinical_data
 
     """
     Return a clinical data entry by ID.
@@ -97,7 +99,7 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     def list_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
         data = self._load_data()
-        return [ClinicalData(**item) for item in data if item.get("patient_id") == patient_id]
+        return [ClinicalData(**item) for item in data if item.get("patient_id") == patient_id and item.get("active", True)]
 
     """
     List all active clinical data entries.
@@ -128,7 +130,7 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
                 return True
         return False
 
-    def inactivate_by_patient_id(self, patient_id):
+    def inactivate_by_patient_id(self, patient_id) -> bool:
         data = self._load_data()
         updated = False
         for item in data:

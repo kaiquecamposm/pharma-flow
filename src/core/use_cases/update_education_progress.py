@@ -23,15 +23,15 @@ class UpdateEducationProgressUseCase:
 
             updated_education_progress = self.education_progress_repository.update(education_progress.id, score > 0, datetime.now(timezone.utc).isoformat(), score)
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "UPDATE_EDUCATION_PROGRESS",
-                "target_id": updated_education_progress.id,
-                "target_type": "EducationProgress",
-                "details": f"Updated education progress for module {module_id} with score {score}",
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="UPDATE_EDUCATION_PROGRESS",
+                target_id=updated_education_progress.id,
+                target_type="EducationProgress",
+                details=f"Updated education progress for module {module_id} with score {score}",
+            )
 
             return updated_education_progress
 
         except Exception as e:
-            raise console.io.print_exception(f"Failed to update education progress: {str(e)}")
+            raise Exception(f"Failed to update education progress: {str(e)}")

@@ -5,7 +5,6 @@ from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.user_repository import (
     UserRepository,
 )
-from utils import console
 
 
 @dataclass
@@ -14,7 +13,7 @@ class RegisterUserUseCase:
         self.user_repository = user_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id, email, password, full_name, role_name, active) -> User:
+    def execute(self, user_id: str, email: str, password: str, full_name: str, role_name: str, active: bool) -> User:
         """
         Register a new user.
         Business rules:
@@ -23,9 +22,9 @@ class RegisterUserUseCase:
         - Assign the appropriate role to the user.
         """
         try:
-            is_exist_email = self.user_repository.get_by_email(email)
+            is_same_email = self.user_repository.get_by_email(email)
 
-            if is_exist_email:
+            if is_same_email:
                 raise ValueError("\n[bold red]Email already registered.[/bold red]")
 
             saved_user = self.user_repository.add(email, password, full_name, role_name, active)
@@ -43,4 +42,4 @@ class RegisterUserUseCase:
 
             return saved_user
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to register user: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to register user: {str(e)}")

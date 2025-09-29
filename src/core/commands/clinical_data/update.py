@@ -13,8 +13,7 @@ from core.use_cases.factories.make_update_clinical_data import (
 )
 from utils import console
 from utils.clear_terminal import clear
-from utils.select_clinical_data import select_clinical_data
-from utils.select_patient import select_patient
+from utils.selects import select_clinical_data, select_patient
 
 
 @authorize("clinical_data")
@@ -34,7 +33,7 @@ def update_clinical_data_command(user: User):
     if not patient_id or not clinical_data:
         return
 
-    console.io.print("\n[bold cyan]Enter new clinical data details:[/bold cyan]")
+    console.io.print("\n[bold cyan]Enter new clinical data details:[/bold cyan]\n")
 
     data_type = Prompt.ask("Data Type", default=clinical_data.data_type)
     value = Prompt.ask("Value", default=clinical_data.value)
@@ -44,13 +43,13 @@ def update_clinical_data_command(user: User):
     update_clinical_data_use_case = make_update_clinical_data_use_case()
     clinical_data_updated = update_clinical_data_use_case.execute(patient_id, clinical_data.id, user.id, data_type, value, unit, description)
 
-    if clinical_data_updated:
-        console.io.print("\n[bold green]Clinical data updated successfully.[/bold green]")
+    if not clinical_data_updated:
+        console.io.print("\n[bold red]Failed to update clinical datas.[/bold red]")
         sleep(1)
         clear()
         return
-    else:
-        console.io.print("\n[bold red]Failed to update clinical datas.[/bold red]")
-        sleep(3)
-        clear()
-        return
+    
+    console.io.print("\n[bold green]Clinical data updated successfully.[/bold green]")
+    sleep(1)
+    clear()
+    return

@@ -51,14 +51,14 @@ class ApplyStratificationInPatientsUseCase:
 
             results_sorted = sorted(results, key=lambda x: x['priority'])
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "APPLY_STRATIFICATION_IN_PATIENTS",
-                "target_id": "*MULTIPLE*",
-                "target_type": "Patient, ClinicalData",
-                "details": f"Applied stratification in {len(results_sorted)} patients"
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="APPLY_STRATIFICATION_IN_PATIENTS",
+                target_id="*MULTIPLE*",
+                target_type="Patient, ClinicalData",
+                details=f"Applied stratification in {len(results_sorted)} patients"
+            )
 
             return results_sorted
         except Exception as e:
-            raise console.io.print(f"[bold red]Failed to get user profile: {str(e)}[/bold red]")
+            raise Exception(f"Failed to apply stratification: {str(e)}")

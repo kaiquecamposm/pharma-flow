@@ -27,14 +27,14 @@ class ListClinicalDataByPatientIdUseCase:
 
             clinical_data = self.clinical_data_repository.list_by_patient_id(patient_id)
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "LIST_CLINICAL_DATA_BY_PATIENT_ID",
-                "target_id": patient_id,
-                "target_type": "Patient, ClinicalData",
-                "details": f"Listed {len(clinical_data)} clinical data entries for patient ID {patient_id}",
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="LIST_CLINICAL_DATA_BY_PATIENT_ID",
+                target_id=patient_id,
+                target_type="Patient, ClinicalData",
+                details=f"Listed {len(clinical_data)} clinical data entries for patient ID {patient_id}",
+            )
 
             return clinical_data
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get clinical data: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get clinical data: {str(e)}")

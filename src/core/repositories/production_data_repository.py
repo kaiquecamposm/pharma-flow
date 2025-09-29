@@ -11,11 +11,7 @@ class ProductionDataRepository(ABC):
     Defines methods for adding and retrieving production data.
     """
     @abstractmethod
-    def add(self, production_data: ProductionData) -> ProductionData:
-        pass
-    
-    @abstractmethod
-    def get_by_id(self, production_data_id: str) -> ProductionData:
+    def add(self, quantity: int, energy_consumption: int, recovered_solvent_volume: int, emissions: int, user_id: str, lote_id: str) -> ProductionData:
         pass
 
     @abstractmethod
@@ -28,14 +24,6 @@ class ProductionDataRepository(ABC):
     
     @abstractmethod
     def list_by_period(self, start_date: datetime, end_date: datetime) -> list[ProductionData]:
-        pass
-
-    @abstractmethod
-    def update(self, production_data: ProductionData) -> ProductionData:
-        pass
-    
-    @abstractmethod
-    def inactivate(self, production_data_id: str) -> None:
         pass
 
     @abstractmethod

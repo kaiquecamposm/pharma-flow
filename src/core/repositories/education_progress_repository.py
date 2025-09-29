@@ -9,7 +9,7 @@ class EducationProgressRepository(ABC):
     Defines methods for adding and retrieving education progress.
     """
     @abstractmethod
-    def create(self, user_id: str, module_id: str) -> EducationProgress:
+    def add(self, user_id: str, module_id: str) -> EducationProgress:
         pass
 
     @abstractmethod

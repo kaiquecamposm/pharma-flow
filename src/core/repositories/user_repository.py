@@ -20,15 +20,3 @@ class UserRepository(ABC):
     @abstractmethod
     def get_by_email(self, email: str) -> User:
         pass
-
-    @abstractmethod
-    def list_all(self) -> list[User]:
-        pass
-    
-    @abstractmethod
-    def update(self, user: User) -> User:
-        pass
-    
-    @abstractmethod
-    def inactivate(self, user_id: str) -> None:
-        pass

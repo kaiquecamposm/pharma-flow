@@ -71,7 +71,7 @@ class DetectedOutliersInProductionDataUseCase:
                 raise ValueError("\n[bold red]No production data found.[/bold red]")
 
             results = defaultdict(dict)
-            METRICS = ["energy_consumption", "recovered_solvent_volume", "emissions"]
+            METRICS = ["energy_consumption", "solvent_volume", "emissions"]
 
             # Agrupa por lote_id
             grouped = defaultdict(lambda: defaultdict(list))
@@ -101,13 +101,13 @@ class DetectedOutliersInProductionDataUseCase:
                         "outliers": outliers,
                     }
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "DETECTED_OUTLIERS_IN_PRODUCTION_DATA",
-                "target_id": "*MULTIPLE*",
-                "target_type": "Lote, ProductionData",
-                "details": f"Detected outliers for {len(results)} lotes."
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="DETECTED_OUTLIERS_IN_PRODUCTION_DATA",
+                target_id="*MULTIPLE*",
+                target_type="Lote, ProductionData",
+                details=f"Detected outliers for {len(results)} lotes."
+            )
 
             return results
 

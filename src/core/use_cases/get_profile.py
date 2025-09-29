@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from core.entities.user import User
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.user_repository import UserRepository
-from utils import console
 
 
 @dataclass
@@ -22,14 +21,14 @@ class GetProfileUseCase:
             if profile is None:
                 raise ValueError("\n[bold red]User not found.[/bold red]")
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "VIEW_PROFILE",
-                "target_id": user_id,
-                "target_type": "User",
-                "details": f"User {profile.full_name} viewed their profile."
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="VIEW_PROFILE",
+                target_id=user_id,
+                target_type="User",
+                details=f"User {profile.full_name} viewed their profile."
+            )
 
             return profile
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get user profile: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get user profile: {str(e)}")

@@ -213,12 +213,12 @@ class GenerateSprintReportUseCase:
             environmental_indicators=environmental_indicators
         )
 
-        self.audit_log_repository.create({
-            "user_id": user_id,
-            "action": "GENERATE_SPRINT_REPORT",
-            "target_id": report.id,
-            "target_type": "SprintReport",
-            "details": f"Sprint report generated for period {start_date} to {end_date}"
-        })
+        self.audit_log_repository.add(
+            user_id=user_id,
+            action="GENERATE_SPRINT_REPORT",
+            target_id=report.id,
+            target_type="SprintReport",
+            details=f"Sprint report generated for period {start_date} to {end_date}"
+        )
 
         return report

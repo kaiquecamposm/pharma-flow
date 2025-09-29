@@ -40,12 +40,12 @@ class JSONEducationProgressRepository(EducationProgressRepository):
     """
     Create a new education progress entry.
     """
-    def create(self, user_id: str, module_id: str) -> EducationProgress:
+    def add(self, user_id: str, module_id: str) -> EducationProgress:
         data = self._load_data()
 
         new_progress = EducationProgress(
-            user_id=user_id,
-            module_id=module_id,
+            user_id,
+            module_id,
         )
 
         data.append(new_progress.__dict__)

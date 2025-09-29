@@ -4,7 +4,6 @@ from core.entities.education_module import EducationModule
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.education_module_repository import EducationModuleRepository
 from core.repositories.education_progress_repository import EducationProgressRepository
-from utils import console
 
 
 @dataclass
@@ -28,7 +27,15 @@ class ListAllEnvironmentalEducationModulesAndProgressUseCase:
                     module.progress = module_progress.score * 100
                 else:
                     module.progress = 0
+                
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="LIST_ENVIRONMENTAL_EDUCATION_MODULES_AND_PROGRESS",
+                target_id="*MULTIPLE*",
+                target_type="EducationModule, EducationProgress",
+                details=f"Listed {len(modules)} environmental education modules with progress."
+            )
 
             return modules
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get environmental education modules: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get environmental education modules: {str(e)}")

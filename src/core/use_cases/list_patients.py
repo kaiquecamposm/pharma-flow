@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from core.entities.patient import Patient
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.patient_repository import PatientRepository
-from utils import console
 
 
 @dataclass
@@ -19,14 +18,14 @@ class ListPatientsUseCase:
         try:
             patients = self.patient_repository.list_all()
 
-            self.audit_log_repository.add({
-                "user_id": user_id,
-                "action": "LIST_PATIENTS",
-                "target_id": "*MULTIPLE*",
-                "target_type": "Patient",
-                "details": f"Listed {len(patients)} patients."
-            })
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="LIST_PATIENTS",
+                target_id="*MULTIPLE*",
+                target_type="Patient",
+                details=f"Listed {len(patients)} patients."
+            )
 
             return patients
         except Exception as e:
-            raise console.io.print(f"\n[bold red]Failed to get patients: {str(e)}[/bold red]")
+            raise Exception(f"\nFailed to get patients: {str(e)}")

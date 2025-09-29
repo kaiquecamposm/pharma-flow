@@ -53,17 +53,3 @@ class JSONEducationModuleRepository(EducationModuleRepository):
     def list_all(self) -> List[EducationModule]:
         data = self._load_data()
         return [EducationModule(**item) for item in data if item.get("active", True)]
-
-    """
-    Update a education module entry by creating a new version (does not overwrite previous version).
-    """
-    def update(self, module: EducationModule) -> EducationModule:
-        data = self._load_data()
-        for item in data:
-            if item["id"] == module.id:
-                module.version = item.get("version", 1) + 1
-                item.update(module.__dict__)
-                break
-        self._save_data(data)
-        return module
-
