@@ -44,7 +44,7 @@
 
 - [x] Indicadores ambientais devem ser registrados por lote produzido;
 
-- [ ] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
+- [x] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
 
 - [x] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
 
