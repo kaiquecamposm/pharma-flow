@@ -41,71 +41,74 @@ def access_modules_command(user: User):
     module_choice = int(Prompt.ask("\n[bold yellow]Select a module to access[/bold yellow]"))
     clear()
 
-    if 1 <= module_choice <= len(modules_with_progression):
-        module_id = modules_with_progression[module_choice - 1].id
+    if not 1 <= module_choice <= len(modules_with_progression):
+        console.io.print("[bold red]Invalid choice. Please select a valid module number.[/bold red]")
+        sleep(1)
+        clear()
+        return
 
-        access_environmental_education_modules_use_case = make_access_environmental_education_modules_use_case()
-        result = access_environmental_education_modules_use_case.execute(user.id, module_id)
+    module_id = modules_with_progression[module_choice - 1].id
 
-        console.io.print(f"\n[bold green]{result["module"].title} - {result["module"].description} (your current progress {result["progress"].score * 100}%) [/bold green]\n")
+    access_environmental_education_modules_use_case = make_access_environmental_education_modules_use_case()
+    result = access_environmental_education_modules_use_case.execute(user.id, module_id)
 
-        console.io.print(f"[bold blue]You have accessed the module: {result["module"].title}[/bold blue]")
+    console.io.print(f"\n[bold green]{result["module"].title} - {result["module"].description} (your current progress {result["progress"].score * 100}%) [/bold green]\n")
 
-        console.io.print(result["module"].content)
+    console.io.print(f"[bold blue]You have accessed the module: {result["module"].title}[/bold blue]")
 
-        quiz_choice = Prompt.ask("\n[bold yellow]Press R to return to the module list or Q to quiz[/bold yellow]")
+    console.io.print(result["module"].content)
+
+    quiz_choice = Prompt.ask("\n[bold yellow]Press R to return to the module list or Q to quiz[/bold yellow]")
+
+    clear()
+
+    if quiz_choice.lower() == 'q':
+        console.io.print("\n[bold cyan]--- Quiz ---[/bold cyan]\n")
+        
+        console.io.print(f"[bold green]Q: {result['module'].quiz["question"]}[/bold green]\n")
+
+        for a_idx, answer in enumerate(result['module'].quiz["options"], start=1):
+            console.io.print(f"   {a_idx}. {answer}")
+
+        user_answer = int(Prompt.ask("\n[bold yellow]Your answer (number)[/bold yellow]"))
 
         clear()
 
-        if quiz_choice.lower() == 'q':
-            console.io.print("\n[bold cyan]--- Quiz ---[/bold cyan]\n")
-            
-            console.io.print(f"[bold green]Q: {result['module'].quiz["question"]}[/bold green]\n")
+        score = 0
 
-            for a_idx, answer in enumerate(result['module'].quiz["options"], start=1):
-                console.io.print(f"   {a_idx}. {answer}")
-
-            user_answer = int(Prompt.ask("\n[bold yellow]Your answer (number)[/bold yellow]"))
-
-            clear()
-
-            if not result['module'].quiz["options"][user_answer - 1] == result['module'].quiz["answer"]:
-                console.io.print(f"\n[bold red]Incorrect! The correct answer was: {result['module'].quiz['answer']}[/bold red]\n")
-                sleep(1)
-                return
-
-            console.io.print("[bold green]Correct![/bold green]\n")
-            
-            score = 0
-            total_completed = 0
-
-            for module in modules_with_progression:
-                if module.progress > 0:
-                    total_completed += 1
-
-            score += 1
-
-            percentage_score = total_completed * 100 // modules_with_progression.__len__()
-            console.io.print(f"[bold blue]\nYou scored {total_completed} out of {modules_with_progression.__len__()} ({percentage_score}%).[/bold blue]")
-
-            update_education_progress_use_case = make_update_education_progression_use_case()
-            updated_education_progress = update_education_progress_use_case.execute(user.id, module_id, score)
-
-            if not updated_education_progress:
-                console.io.print("[bold red]Failed to update your progress. Please try again later.[/bold red]")
-                return
-
-            generate_module_certificate_use_case = make_generate_module_certificate_use_case()
-            generate_module_certificate = generate_module_certificate_use_case.execute(user.id, module_id)
-
-            if generate_module_certificate:
-                console.io.print(f"[bold green]Congratulations! You've completed the module and earned a certificate: {generate_module_certificate.id}[/bold green]")
-
-            console.io.print("[bold green]Your progress has been updated![/bold green]")
-        elif quiz_choice.lower() == 'r':
+        if not result['module'].quiz["options"][user_answer - 1] == result['module'].quiz["answer"]:
+            console.io.print(f"\n[bold red]Incorrect! The correct answer was: {result['module'].quiz['answer']}[/bold red]\n")
+            sleep(1)
             return
-    else:
-        console.io.print("[bold red]Invalid choice. Please select a valid module number.[/bold red]")
+
+        console.io.print("[bold green]Correct![/bold green]")
+        
+        score = 1
+        total_completed = 0
+
+        for module in modules_with_progression:
+            if module.progress > 0 and score == 1:
+                total_completed += 1
+
+        percentage_score = total_completed * 100 // modules_with_progression.__len__()
+        console.io.print(f"[bold blue]\nYou scored {total_completed} out of {modules_with_progression.__len__()} ({percentage_score}%).[/bold blue]\n")
+
+        update_education_progress_use_case = make_update_education_progression_use_case()
+        updated_education_progress = update_education_progress_use_case.execute(user.id, module_id, score)
+
+        if not updated_education_progress:
+            console.io.print("[bold red]Failed to update your progress. Please try again later.[/bold red]")
+            return
+
+        generate_module_certificate_use_case = make_generate_module_certificate_use_case()
+        generate_module_certificate = generate_module_certificate_use_case.execute(user.id, module_id)
+
+        if generate_module_certificate:
+            console.io.print(f"[bold green]Congratulations! You've completed the module and earned a certificate: {generate_module_certificate.id}[/bold green]")
+
+        console.io.print("[bold green]Your progress has been updated![/bold green]")
+    elif quiz_choice.lower() == 'r':
+        return
 
     continue_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
     sleep(1)
