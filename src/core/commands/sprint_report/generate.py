@@ -25,23 +25,27 @@ def generate_sprint_report_command(user: User):
 
     clear()
 
-    if report:
-        console.io.print("[bold yellow]Generated Sprint Report:[/bold yellow]\n")
-        console.io.print("[bold underline]Regulatory Indicators:[/bold underline]")
-        for key, value in report.regulatory_indicators.items():
-            if value["status"] == "ALERT" or value["status"] == "OBESE":
-                console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold red]{value}[/bold red]")
-            else:
-                console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
-            
-        console.io.print("\n[bold underline]Environmental Indicators:[/bold underline]")
-        for key, value in report.environmental_indicators.items():
-            if value["status"] == "ALERT":
-                console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold red]{value}[/bold red]")
-            else:
-                console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
-    else:
+    if not report:
         console.io.print("[bold red]No data found for the given period.[/bold red]")
+        sleep(1)
+        clear()
+        return
+    
+    console.io.print("[bold yellow]Generated Sprint Report:[/bold yellow]\n")
+    console.io.print("[bold underline]Regulatory Indicators:[/bold underline]")
+    
+    for key, value in report.regulatory_indicators.items():
+        if value["status"] == "ALERT" or value["status"] == "OBESE":
+            console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold red]{value}[/bold red]")
+        else:
+            console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
+        
+    console.io.print("\n[bold underline]Environmental Indicators:[/bold underline]")
+    for key, value in report.environmental_indicators.items():
+        if value["status"] == "ALERT":
+            console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold red]{value}[/bold red]")
+        else:
+            console.io.print(f"[bold]{key.replace('_', ' ').title()}:[/bold] [bold green]{value}[/bold green]")
 
     complete_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
     sleep(1)

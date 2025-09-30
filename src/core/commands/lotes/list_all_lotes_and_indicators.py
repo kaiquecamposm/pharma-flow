@@ -16,16 +16,18 @@ def list_all_lotes_and_indicators_command(user: User):
     list_all_lotes_and_indicators_use_case = make_list_all_lotes_and_indicators_use_case()
     lotes = list_all_lotes_and_indicators_use_case.execute(user.id)
 
-    if lotes:
-        for idx, item in enumerate(lotes, start=1):
-            if idx > 1:
-                console.io.print("-" * 40)
-            console.io.print(f"[bold]{idx}. Product: {item['product_name']} | Quantity: {item['quantity']} | Production Date: {item['end_date']} | Emissions (kg CO2): {item['ambient_indicators']['emissions']} | Energy Consumption (kWh): {item['ambient_indicators']['energy_consumption']} | Recovered Solvent Volume (L): {item['ambient_indicators']['recovered_solvent_volume']} | Registration Date: {item['registration_date']}")
-    else:
-        raise ValueError(console.io.print("[bold red]Failed to retrieve lotes data.[/bold red]"))
+    if not lotes:
+        console.io.print("[bold red]Failed to retrieve lotes data.[/bold red]")
+        sleep(1)
+        clear()
+        return
+    
+    for idx, item in enumerate(lotes, start=1):
+        if idx > 1:
+            console.io.print("-" * 40)
+        console.io.print(f"[bold]{idx}. Product: {item['product_name']} | Quantity: {item['quantity']} | Production Date: {item['end_date']} | Emissions (kg CO2): {item['ambient_indicators']['emissions']} | Energy Consumption (kWh): {item['ambient_indicators']['energy_consumption']} | Recovered Solvent Volume (L): {item['ambient_indicators']['recovered_solvent_volume']} | Registration Date: {item['registration_date']}")
 
     continue_prompt = console.io.input("\n[bold yellow]Press Enter to return to the main menu...[/bold yellow]")
-    sleep(1)
     clear()
 
     if continue_prompt:

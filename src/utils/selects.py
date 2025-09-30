@@ -19,12 +19,12 @@ def select_data_type():
         choice_idx = int(choice) - 1
 
         clear()
-        if 0 <= choice_idx < len(CLINICAL_DATA_TYPES):
-            return CLINICAL_DATA_TYPES[choice_idx]
-        else:
+        if not 0 <= choice_idx < len(CLINICAL_DATA_TYPES):
             console.io.print("[bold red]Invalid choice. Please try again.[/bold red]") 
             sleep(1)
             return
+        
+        return CLINICAL_DATA_TYPES[choice_idx]
     except ValueError:
         raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
 
@@ -89,10 +89,12 @@ def select_lote(lotes_and_indicators: list):
             choice = int(console.io.input("\nEnter the number of the lote: "))
 
             clear()
-            if 1 <= choice <= len(lotes_and_indicators):
-                return lotes_and_indicators[choice - 1]["lote_id"]
-            else:
+            if not 1 <= choice <= len(lotes_and_indicators):
                 console.io.print("[bold red]Invalid choice. Please try again.[/bold red]")
+                sleep(1)
+                return
+            
+            return lotes_and_indicators[choice - 1]["lote_id"] 
         except ValueError:
             raise ValueError("[bold red]Please enter a valid number.[/bold red]")
 

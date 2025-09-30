@@ -68,12 +68,13 @@ class DetectedOutliersInProductionDataUseCase:
             production_data = self.production_data_repository.list_all()
 
             if not production_data:
-                raise ValueError("\n[bold red]No production data found.[/bold red]")
+                console.io.print("\n[bold red]No production data found.[/bold red]")
+                return
 
             results = defaultdict(dict)
             METRICS = ["energy_consumption", "solvent_volume", "emissions"]
 
-            # Agrupa por lote_id
+            # Group data by lote and metric
             grouped = defaultdict(lambda: defaultdict(list))
             for record in production_data:
                 for metric in METRICS:
@@ -81,7 +82,7 @@ class DetectedOutliersInProductionDataUseCase:
                     if value is not None:
                         grouped[record.lote_id][metric].append(float(value))
 
-            # Calcula mean, std e outliers por lote
+            # Calculed mean, std and detect outliers
             for lote_id, metrics_dict in grouped.items():
                 for metric, values in metrics_dict.items():
                     if len(values) < 2:
