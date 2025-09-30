@@ -1,7 +1,7 @@
 CLINICAL_DATA_TYPES = [
     {
         "type": "Blood Pressure",
-        "unit": "mmHg",
+        "unit": "mmHg -> Systolic/Diastolic",
     },
     {
         "type": "Heart Rate",
