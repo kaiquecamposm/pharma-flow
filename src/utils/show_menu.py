@@ -28,4 +28,4 @@ def show_menu(title: str, options: dict[str, callable]):
         if action:
             action()
     except (ValueError, IndexError):
-        console.io.print("[bold red]Invalid option. Please try again.[/bold red]")
+        raise ValueError("[bold red]Invalid option. Please try again.[/bold red]")
