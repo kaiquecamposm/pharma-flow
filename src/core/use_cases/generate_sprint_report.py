@@ -203,6 +203,9 @@ class GenerateSprintReportUseCase:
         # --- Environmental Indicators ---
         environmental_indicators = self._generate_environmental_indicators(production_data)
 
+        if not regulatory_indicators and not environmental_indicators:
+            return None
+
         # Create SprintReport entity
         report = SprintReport(
             start_date=start_date,
