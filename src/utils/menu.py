@@ -85,7 +85,7 @@ def education_menu(user):
 @authorize("audit")
 def audit_menu(user):
     show_menu("Audit Menu", {
-        "Audit Logs": list_all_audit_logs_command,
+        "Audit Logs": lambda: list_all_audit_logs_command(user),
         "Sprint Report": lambda: generate_sprint_report_command(user),
         "Back to Main Menu": None
     })
