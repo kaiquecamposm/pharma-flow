@@ -36,7 +36,6 @@ def patients_menu(user):
     show_menu("Patients Menu", {
         "Register Patient": lambda: register_patient_command(user),
         "Archive Patient": lambda: archive_patient_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("users")
@@ -44,7 +43,6 @@ def users_menu(user):
     show_menu("Users Menu", {
         "View Profile": lambda: get_profile_command(user),
         "Register User": lambda: register_user_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("clinical_data")
@@ -54,7 +52,6 @@ def clinical_data_menu(user):
         "Archive Clinical Data": lambda: archive_clinical_data_command(user),
         "Update Clinical Data": lambda: update_clinical_data_command(user),
         "List All Clinical Data": lambda: list_all_clinical_data_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("lotes")
@@ -63,7 +60,6 @@ def lotes_menu(user):
         "Register Lote": lambda: register_lote_command(user),
         "Archive Lote": lambda: archive_lote_command(user),
         "List All Lotes and Indicators": lambda: list_all_lotes_and_indicators_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("analysis")
@@ -72,14 +68,12 @@ def analysis_menu(user):
         "Stratification in Patients": lambda: apply_stratification_in_patients_command(user),
         "Detected Outliers in Clinical Data": lambda: detected_outliers_in_clinical_data_command(user),
         "Detected Outliers in Production Data": lambda: detected_outliers_in_production_data_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("education")
 def education_menu(user):
     show_menu("Education Menu", {
         "Access Modules": lambda: access_modules_command(user),
-        "Back to Main Menu": None
     })
 
 @authorize("audit")
@@ -87,5 +81,4 @@ def audit_menu(user):
     show_menu("Audit Menu", {
         "Audit Logs": lambda: list_all_audit_logs_command(user),
         "Sprint Report": lambda: generate_sprint_report_command(user),
-        "Back to Main Menu": None
     })
