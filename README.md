@@ -1,65 +1,128 @@
-# pharma-flow
+Pharma Flow 💊
 
-## Propósito geral
+📍 Overview
 
-- Construção de um ecossistema digital orientado à inovação, concebido para planejar, acompanhar e registrar processos clínicos e fabris em ciclos iterativos.
+Pharma Flow is a Python application designed to manage clinical and production data in the pharmaceutical industry. It provides features for registering clinical data, tracking patient information, generating reports, detecting outliers, managing educational modules, and auditing actions. The project aims to streamline data management and analysis in pharmaceutical environments.
 
-- Integração entre tecnologia, sustentabilidade e regulação, em consonância com diretrizes internacionais.
+✨ Features
 
-📌 Requisitos Funcionais (RF)
+- Register Clinical Data: Record patient clinical measurements (e.g., blood pressure, heart rate).
 
-- [x] Deve ser possível se cadastrar (pesquisador, gestor ou auditor);
+- Outlier Detection: Detect statistical and rule-based outliers in clinical and production data.
 
-- [x] Deve ser possível se autenticar;
+- Patient & Lote Management: Archive and manage patient records and production batches (lotes).
 
-- [x] Deve ser possível obter o perfil de um usuário logado;
+- Educational Modules: Track user progress and generate certificates for completed modules.
 
-- [x] Deve ser possível registrar, armazenar e versionar dados clínicos;
+- Sprint Reports: Generate periodic reports with regulatory and environmental indicators.
 
-- [x] Deve ser possível registrar, armazenar e versionar dados fabris;
+- Audit Logs: Keep detailed logs of actions performed in the system.
 
-- [x] Deve ser possível consultar trilhas de auditoria das operações realizadas;
+## 💻 Technologies Used
 
-- [x] Deve ser possível aplicar algoritmos de estratificação de pacientes;
+- Python 3.11+
 
-- [x] Deve ser possível detectar outliers (não se encaixa no padrão) em séries temporais de dados clínicos ou fabris;
+- NumPy: Numerical operations
 
-- [x] Deve ser possível prever falhas ambientais na linha de produção;
+- Rich: Fancy console outputs
 
-- [x] Deve ser possível cadastrar e acompanhar indicadores ambientais (como consumo energético por lote e volume de solventes recuperados);
+## 📦 Dependencies
 
-- [x] Deve ser possível gerar relatórios de sprint que incluam indicadores regulatórios e ambientais;
+```ipi
+cffi==2.0.0
+cryptography==45.0.7
+markdown-it-py==4.0.0
+mdurl==0.1.2
+numpy==2.3.3
+pycparser==2.23
+Pygments==2.19.2
+rich==14.1.0
+```
 
-- [x] Deve ser possível acessar módulos educacionais interativos sobre boas práticas ambientais;
+## 🚀 Getting Started
 
-- [x] Deve ser possível emitir certificados de conclusão de treinamentos após participação completa.
+1. Clone the repository:
 
-📌 Regras de Negócio (RN)
+```bash
+git clone https://github.com/kaiquecamposm/pharma-flow.git
+cd pharma-flow
+```
 
-- [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
+2. Create a virtual environment:
 
-- [x] Todo acesso ao sistema deve ser registrado em log de auditoria com data, hora e identidade do usuário;
+```bash
+python -m venv venv
+```
 
-- [x] Alterações em dados clínicos não podem sobrescrever registros anteriores, apenas criar nova versão;
+3. Activate the virtual environment:
 
-- [x] Indicadores ambientais devem ser registrados por lote produzido;
+- Linux/macOS:
 
-- [x] Certificados de conclusão de módulos ambientais só podem ser emitidos após 100% de participação;
+```bash
+source venv/bin/activate
+```
 
-- [x] O sistema deve impedir a exclusão definitiva de dados, permitindo apenas arquivamento;
+- Windows (CMD):
 
-- [x] O check de conformidade ambiental deve seguir o ciclo PDCA (Plan, Do, Check, Act).
+```bash
+venv\Scripts\activate
+```
+- Windows (PowerShell):
 
-📌 Requisitos Não Funcionais (RNF)
+```bash
+.\venv\Scripts\Activate.ps1
+```
 
-- [x] Os dados clínicos e fabris devem ser armazenados de forma confiável e persistente;
+4. Install dependencies:
 
-- [ ] Cada função deve ser acompanhada de análise assintótica de complexidade (notação Big-O) e de suíte de testes unitários com cobertura superior a 80%;
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
 
-- [x] O sistema deve operar de acordo com os princípios de Engenharia de Software Ágil, permitindo ciclos iterativos e inspeção contínua;
+5. Run the application:
 
-- [x] O sistema deve respeitar a conformidade com normas GxP (GLP, GCP, GMP) e requisitos do FDA 21 CFR Part 11;
+```bash
+python src/app.py
+```
 
-- [x] O desempenho deve permitir processamento de dados clínicos e fabris de forma eficiente;
+## 📌 Requirements
 
-- [x] Trilhas de auditoria e registros devem ser mantidos de forma imutável.
+- Functional Requirements (RF)
+    - [x] Users must be able to register (researcher, manager, or auditor).
+    - [x] Users must be able to authenticate.
+    - [x] Users must be able to retrieve the profile of a logged-in user.
+    - [x] Users must be able to record, store, and version clinical data.
+    - [x] Users must be able to record, store, and version manufacturing data.
+    - [x] Users must be able to consult audit trails of performed operations.
+    - [x] Users must be able to apply patient stratification algorithms.
+    - [x] Users must be able to detect outliers (values that do not fit the standard) in time series of clinical or manufacturing data.
+    - [x] Users must be able to predict environmental failures in the production line.
+    - [x] Users must be able to register and monitor environmental indicators (e.g., energy consumption per batch, volume of recovered solvents).
+    - [x] Users must be able to generate sprint reports including regulatory and environmental indicators.
+    - [x] Users must be able to access interactive educational modules on environmental best practices.
+    - [x] Users must be able to issue completion certificates after full participation in trainings.
+- Business Rules (RN)
+    - [x] Users cannot register with a duplicate email.
+    - [x] All system access must be logged with date, time, and user identity.
+    - [x] Changes to clinical data cannot overwrite previous records, only create a new version.
+    - [x] Environmental indicators must be registered per produced batch.
+    - [x] Certificates for environmental modules can only be issued after 100% participation.
+    - [x] The system must prevent permanent deletion of data, allowing only archiving.
+    - [x] Environmental compliance checks must follow the PDCA cycle (Plan, Do, Check, Act).
+- Non-Functional Requirements (RNF)
+    - [x] Clinical and manufacturing data must be stored reliably and persistently.
+    - [x] Each function must be accompanied by asymptotic complexity analysis (Big-O notation)
+    - [ ] Unit test suite with coverage above 80%.
+    - [x] The system must operate according to Agile Software Engineering principles, allowing iterative cycles and continuous inspection.
+    - [x] The system must comply with GxP standards (GLP, GCP, GMP) and FDA 21 CFR Part 11 requirements.
+    - [x] Performance must allow efficient processing of clinical and manufacturing data.
+    - [x] Audit trails and logs must be maintained immutably.
+
+## 🤝 Contributions
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## 📝 License
+
+This project is licensed under the MIT License.
