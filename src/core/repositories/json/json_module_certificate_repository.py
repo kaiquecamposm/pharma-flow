@@ -67,7 +67,7 @@ class JSONModuleCertificateRepository(ModuleCertificateRepository):
     """
     List all certificates for a given user.
     """
-    def list_by_user(self, user_id: str) -> list[ModuleCertificate]:
+    def list_by_user(self, user_id: str) -> List[ModuleCertificate]:
         data = self._load_data()
 
         return [ModuleCertificate(**item) for item in data if item["user_id"] == user_id]

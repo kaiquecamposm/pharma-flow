@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.module_certificate import ModuleCertificate
 
@@ -17,5 +18,5 @@ class ModuleCertificateRepository(ABC):
         pass
 
     @abstractmethod
-    def list_by_user(self, user_id: str) -> list[ModuleCertificate]:
+    def list_by_user(self, user_id: str) -> List[ModuleCertificate]:
         pass

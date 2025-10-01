@@ -93,5 +93,4 @@ class DetectedOutliersInProductionDataUseCase:
 
             return results
         except Exception as e:
-            console.io.print(f"[bold red]Failed to detect production outliers: {str(e)}[/bold red]")
-            return {}
+            raise Exception(f"\nFailed to detect production outliers: {str(e)}")

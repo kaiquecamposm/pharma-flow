@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from core.entities.clinical_data import ClinicalData
 from core.repositories.audit_log_repository import AuditLogRepository
@@ -14,7 +15,7 @@ class ListClinicalDataByPatientIdUseCase:
         self.clinical_data_repository = clinical_data_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id: str, patient_id: str) -> list[ClinicalData]:
+    def execute(self, user_id: str, patient_id: str) -> List[ClinicalData]:
         """
         Get all clinical data for a specific patient.
 

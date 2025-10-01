@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from core.entities.clinical_data import ClinicalData
 from core.repositories.clinical_data_repository import ClinicalDataRepository
@@ -21,21 +21,26 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
         # Ensure the file exists
         if not os.path.exists(self.file_path):
             with open(self.file_path, "w", encoding="utf-8") as f:
-                json.dump([], f)
+                json.dump({}, f)
 
     """
     Load data from the JSON file.
     """
-    def _load_data(self) -> List[dict]:
-        with open(self.file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+    def _load_data(self) -> Dict[str, List[dict]]:
+        try:
+            with open(self.file_path, "r") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return {}
+        except json.JSONDecodeError:
+            return {}
         
     """
     Save data to the JSON file.
     """
-    def _save_data(self, data: List[dict]) -> None:
-        with open(self.file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+    def _save_data(self, data: Dict[str, List[dict]]) -> None:
+        with open(self.file_path, "w") as f:
+            json.dump(data, f, indent=4, default=str)
 
     """
     Add a new clinical data entry.
@@ -47,12 +52,15 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
             unit,
             description,
             user_id,
-            patient_id,
+            patient_id
         )
 
         data = self._load_data()
-        data.append(new_clinical_data.__dict__)
 
+        if patient_id not in data:
+            data[patient_id] = []
+
+        data[patient_id].append(new_clinical_data.__dict__)
         self._save_data(data)
 
         return new_clinical_data
@@ -89,54 +97,78 @@ class JSONClinicalDataRepository(ClinicalDataRepository):
     """
     def get_by_id(self, clinical_data_id: str) -> Optional[ClinicalData]:
         data = self._load_data()
-        for item in data:
-            if item["id"] == clinical_data_id:
-                return ClinicalData(**item)
+
+        for records in data.values():
+            for record in records:
+                if record["id"] == clinical_data_id:
+                    return ClinicalData(**record)
+                    
         return None
     
     """
     Return a list of clinical data entries by patient ID.
     """
-    def list_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+    def list_by_patient_id(self, patient_id: str) -> List[ClinicalData]:
         data = self._load_data()
-        return [ClinicalData(**item) for item in data if item.get("patient_id") == patient_id and item.get("active", True)]
+        
+        result = data.get(patient_id, [])
+
+        return [item for item in result if item.get("active", True)]
 
     """
     List all active clinical data entries.
     """
     def list_all(self) -> List[ClinicalData]:
         data = self._load_data()
-        return [ClinicalData(**item) for item in data if item.get("active", True)]
+        
+        result = []
+
+        for entries in data.values():
+            for entry in entries:
+                if entry.get("active", True):
+                    result.append(entry)
+        return result
 
     """
     List by period.
     """
     def list_by_period(self, start_date: str, end_date: str) -> List[ClinicalData]:
         data = self._load_data()
-        return [
-            ClinicalData(**item) for item in data 
-            if start_date <= item.get("timestamp", "") <= end_date and item.get("active", True)
-        ]
+
+        result = []
+
+        for entries in data.values():
+            for item in entries:
+                timestamp = item.get("timestamp", "")
+                if item.get("active", True) and start_date <= timestamp <= end_date:
+                    result.append(item)
+        return result
 
     """
     Inactivate a clinical data entry (soft delete).
     """
     def inactivate(self, clinical_data_id: str) -> bool:
         data = self._load_data()
-        for item in data:
-            if item["id"] == clinical_data_id:
-                item["active"] = False
-                self._save_data(data)
-                return True
+
+        for records in data.values():
+            for record in records:
+                if record["id"] == clinical_data_id:
+                    record["active"] = False
+
+                    self._save_data(data)
+
+                    return True
         return False
 
     def inactivate_by_patient_id(self, patient_id) -> bool:
         data = self._load_data()
-        updated = False
-        for item in data:
-            if item.get("patient_id") == patient_id and item.get("active", True):
-                item["active"] = False
-                updated = True
-        if updated:
-            self._save_data(data)
-        return updated
+
+        for patient_id_record, records in data.items():
+            if patient_id_record == patient_id:
+                for record in records:
+                    if record.get("active", True):
+                        record["active"] = False
+
+        self._save_data(data)
+
+        return True

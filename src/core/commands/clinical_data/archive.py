@@ -29,13 +29,13 @@ def archive_clinical_data_command(user: User):
         return
 
     archive_clinical_data_use_case = make_archive_clinical_data_use_case()
-    archived_clinical_data = archive_clinical_data_use_case.execute(user.id, clinical_data.id)
+    archived_clinical_data = archive_clinical_data_use_case.execute(user.id, clinical_data["id"])
 
     if not archived_clinical_data:
-        console.io.print(f"[bold red]Failed to archive clinical data with ID: {clinical_data.id}[/bold red]")
+        console.io.print(f"[bold red]Failed to archive clinical data with ID: {clinical_data["id"]}[/bold red]")
         sleep(1)
         return
 
-    console.io.print(f"[bold green]Successfully archived clinical data with ID: {clinical_data.id}[/bold green]")
+    console.io.print(f"[bold green]Successfully archived clinical data with ID: {clinical_data["id"]}[/bold green]")
     sleep(1)
     clear()

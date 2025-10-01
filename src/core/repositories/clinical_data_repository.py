@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import Dict, List
 
 from core.entities.clinical_data import ClinicalData
 
@@ -22,15 +23,15 @@ class ClinicalDataRepository(ABC):
         pass
 
     @abstractmethod
-    def list_by_patient_id(self, patient_id: str) -> list[ClinicalData]:
+    def list_by_patient_id(self, patient_id: str) -> List[ClinicalData]:
         pass
 
     @abstractmethod
-    def list_all(self) -> list[ClinicalData]:
+    def list_all(self) -> List[ClinicalData]:
         pass
 
     @abstractmethod
-    def list_by_period(self, start_date: datetime, end_date: datetime) -> list[ClinicalData]:
+    def list_by_period(self, start_date: datetime, end_date: datetime) -> Dict[str, List[ClinicalData]]:
         pass
     
     @abstractmethod

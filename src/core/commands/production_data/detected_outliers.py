@@ -13,8 +13,6 @@ from utils.clear_terminal import clear
 
 @authorize("analysis")
 def detected_outliers_in_production_data_command(user: User):
-    console.io.print("[bold cyan]--- Detected Outliers in Production Data ---[/bold cyan]")
-
     detected_outliers_in_production_data_use_case = make_detected_outliers_in_production_data_use_case()
     outliers = detected_outliers_in_production_data_use_case.execute(user.id)
 

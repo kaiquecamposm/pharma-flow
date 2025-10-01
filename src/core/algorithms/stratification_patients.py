@@ -1,3 +1,5 @@
+from typing import List
+
 from core.entities.clinical_data import ClinicalData
 
 
@@ -52,7 +54,7 @@ thresholds = {
 }
 
 
-def stratify_algorithm(clinical_data: list[ClinicalData]) -> list:
+def stratify_algorithm(clinical_data: List[ClinicalData]) -> List:
     """
     Apply stratification algorithms to clinical data.
 
@@ -69,13 +71,13 @@ def stratify_algorithm(clinical_data: list[ClinicalData]) -> list:
     stratified_data = []
 
     for data in clinical_data:
-        if data.data_type in thresholds:
-            priority = processors[data.data_type](data.value, thresholds[data.data_type])
+        if data["data_type"] in thresholds:
+            priority = processors[data["data_type"]](data["value"], thresholds[data["data_type"]])
             stratified_data.append({
-                "patient_id": data.patient_id,
-                "data_type": data.data_type,
-                "value": data.value,
-                "unit": data.unit,
+                "patient_id": data["patient_id"],
+                "data_type": data["data_type"],
+                "value": data["value"],
+                "unit": data["unit"],
                 "priority": priority
             })
 

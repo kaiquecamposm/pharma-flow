@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from core.entities.patient import Patient
 from core.repositories.audit_log_repository import AuditLogRepository
@@ -11,7 +12,7 @@ class ListPatientsUseCase:
         self.patient_repository = patient_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id: str) -> list[Patient]:
+    def execute(self, user_id: str) -> List[Patient]:
         """
         Complexity Analysis:
 

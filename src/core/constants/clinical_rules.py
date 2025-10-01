@@ -1,5 +1,7 @@
 CLINICAL_RULES = {
     "Blood Pressure": {
+        "systolic_min": 90,
+        "diastolic_min": 60,
         "systolic_high": 140,
         "diastolic_high": 90,
     },

@@ -32,7 +32,13 @@ def apply_clinical_rules(data_type: str, value: float):
             return "normal"
         
     if data_type == "Blood Pressure":
-        systolic, diastolic = map(int, str(value).split("/"))
+        parts = str(value).split("/")
+        
+        if len(parts) == 2:  # formato correto: "120/80"
+            systolic, diastolic = map(int, parts)
+        elif len(parts) == 1:  # só sistólica
+            systolic, diastolic = int(float(parts[0])), 0
+
         if systolic < rules["systolic_min"] or diastolic < rules["diastolic_min"]:
             return "low"
         elif systolic > rules["systolic_max"] or diastolic > rules["diastolic_max"]:

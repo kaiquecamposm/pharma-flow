@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.education_module import EducationModule
 
@@ -13,5 +14,5 @@ class EducationModuleRepository(ABC):
         pass
 
     @abstractmethod
-    def list_all(self) -> list[EducationModule]:
+    def list_all(self) -> List[EducationModule]:
         pass

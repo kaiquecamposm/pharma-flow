@@ -35,13 +35,13 @@ def update_clinical_data_command(user: User):
 
     console.io.print("\n[bold cyan]Enter new clinical data details:[/bold cyan]\n")
 
-    data_type = Prompt.ask("Data Type", default=clinical_data.data_type)
-    value = Prompt.ask("Value", default=clinical_data.value)
-    unit = Prompt.ask("Unit", default=clinical_data.unit)
-    description = Prompt.ask("Description", default=clinical_data.description)
+    data_type = Prompt.ask("Data Type", default=clinical_data["data_type"])
+    value = Prompt.ask("Value", default=clinical_data["value"])
+    unit = Prompt.ask("Unit", default=clinical_data["unit"])
+    description = Prompt.ask("Description", default=clinical_data["description"])
 
     update_clinical_data_use_case = make_update_clinical_data_use_case()
-    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, clinical_data.id, user.id, data_type, value, unit, description)
+    clinical_data_updated = update_clinical_data_use_case.execute(patient_id, clinical_data["id"], user.id, data_type, value, unit, description)
 
     if not clinical_data_updated:
         console.io.print("\n[bold red]Failed to update clinical datas.[/bold red]")

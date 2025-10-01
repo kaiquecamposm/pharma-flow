@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.lote_repository import LoteRepository
@@ -12,7 +13,7 @@ class ListAllLotesAndIndicatorsUseCase:
         self.production_data_repository = production_data_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id) -> list:
+    def execute(self, user_id) -> List:
         """
         List all lotes and their production data.
 

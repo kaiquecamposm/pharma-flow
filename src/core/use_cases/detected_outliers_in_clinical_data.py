@@ -1,5 +1,6 @@
 from collections import defaultdict
 from dataclasses import dataclass
+from typing import Dict
 
 import numpy as np
 
@@ -7,7 +8,6 @@ from core.algorithms.apply_clinical_rules import apply_clinical_rules
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.clinical_data_repository import ClinicalDataRepository
 from core.repositories.patient_repository import PatientRepository
-from utils import console
 
 
 @dataclass
@@ -18,7 +18,7 @@ class DetectedOutliersInClinicalDataUseCase:
         self.audit_log_repository = audit_log_repository
     
     
-    def execute(self, user_id, threshold: int = 3) -> dict:
+    def execute(self, user_id, threshold: int = 3) -> Dict:
         """
         Detect outliers in clinical data grouped by patient and data_type.
 
@@ -53,6 +53,7 @@ class DetectedOutliersInClinicalDataUseCase:
         """
         try:
             patients = self.patient_repository.list_all()
+
             if not patients:
                 raise ValueError("\n[bold red]No patients found.[/bold red]")
 
@@ -61,13 +62,16 @@ class DetectedOutliersInClinicalDataUseCase:
             for patient in patients:
                 clinical_data = self.clinical_data_repository.list_by_patient_id(patient.id)
 
+                if not clinical_data:
+                    continue  # no clinical data for this patient
+
                 # group values by type
                 grouped = defaultdict(list)
 
                 for cld in clinical_data:
                     try:
-                        value = float(str(cld.value).split("/")[0])  # ex: "135/90" → get 135
-                        grouped[cld.data_type].append(value)
+                        value = int(str(cld["value"]).split("/")[0])  # ex: "135/90" → get 135
+                        grouped[cld["data_type"]].append(value)
                     except ValueError:
                         continue  # ignore non-numeric values
 
@@ -79,7 +83,7 @@ class DetectedOutliersInClinicalDataUseCase:
                     mean = np.mean(values)
                     std = np.std(values)
 
-                    outliers = [] 
+                    outliers = []
 
                     for v in values:
                         status = apply_clinical_rules(data_type, v)
@@ -107,5 +111,4 @@ class DetectedOutliersInClinicalDataUseCase:
 
             return results
         except Exception as e:
-            console.io.print(f"[bold red]Failed to detect outliers: {str(e)}[/bold red]")
-            return {}
+            raise Exception(f"\nFailed to detect clinical outliers: {str(e)}")

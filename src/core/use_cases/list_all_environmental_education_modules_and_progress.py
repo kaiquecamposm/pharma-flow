@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from core.entities.education_module import EducationModule
 from core.repositories.audit_log_repository import AuditLogRepository
@@ -13,7 +14,7 @@ class ListAllEnvironmentalEducationModulesAndProgressUseCase:
         self.education_progress_repository = education_progress_repository
         self.audit_log_repository = audit_log_repository
 
-    def execute(self, user_id) -> list[EducationModule]:
+    def execute(self, user_id) -> List[EducationModule]:
         """
         List all education modules and user's progress.
 

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.audit_log import AuditLog
 
@@ -13,5 +14,5 @@ class AuditLogRepository(ABC):
         pass
 
     @abstractmethod
-    def list_all(self) -> list[AuditLog]:
+    def list_all(self) -> List[AuditLog]:
         pass

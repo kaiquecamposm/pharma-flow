@@ -1,5 +1,6 @@
 import base64
 from time import sleep
+from typing import List
 
 from rich.prompt import Prompt
 
@@ -28,15 +29,15 @@ def select_data_type():
     except ValueError:
         raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
 
-def select_clinical_data(clinical_data: list[ClinicalData]):
+def select_clinical_data(clinical_data: List[ClinicalData]):
     if not clinical_data:
         console.io.print("[bold red]No clinical data found.[/bold red]")
         sleep(1)
         return
-
+    
     console.io.print("[bold cyan]Select a clinical data:[/bold cyan]\n")
     for idx, data in enumerate(clinical_data, start=1):
-        console.io.print(f"[bold white]{idx}.[/bold white] Patient: {data.patient_id} - {data.data_type} ({data.value} {data.unit}) | {data.description}")
+        console.io.print(f"[bold white]{idx}.[/bold white] Patient: {data['patient_id']} - {data['data_type']} ({data['value']} {data['unit']}) | {data['description']}")
 
     while True:
         try:
@@ -51,7 +52,7 @@ def select_clinical_data(clinical_data: list[ClinicalData]):
         except ValueError:
             raise ValueError("[bold red]Please enter a valid number.[/bold red]")
 
-def select_patient(patients: list[Patient]) -> str:
+def select_patient(patients: List[Patient]) -> str:
     if not patients:
         console.io.print("\n[bold red]No patients found. Please register a patient first.[/bold red]")
         sleep(1)
@@ -74,7 +75,7 @@ def select_patient(patients: list[Patient]) -> str:
     except ValueError:
         raise ValueError("[bold red]Invalid input. Please enter a number.[/bold red]")
 
-def select_lote(lotes_and_indicators: list):
+def select_lote(lotes_and_indicators: List):
     if not lotes_and_indicators:
         console.io.print("[bold red]No lotes found.[/bold red]")
         sleep(1)

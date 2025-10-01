@@ -1,5 +1,6 @@
 
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.patient import Patient
 
@@ -22,7 +23,7 @@ class PatientRepository(ABC):
         pass
 
     @abstractmethod
-    def list_all(self) -> list[Patient]:
+    def list_all(self) -> List[Patient]:
         pass
     
     @abstractmethod

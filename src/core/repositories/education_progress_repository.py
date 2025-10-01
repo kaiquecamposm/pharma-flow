@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.education_progress import EducationProgress
 
@@ -21,7 +22,7 @@ class EducationProgressRepository(ABC):
         pass
 
     @abstractmethod
-    def list_by_user_id(self, user_id: str) -> list[EducationProgress]:
+    def list_by_user_id(self, user_id: str) -> List[EducationProgress]:
         pass
 
     @abstractmethod

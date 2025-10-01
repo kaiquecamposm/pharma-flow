@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
+from typing import Dict, List
 
 import numpy as np
 
@@ -242,9 +243,9 @@ class GenerateSprintReportUseCase:
             production_data = self.production_data_repository.list_by_period(start_date, end_date)
 
             # --- Regulatory Indicators ---
-            regulatory_indicators = defaultdict(dict)
+            regulatory_indicators = defaultdict(Dict)
 
-            grouped_clinical_data = defaultdict(list)
+            grouped_clinical_data = defaultdict(List)
             for record in clinical_data:
                 parsed_value = self._parse_value(record.data_type, record.value)
                 grouped_clinical_data[record.data_type].append(parsed_value)

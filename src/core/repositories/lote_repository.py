@@ -1,5 +1,6 @@
 
 from abc import ABC, abstractmethod
+from typing import List
 
 from core.entities.lote import Lote
 
@@ -14,7 +15,7 @@ class LoteRepository(ABC):
         pass
     
     @abstractmethod
-    def list_all(self) -> list[Lote]:
+    def list_all(self) -> List[Lote]:
         pass
 
     @abstractmethod

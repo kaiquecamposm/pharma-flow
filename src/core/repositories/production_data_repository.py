@@ -1,6 +1,7 @@
 
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import List
 
 from core.entities.production_data import ProductionData
 
@@ -19,11 +20,11 @@ class ProductionDataRepository(ABC):
         pass
     
     @abstractmethod
-    def list_all(self) -> list[ProductionData]:
+    def list_all(self) -> List[ProductionData]:
         pass
     
     @abstractmethod
-    def list_by_period(self, start_date: datetime, end_date: datetime) -> list[ProductionData]:
+    def list_by_period(self, start_date: datetime, end_date: datetime) -> List[ProductionData]:
         pass
 
     @abstractmethod
