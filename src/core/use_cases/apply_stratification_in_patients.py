@@ -14,9 +14,40 @@ class ApplyStratificationInPatientsUseCase:
         self.clinical_data_repository = clinical_data_repository
         self.audit_log_repository = audit_log_repository
 
+    
     def execute(self, user_id) -> list:
         """
         Apply stratification algorithms to patients.
+
+        Time Complexity Analysis:
+
+        - Fetch all patients:
+            - O(P)
+            (P = number of patients in the system)
+
+        - For each patient:
+            - Fetch clinical data:
+                - O(C)
+                (C = number of clinical data entries per patient)
+            - Apply stratification algorithm:
+                - O(C)
+                (linear in the number of clinical data entries)
+
+        - Sorting results:
+            - results_sorted = sorted(results, key=lambda x: x['priority']) → O(R log R)
+            (R = total number of stratification results = sum of all clinical data entries across patients)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+            - Dominated by linear scans over patients and clinical data + sorting
+            - O(P * C + R log R) in the worst case
+            - Typically, C << P, so complexity ≈ O(P * C + R log R)
+
+        Best / Average / Worst Case:
+            - Best: All patients have no clinical data → O(P)
+            - Worst: All patients have multiple clinical data entries → O(P * C + R log R)
         """
         try:
             results = []

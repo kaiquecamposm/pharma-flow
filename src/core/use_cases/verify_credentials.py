@@ -15,8 +15,23 @@ class VerifyCredentialsUseCase:
     def execute(self, email: str, password: str) -> Optional[User]:
         """
         Verify user credentials.
-        Business rules:
-        - Check if the email exists in the repository.
+
+        Time Complexity Analysis:
+
+        - Fetch user by email:
+            - O(n), n = total number of users (linear search in list)
+
+        - Password verification:
+            - O(1) (simple comparison)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n), dominated by the linear search for the user by email
+
+        Best / Average / Worst Case:
+        - Linear in the number of users
         """
         try:
             user = self.user_repository.get_by_email(email)

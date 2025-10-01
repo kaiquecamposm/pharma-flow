@@ -16,11 +16,40 @@ class DetectedOutliersInClinicalDataUseCase:
         self.patient_repository = patient_repository
         self.clinical_data_repository = clinical_data_repository
         self.audit_log_repository = audit_log_repository
-
+    
+    
     def execute(self, user_id, threshold: int = 3) -> dict:
         """
         Detect outliers in clinical data grouped by patient and data_type.
-        An outlier is defined as a value that is more than `threshold` standard deviations away from the mean.
+
+        Time Complexity Analysis:
+
+        - Fetch all patients:
+            - O(P), P = total number of patients
+
+        - For each patient:
+            - Fetch clinical data by patient_id:
+                - O(C_i), C_i = number of clinical data entries for patient i
+            - Group values by data_type:
+                - O(C_i), iterates over all clinical data for the patient
+            - Compute mean, std, and detect outliers:
+                - O(C_i) for mean/std + O(C_i) for outlier detection → O(C_i) total
+            - Apply clinical rules per value → O(C_i) 
+            - Total per patient → O(C_i)
+        
+        - Summed over all patients:
+            - O(sum(C_i) for i in 1..P) = O(N), N = total clinical data entries across all patients
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+            - O(P + N) ≈ O(N), dominated by iterating over all clinical data entries
+            (P is usually much smaller than N, so N dominates)
+
+        Best / Average / Worst Case:
+            - Linear in the total number of clinical data entries
+            - Independent of data distribution per patient
         """
         try:
             patients = self.patient_repository.list_all()

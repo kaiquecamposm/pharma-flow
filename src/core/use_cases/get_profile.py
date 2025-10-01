@@ -14,6 +14,20 @@ class GetProfileUseCase:
     def execute(self, user_id: str) -> User:
         """
         Get user profile by ID.
+
+        Time Complexity Analysis:
+
+        - Fetch user by ID:
+            - O(n), n = total number of users (linear search in list)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n), dominated by the linear search for the user by ID
+
+        Best / Average / Worst Case:
+        - Linear in the number of users
         """
         try:
             profile = self.user_repository.get_by_id(user_id)

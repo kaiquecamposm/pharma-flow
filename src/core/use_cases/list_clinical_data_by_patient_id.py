@@ -17,6 +17,15 @@ class ListClinicalDataByPatientIdUseCase:
     def execute(self, user_id: str, patient_id: str) -> list[ClinicalData]:
         """
         Get all clinical data for a specific patient.
+
+        Time Complexity Analysis:
+
+        - get_by_id(patient_id) → O(n), n = total number of patients (linear search)
+        - list_by_patient_id(patient_id) → O(m), m = total number of clinical data entries
+        - audit log insertion → O(1)
+
+        Total Complexity: O(n + m)
+        Best / Average / Worst Case: Linear in number of patients and clinical data entries
         """
         try:
             patient = self.patient_repository.get_by_id(patient_id)

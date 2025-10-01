@@ -15,11 +15,24 @@ class RegisterUserUseCase:
 
     def execute(self, user_id: str, email: str, password: str, full_name: str, role_name: str, active: bool) -> User:
         """
-        Register a new user.
-        Business rules:
-        - Ensure the email is unique (not already registered).
-        - Hash the password before storing (omitted here for simplicity).
-        - Assign the appropriate role to the user.
+        Registers a new user in the system.
+
+        Time Complexity Analysis:
+
+        - Check if email exists:
+            - O(n), n = total number of users (linear search in list)
+
+        - Add user:
+            - O(1) (append to the end of the list)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n), dominated by the linear search for email
+
+        Best / Average / Worst Case:
+        - Linear in the number of users in the repository
         """
         try:
             is_same_email = self.user_repository.get_by_email(email)

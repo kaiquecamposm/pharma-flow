@@ -13,9 +13,12 @@ class RegisterClinicalDataUseCase:
 
     def execute(self, data_type: str, value: str, unit: str, description: str, user_id: str, patient_id: str) -> ClinicalData:
         """
-        Register a new clinical data entry.
-        Business rules:
-        - Ensure the patient ID is valid (exists in the system).
+        Complexity Analysis:
+
+        - Register Clinical Data: O(1) for adding a new clinical data entry.
+        - Audit Logging: O(1) for adding a log entry.
+
+        Overall Complexity: O(1)
         """
         try:
             saved_clinical_data = self.clinical_data_repository.add(data_type, value, unit, description, user_id, patient_id)

@@ -16,6 +16,27 @@ class ArchiveLoteUseCase:
     def execute(self, user_id, lote_id) -> Lote:
         """
         Archive a lote.
+
+        Time Complexity Analysis:
+
+        - Archive lote:
+            - O(L)
+            (L = number of lotes; assumes linear search in a list)
+
+        - Archive production data for this lote:
+            - O(P)
+            (P = number of production data entries; linear scan over all entries for matching lote_id)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+            - O(L + P) in the worst case
+            - Dominated by linear scans over lote list and production data list
+
+        Best / Average / Worst Case:
+            - Best: O(1) if lote is first in list and has no production data
+            - Worst: O(L + P) if lote is last in list and has multiple production data entries
         """
         try:
             lote_archived = self.lote_repository.inactivate(lote_id)

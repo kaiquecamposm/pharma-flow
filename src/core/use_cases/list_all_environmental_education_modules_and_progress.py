@@ -15,7 +15,17 @@ class ListAllEnvironmentalEducationModulesAndProgressUseCase:
 
     def execute(self, user_id) -> list[EducationModule]:
         """
-        Get all environmental education modules and their progress.
+        List all education modules and user's progress.
+
+        Time Complexity Analysis:
+
+        - list_all() modules → O(n), n = number of modules
+        - list_by_user_id(user_id) → O(p), p = number of progress entries for user
+        - For each module, linear search in progress → O(n * p)
+        - audit log insertion → O(1)
+
+        Total Complexity: O(n * p)
+        Best / Average / Worst Case: Linear in number of modules and user's progress entries (nested)
         """
         try:
             modules = self.education_module_repository.list_all()

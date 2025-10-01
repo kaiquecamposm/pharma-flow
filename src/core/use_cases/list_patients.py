@@ -13,7 +13,12 @@ class ListPatientsUseCase:
 
     def execute(self, user_id: str) -> list[Patient]:
         """
-        Get all patients.
+        Complexity Analysis:
+
+        - List Patients: O(n) where n is the number of patients in the repository.
+        - Audit Logging: O(1) for adding a log entry.
+
+        Overall Complexity: O(n)
         """
         try:
             patients = self.patient_repository.list_all()

@@ -18,10 +18,13 @@ class GenerateSprintReportUseCase:
 
     def _parse_value(self, data_type: str, value: str):
         """
-        Converte valores de ClinicalData em números, se possível.
-        Exemplo:
-            Blood Pressure "120/80" -> {"systolic": 120, "diastolic": 80}
-            Temperature "36.7" -> 36.7
+        Purpose: Convert ClinicalData values to numerical form.
+
+        Time Complexity:
+        - O(1) for all supported data types (constant time), because it only performs string splitting or type conversion.
+        - No iteration over lists or large data structures.
+
+        Total Complexity: O(1)
         """
         try:
             if data_type == "Blood Pressure":
@@ -38,6 +41,20 @@ class GenerateSprintReportUseCase:
             return value
 
     def _generate_regulatory_indicators(self, grouped_clinical_data: dict) -> dict:
+        """
+        Purpose: Compute regulatory indicators (mean, status) for each clinical data type.
+
+        Time Complexity:
+        - For each data type in grouped_clinical_data:
+            - Linear scan over the list of values for that type to compute means
+            - Let n_i = number of records for data type i
+        - Total time: O(sum(n_i)) = O(n), where n = total number of clinical data records
+
+        - Operations on individual types (e.g., Blood Pressure, Heart Rate, BMI) are constant per type.
+
+        Total Complexity: O(n)
+        """
+
         regulatory_indicators = {}
 
         # Blood Pressure
@@ -140,6 +157,19 @@ class GenerateSprintReportUseCase:
         return regulatory_indicators
 
     def _generate_environmental_indicators(self, production_data: list) -> dict:
+        """
+        Purpose: Compute environmental indicators (energy, solvent recovery, emissions).
+
+        Time Complexity:
+        - Linear scans over production_data for:
+            - total_energy → O(m)
+            - solvent_recovery → O(m)
+            - emissions → O(m)
+        - Aggregation functions like np.mean, np.max, np.min are also O(m)
+
+        Total Complexity: O(m), where m = total number of production data records
+        """
+
         # --- Environmental Indicators ---
         environmental_indicators = {}
 
@@ -184,44 +214,67 @@ class GenerateSprintReportUseCase:
 
     def execute(self, user_id: str, start_date: datetime, end_date: datetime) -> SprintReport:
         """
-        Generate a sprint report for the given period.
+        Purpose: Generate SprintReport for a given period.
+
+        Time Complexity:
+        - Fetch clinical data by period:
+            - O(n) (linear filter over list)
+        - Fetch production data by period:
+            - O(m) (linear filter over list)
+        - Group clinical data by type:
+            - O(n)
+        - Generate regulatory indicators:
+            - O(n)
+        - Generate environmental indicators:
+            - O(m)
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n + m), dominated by linear scans over clinical and production data lists
+
+        Best / Average / Worst Case:
+        - Linear in the number of clinical and production data entries in the period
         """
-        # Fetch data for the period
-        clinical_data = self.clinical_data_repository.list_by_period(start_date, end_date)
-        production_data = self.production_data_repository.list_by_period(start_date, end_date)
+        try:
+            # Fetch data for the period
+            clinical_data = self.clinical_data_repository.list_by_period(start_date, end_date)
+            production_data = self.production_data_repository.list_by_period(start_date, end_date)
 
-        # --- Regulatory Indicators ---
-        regulatory_indicators = defaultdict(dict)
+            # --- Regulatory Indicators ---
+            regulatory_indicators = defaultdict(dict)
 
-        grouped_clinical_data = defaultdict(list)
-        for record in clinical_data:
-            parsed_value = self._parse_value(record.data_type, record.value)
-            grouped_clinical_data[record.data_type].append(parsed_value)
+            grouped_clinical_data = defaultdict(list)
+            for record in clinical_data:
+                parsed_value = self._parse_value(record.data_type, record.value)
+                grouped_clinical_data[record.data_type].append(parsed_value)
 
-        regulatory_indicators = self._generate_regulatory_indicators(grouped_clinical_data)
+            regulatory_indicators = self._generate_regulatory_indicators(grouped_clinical_data)
 
-        # --- Environmental Indicators ---
-        environmental_indicators = self._generate_environmental_indicators(production_data)
+            # --- Environmental Indicators ---
+            environmental_indicators = self._generate_environmental_indicators(production_data)
 
-        if not regulatory_indicators and not environmental_indicators:
-            return None
+            if not regulatory_indicators and not environmental_indicators:
+                return None
 
-        # Create SprintReport entity
-        report = SprintReport(
-            start_date=start_date,
-            end_date=end_date,
-            generated_by=user_id,
-            generated_at=datetime.now(),
-            regulatory_indicators=regulatory_indicators,
-            environmental_indicators=environmental_indicators
-        )
+            # Create SprintReport entity
+            report = SprintReport(
+                start_date=start_date,
+                end_date=end_date,
+                generated_by=user_id,
+                generated_at=datetime.now(),
+                regulatory_indicators=regulatory_indicators,
+                environmental_indicators=environmental_indicators
+            )
 
-        self.audit_log_repository.add(
-            user_id=user_id,
-            action="GENERATE_SPRINT_REPORT",
-            target_id=report.id,
-            target_type="SprintReport",
-            details=f"Sprint report generated for period {start_date} to {end_date}"
-        )
+            self.audit_log_repository.add(
+                user_id=user_id,
+                action="GENERATE_SPRINT_REPORT",
+                target_id=report.id,
+                target_type="SprintReport",
+                details=f"Sprint report generated for period {start_date} to {end_date}"
+            )
 
-        return report
+            return report
+        except Exception as e:
+            raise Exception(f"\nFailed to generate sprint report: {str(e)}")

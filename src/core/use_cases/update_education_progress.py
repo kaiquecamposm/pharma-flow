@@ -15,6 +15,26 @@ class UpdateEducationProgressUseCase:
         self.audit_log_repository = audit_log_repository
 
     def execute(self, user_id: str, module_id: str, score: int) -> Optional[EducationProgress]:
+        """
+        Updates a user's education progress for a specific module.
+
+        Time Complexity Analysis:
+
+        - Fetch education progress by user and module:
+            - O(p), p = total number of education progress entries (linear search in list)
+
+        - Update education progress:
+            - O(1) if the update is done on the found entry (already retrieved)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(p), dominated by the linear search for the user's progress entry
+
+        Best / Average / Worst Case:
+        - Linear in the number of education progress records
+        """
         try:
             education_progress = self.education_progress_repository.get_by_user_and_module(user_id, module_id)
 
@@ -32,6 +52,5 @@ class UpdateEducationProgressUseCase:
             )
 
             return updated_education_progress
-
         except Exception as e:
             raise Exception(f"Failed to update education progress: {str(e)}")

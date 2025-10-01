@@ -14,7 +14,17 @@ class ListAllLotesAndIndicatorsUseCase:
 
     def execute(self, user_id) -> list:
         """
-        Retrieve all lotes along with their associated environmental indicators.
+        List all lotes and their production data.
+
+        Time Complexity Analysis:
+
+        - list_all() lotes → O(n), n = number of lotes
+        - For each lote, get_by_lote_id(lote.id) → O(m), m = number of production data entries
+        - Loop over n lotes → O(n * m)
+        - audit log insertion → O(1)
+
+        Total Complexity: O(n * m)
+        Best / Average / Worst Case: Linear in number of lotes and production data entries (nested)
         """
         try:
             results = []

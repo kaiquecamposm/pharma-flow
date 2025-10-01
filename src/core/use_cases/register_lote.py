@@ -15,7 +15,13 @@ class RegisterLoteUseCase:
 
     def execute(self, code: str, product_name: str, start_date: str, end_date: str, quantity: float, energy_consumption: float, emissions: float, recovered_solvent_volume: float, user_id: str) -> Lote:
         """
-        Register a new lote.
+        Complexity Analysis:
+        
+        - Register Lote: O(1) for adding a new lote entry.
+        - Register Production Data: O(1) for adding a new production data entry.
+        - Audit Logging: O(1) for adding a log entry.
+
+        Overall Complexity: O(1)
         """
         try:
             saved_lote = self.lote_repository.add(code, product_name, start_date, end_date, user_id)

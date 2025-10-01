@@ -15,6 +15,28 @@ class ArchivePatientUseCase:
     def execute(self, user_id, patient_id) -> bool:
         """
         Archive a patient.
+
+        Time Complexity Analysis:
+
+        - Archive patient:
+            - O(1)
+
+        - Check if patient has clinical data:
+            - O(C), C = number of clinical data entries for this patient
+
+        - Archive clinical data:
+            - O(C), iterates over all clinical data for this patient
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+            - O(P + C) in the worst case
+            - Dominated by linear searches over patient list and clinical data list
+
+        Best / Average / Worst Case:
+            - Best: O(1) if patient is first in list and has no clinical data
+            - Worst: O(P + C) if patient is last and has clinical data entries
         """
         try:
             is_patient_archived = self.patient_repository.inactivate(patient_id)

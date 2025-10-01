@@ -1,55 +1,12 @@
-import random
-import uuid
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import datetime, timedelta
 
 import numpy as np
 
 from core.constants.production_rules import ENVIRONMENTAL_RULES
-from core.entities.production_data import ProductionData
 from core.repositories.audit_log_repository import AuditLogRepository
 from core.repositories.production_data_repository import ProductionDataRepository
 from utils import console
-
-
-def generate_process_data(num_records=50, with_outliers=True):
-    records = []
-    base_time = datetime.now()
-
-    for i in range(num_records):
-        record = ProductionData(
-            id=str(uuid.uuid4()),
-            quantity=random.normalvariate(1000, 50),  # average 1000, stddev 50
-            energy_consumption=random.normalvariate(1500, 100),  # average 1500, stddev 100
-            recovered_solvent_volume=random.normalvariate(350, 30),  # average 350, stddev 30
-            emissions=random.normalvariate(400, 40),  # average 400, stddev 40
-            user_id="admin",
-            lote_id=str(uuid.uuid4()),
-            version=1,
-            active=True,
-            timestamp=(base_time + timedelta(minutes=i)).isoformat()
-        )
-        records.append(record)
-
-    if with_outliers:
-        # insert some extreme outliers
-        for _ in range(3):
-            record = ProductionData(
-                id=str(uuid.uuid4()),
-                quantity=random.choice([5000, 6000, 50]),
-                energy_consumption=random.choice([10000, 50]),
-                recovered_solvent_volume=random.choice([1000, 5]),
-                emissions=random.choice([2000, 10]),
-                user_id="admin",
-                lote_id=str(uuid.uuid4()),
-                version=1,
-                active=True,
-                timestamp=(base_time + timedelta(minutes=num_records+_)).isoformat()
-            )
-            records.append(record)
-
-    return records
 
 
 @dataclass
@@ -58,11 +15,35 @@ class DetectedOutliersInProductionDataUseCase:
         self.production_data_repository = production_data_repository
         self.audit_log_repository = audit_log_repository
 
+    
     def execute(self, user_id, threshold = 3) -> dict:
         """
         Detect outliers in production data grouped by lote.
-        Outlier = value more than `threshold * std` from mean
-        or absurd values compared to mean if std is too small.
+
+        Time Complexity Analysis:
+
+        - Fetch all production data:
+            - O(p), p = total production records
+
+        - Group data by lote and metric:
+            - Iterates over all production records and metrics → O(p * m), m = number of metrics (constant here, m=3)
+            - Effectively O(p) since m is small and fixed
+
+        - Compute mean, std, and detect outliers for each lote and metric:
+            - Let L = number of lotes, V = max number of values per metric per lote
+            - For each lote and metric:
+                - Mean/std calculation → O(V)
+                - Outlier detection → O(V)
+            - Total → O(L * V) ≈ O(p) because all production records are distributed across lotes
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(p), linear in the number of production data entries
+
+        Best / Average / Worst Case:
+        - Linear scan over production data; complexity dominated by grouping and outlier detection
         """
         try:
             production_data = self.production_data_repository.list_all()
@@ -111,7 +92,6 @@ class DetectedOutliersInProductionDataUseCase:
             )
 
             return results
-
         except Exception as e:
             console.io.print(f"[bold red]Failed to detect production outliers: {str(e)}[/bold red]")
             return {}

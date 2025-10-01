@@ -15,6 +15,26 @@ class  UpdateClinicalDataUseCase:
         self.audit_log_repository = audit_log_repository
 
     def execute(self, patient_id, id, user_id, data_type, value, unit, description) -> Optional[ClinicalData]:
+        """
+        Updates a clinical data entry for a specific patient.
+
+        Time Complexity Analysis:
+
+        - Fetch patient by ID:
+            - O(n), n = total number of patients (linear search in list)
+
+        - Update clinical data:
+            - O(m), m = total number of clinical data entries (linear search to find the entry in list)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n + m), dominated by the linear searches in the patient and clinical data lists
+
+        Best / Average / Worst Case:
+        - Linear in the number of patients and clinical data entries
+        """
         try:
             patient = self.patient_repository.get_by_id(patient_id)
 

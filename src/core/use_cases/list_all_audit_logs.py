@@ -12,6 +12,17 @@ class ListAllAuditLogsUseCase:
     def execute(self) -> list[AuditLog]:
         """
         Get all audit logs.
+
+        Time Complexity Analysis:
+
+        - List all audit logs:
+            - O(n), n = total number of audit log entries (linear traversal of list)
+
+        Total Complexity:
+        - O(n), dominated by the linear traversal of the audit log list
+
+        Best / Average / Worst Case:
+        - Linear in the number of audit log entries
         """
         try:
             audit_logs = self.audit_log_repository.list_all()

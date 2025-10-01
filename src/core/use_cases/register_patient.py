@@ -13,9 +13,16 @@ class RegisterPatientUseCase:
 
     def execute(self, user_id, full_name, email, dob, gender, active) -> Patient:
         """
-        Register a new patient.
-        Business rules:
-        - Ensure the email is unique (not already registered).
+        Registers a new patient in the system.
+
+        Time Complexity Analysis:
+
+        - get_by_email(email) → O(n), n = total number of patients (linear search in list)
+        - add patient → O(1) (append to list)
+        - audit log insertion → O(1)
+
+        Total Complexity: O(n)
+        Best / Average / Worst Case: Linear in the number of patients
         """
         try:
             is_exist_email = self.patient_repository.get_by_email(email)

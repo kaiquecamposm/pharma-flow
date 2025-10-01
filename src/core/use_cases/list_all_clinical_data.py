@@ -14,6 +14,20 @@ class ListAllClinicalDataUseCase:
     def execute(self, user_id) -> list[ClinicalData]:
         """
         Get all clinical data.
+
+        Time Complexity Analysis:
+
+        - List all clinical data:
+            - O(n), n = total number of clinical data entries (linear traversal of list)
+
+        - Audit log insertion:
+            - O(1)
+
+        Total Complexity:
+        - O(n), dominated by the linear traversal of the clinical data list
+
+        Best / Average / Worst Case:
+        - Linear in the number of clinical data entries
         """
         try:
             clinical_data = self.clinical_data_repository.list_all()
