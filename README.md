@@ -1,10 +1,10 @@
-Pharma Flow 💊
+# Pharma Flow 💊
 
-📍 Overview
+## 📍 Overview
 
 Pharma Flow is a Python application designed to manage clinical and production data in the pharmaceutical industry. It provides features for registering clinical data, tracking patient information, generating reports, detecting outliers, managing educational modules, and auditing actions. The project aims to streamline data management and analysis in pharmaceutical environments.
 
-✨ Features
+## ✨ Features
 
 - Register Clinical Data: Record patient clinical measurements (e.g., blood pressure, heart rate).
 
@@ -125,4 +125,4 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## 📝 License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE).
