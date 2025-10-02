@@ -39,6 +39,21 @@ Pygments==2.19.2
 rich==14.1.0
 ```
 
+## 👤 User Accounts
+
+- Pre-registered user types are stored in:
+
+```bash
+src/core/shared/databases/users.json
+```
+
+- Default admin login:
+
+```bash
+Email: admin@admin.com
+Password: admin
+```
+
 ## 🚀 Getting Started
 
 1. Clone the repository:
